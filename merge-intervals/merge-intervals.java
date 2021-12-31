@@ -6,8 +6,8 @@ class Solution {
         
         for(int[] interval : intervals){
             if(list.isEmpty() || list.getLast()[1] < interval[0])
-                list.addLast(interval);
-            else if(list.getLast()[1] >= interval[0]){
+                list.add(interval);
+            else{
                 list.getLast()[1] = Math.max(list.getLast()[1], interval[1]);
             }
         }
