@@ -41,12 +41,12 @@ class Solution {
     }
     
     
-    boolean matches(char[] pMap, char[] sMap){
-        for(int i = 0; i< pMap.length; i++){
-            if(pMap[i] != sMap[i])
-                return false;
-        }
-        return true;
-    }
+    // boolean matches(char[] pMap, char[] sMap){
+    //     for(int i = 0; i< pMap.length; i++){
+    //         if(pMap[i] != sMap[i])
+    //             return false;
+    //     }
+    //     return true;
+    // }
     
 }
