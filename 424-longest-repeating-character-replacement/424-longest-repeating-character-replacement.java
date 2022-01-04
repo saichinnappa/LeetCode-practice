@@ -5,9 +5,9 @@ class Solution {
         int result = 0;
         int maxCount = 0;
         for(int i = 0; i< s.length(); i++){
-            count[s.charAt(i) - 'A']++;
-            maxCount = Math.max(maxCount, count[s.charAt(i) - 'A']);
-            // maxCount = 
+            char c = s.charAt(i);
+            count[c - 'A']++;
+            maxCount = Math.max(maxCount, count[c  - 'A']);
             int uniqueChars = (i - startWindow + 1) - maxCount;
             
             if(uniqueChars > k){
