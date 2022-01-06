@@ -1,3 +1,36 @@
+// /**
+//  * Definition for singly-linked list.
+//  * public class ListNode {
+//  *     int val;
+//  *     ListNode next;
+//  *     ListNode() {}
+//  *     ListNode(int val) { this.val = val; }
+//  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+//  * }
+//  */
+// class Solution {
+//     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+//         if(list1 == null) return list2;
+//         if(list2 == null) return list1;
+        
+//         ListNode result = new ListNode(-1);
+//         ListNode x = result;
+//         while(list1 != null && list2 != null){
+//             if(list1.val <= list2.val){
+//                 result.next = new ListNode(list1.val);
+//                 list1 = list1.next;
+//             } else if (list1.val > list2.val){
+//                 result.next = new ListNode(list2.val);
+//                 list2 = list2.next;
+//             }
+//             result = result.next;
+//         }
+        
+//         result.next = (list1 == null) ? list2 : list1;
+//         return x.next;
+//     }
+// }
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -13,20 +46,20 @@ class Solution {
         if(list1 == null) return list2;
         if(list2 == null) return list1;
         
-        ListNode result = new ListNode(-1);
-        ListNode x = result;
+        ListNode dummy = new ListNode(0);
+        ListNode result = dummy;
+        
         while(list1 != null && list2 != null){
             if(list1.val <= list2.val){
-                result.next = new ListNode(list1.val);
+                dummy.next = new ListNode(list1.val);
                 list1 = list1.next;
-            } else if (list1.val > list2.val){
-                result.next = new ListNode(list2.val);
+            } else{
+                dummy.next = new ListNode(list2.val);
                 list2 = list2.next;
             }
-            result = result.next;
+            dummy = dummy.next;
         }
-        
-        result.next = (list1 == null) ? list2 : list1;
-        return x.next;
+        dummy.next = (list1 == null) ? list2 : list1;
+        return result.next;        
     }
 }
