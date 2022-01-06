@@ -1,7 +1,6 @@
 class Solution {
     List<List<Integer>> result = new ArrayList();
     int[] nums;
-    Set<Integer> set = new HashSet();
     public List<List<Integer>> permute(int[] nums) {
         this.nums = nums;
         solve(nums, new ArrayList());
@@ -9,9 +8,7 @@ class Solution {
     }
     
     boolean isValid(List<Integer> list){
-        if(list.size() == nums.length)
-            return true;
-        return false;
+        return list.size() == nums.length;
     }
     
     List<Integer> getCandidates(List<Integer> input){
