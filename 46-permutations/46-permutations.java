@@ -30,7 +30,7 @@ class Solution {
         for(int i = 0; i< candidates.size(); i++){
             list.add(candidates.get(i));
             solve(nums,list);
-            list.remove((Integer)candidates.get(i));
+            list.remove(candidates.get(i));
         }
         
     }
