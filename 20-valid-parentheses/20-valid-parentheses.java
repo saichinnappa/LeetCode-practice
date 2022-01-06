@@ -8,7 +8,7 @@ class Solution {
         map.put('}', '{');
         
         char[] input = s.toCharArray();
-        ArrayDeque<Character> stack = new ArrayDeque();
+        Deque<Character> stack = new ArrayDeque();
         
         for(int i = 0; i < input.length; i++){
             if(!map.containsKey(input[i]))
