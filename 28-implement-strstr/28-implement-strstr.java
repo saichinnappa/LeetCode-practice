@@ -11,6 +11,7 @@ class Solution {
 
         
         for(int i = 0; i < harr.length; i++){
+            if (i + needle.length() > haystack.length()) break;
             int count = 0;
             if(harr[i] == narr[0]){
                 for(int j = 0; j< narr.length; j++){
@@ -28,4 +29,5 @@ class Solution {
         return -1;
         
     }
+    
 }
