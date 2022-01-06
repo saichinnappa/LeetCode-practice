@@ -14,10 +14,10 @@ class Solution {
         return false;
     }
     
-    List<Integer> getCandidates(){
+    List<Integer> getCandidates(List<Integer> input){
         List<Integer> list = new ArrayList();
         for(int n : nums){
-            if(!set.contains(n)){
+            if(!input.contains(n)){
                 list.add(n);
             }
         }
@@ -26,16 +26,13 @@ class Solution {
     
     void solve(int[] nums, List<Integer> list){
         if(isValid(list)){
-            
             result.add(new ArrayList(list));
         }
         
-        List<Integer> candidates = getCandidates();
+        List<Integer> candidates = getCandidates(list);
         for(int i = 0; i< candidates.size(); i++){
             list.add(candidates.get(i));
-            set.add(candidates.get(i));
             solve(nums,list);
-            set.remove(candidates.get(i));
             list.remove((Integer)candidates.get(i));
         }
         
