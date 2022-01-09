@@ -19,10 +19,9 @@ class Solution {
         }
         
         int i = 0;
-        while(k != 0){
+        while(k != i){
             result[i] = queue.poll().value;
             i++;
-            k--;
         }
         
         
