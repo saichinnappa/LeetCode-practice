@@ -27,14 +27,6 @@ class UnionByRank{
     }
     
     int getDistinctRootCount(){
-        System.out.println(Arrays.toString(root));
-        Set<Integer> set = new HashSet();
-        
-        for(int r : root){
-                set.add(r);
-        }
-        System.out.println(set);
-        // return set.size();
         return count;
     }
     
@@ -42,10 +34,6 @@ class UnionByRank{
         if(x == root[x])
             return x;
         return root[x] = find(root[x]);
-        
-        // while(x != root[x])
-        //         x = root[x];
-        // return x;
     }
     
     void union(int x, int y){
@@ -62,7 +50,6 @@ class UnionByRank{
             }
                     count--;
         }
-        System.out.println(Arrays.toString(root));
     }
     
     boolean isConnected(int x, int y){
