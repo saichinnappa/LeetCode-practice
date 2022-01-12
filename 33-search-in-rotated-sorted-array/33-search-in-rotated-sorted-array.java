@@ -12,7 +12,6 @@ class Solution {
         
         int length = nums.length - 1;
         int rIdx = findRotatedIndex(nums, 0, length);
-        System.out.println("Rotated Index: "+ rIdx);
         if(nums[rIdx] == target)
             return rIdx;
         
@@ -30,7 +29,6 @@ class Solution {
     private int binarySearch(int[] nums, int start, int end){
         while(start <= end){
             int mid = (start + end) /2;
-            // System.out.println(mid);
             if(nums[mid]  == target)
                 return mid;
             if(nums[mid] < target){
@@ -50,7 +48,6 @@ class Solution {
 
         while(start <= end){
             int mid = (start + end) /2;
-            System.out.println(mid);
             if(nums[mid] > nums[mid + 1])
                 return mid + 1;
             else if (nums[mid] >= nums[start])
