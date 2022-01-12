@@ -1,20 +1,20 @@
 class Solution {
     
-    List<List<Integer>> result = new LinkedList();
+    List<List<Integer>> result = new ArrayList();
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         
         int source = 0;
         int dest = graph.length - 1;
-        LinkedList<Integer> list = new LinkedList();
+        List<Integer> list = new LinkedList();
         list.add(source);
         dfs(graph, source, dest, list);
         
         return result;
     }
     
-    void dfs(int[][] graph, int src, int dest, LinkedList<Integer> list){
+    void dfs(int[][] graph, int src, int dest, List<Integer> list){
         if(src == dest){
-            result.add(new LinkedList<>(list));
+            result.add(new ArrayList<>(list));
             return;
         }
         int[] edges = graph[src];
@@ -22,7 +22,7 @@ class Solution {
         for(int edge : edges){
             list.add(edge);
             dfs(graph, edge, dest, list);
-            list.removeLast();
+            list.remove(list.size() - 1);
         }
     }
 }
