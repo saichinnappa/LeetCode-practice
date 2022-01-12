@@ -5,7 +5,7 @@ class Solution {
         
         int source = 0;
         int dest = graph.length - 1;
-        List<Integer> list = new LinkedList();
+        List<Integer> list = new ArrayList();
         list.add(source);
         dfs(graph, source, dest, list);
         
