@@ -7,7 +7,6 @@ class Solution {
         int result = -1;
         int length = nums.length - 1;
         int rIdx = rotatedIndex(nums, 0, length);
-        System.out.println(rIdx);
         if(rIdx == 0)
             return binarySearch(nums, target, 0, length);
         if(nums[rIdx] == target)
@@ -41,7 +40,6 @@ class Solution {
         while(start <= end){
             
             int mid = (start + end) /2;
-            System.out.println(start+" "+end+" "+mid);
             if(nums[mid] > nums[mid + 1])
                 return mid + 1;
             else{
