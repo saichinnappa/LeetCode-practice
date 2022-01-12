@@ -2,7 +2,7 @@ class Solution {
     
     List<List<Integer>> result = new ArrayList();
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        
+                if(graph == null || graph.length == 0) return null;
         int source = 0;
         int dest = graph.length - 1;
         List<Integer> list = new ArrayList();
