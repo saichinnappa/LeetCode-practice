@@ -23,7 +23,6 @@ class Solution {
                 x = i - startIdx + 1;
             else
                 x = i - firstNegIdx;
-            System.out.println("X: " + x + " I: " + i + " FN: " + firstNegIdx);
             result = Math.max(result, x);
         }
         return result;
