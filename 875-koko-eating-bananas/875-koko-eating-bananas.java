@@ -38,7 +38,6 @@ class Solution {
         while(start <= end){
             for(int i = 0; i< piles.length; i++){
                 totalSpeed += Math.ceil((double)piles[i] / mid);
-                // System.out.println("TotalSpeed==> "+totalSpeed);
                 if(totalSpeed > h){
                     start = mid + 1;
                     break;
@@ -49,7 +48,6 @@ class Solution {
                 result = Math.min(mid, result);
                 
             }
-            // System.out.println("Start = "+start+" End = "+end);
             mid = (start + end)/2;
             totalSpeed = 0;
         }
