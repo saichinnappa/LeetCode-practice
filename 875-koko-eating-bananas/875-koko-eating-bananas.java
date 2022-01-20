@@ -1,5 +1,5 @@
 class Solution {
-    public int minEatingSpeed(int[] piles, int h) {
+    // public int minEatingSpeed(int[] piles, int h) {
         //BRUTE FORCE - TLE
         
 //         int totalSpeed = 0;
@@ -25,34 +25,51 @@ class Solution {
         
         // BINARY SEARCH
         
-        int maxValue = Integer.MIN_VALUE;
-        for(int i = 0; i< piles.length; i++){
-            maxValue = Math.max(piles[i], maxValue);
-        }
-        int start = 1;
-        int end = maxValue;
-        int totalSpeed = 0;
-        int mid = (start + end) / 2;
-        int result = Integer.MAX_VALUE;
+//         int maxValue = Integer.MIN_VALUE;
+//         for(int i = 0; i< piles.length; i++){
+//             maxValue = Math.max(piles[i], maxValue);
+//         }
+//         int start = 1;
+//         int end = maxValue;
         
-        while(start <= end){
-            for(int i = 0; i< piles.length; i++){
-                totalSpeed += Math.ceil((double)piles[i] / mid);
-                if(totalSpeed > h){
-                    start = mid + 1;
-                    break;
-                }
-            }
-            if(totalSpeed <= h){
-                end = mid - 1;
-                result = Math.min(mid, result);
+//         int mid = (start + end) / 2;
+//         int result = Integer.MAX_VALUE;
+        
+//         while(start <= end){
+//             int totalSpeed = 0;
+//             for(int i = 0; i< piles.length; i++){
+//                 totalSpeed += Math.ceil((double)piles[i] / mid);
+//                 if(totalSpeed > h){
+//                     start = mid + 1;
+//                     break;
+//                 }
+//             }
+//             if(totalSpeed <= h){
+//                 end = mid - 1;
+//                 result = Math.min(mid, result);
                 
-            }
-            mid = (start + end)/2;
-            totalSpeed = 0;
+//             }
+//             mid = (start + end)/2;
+//             totalSpeed = 0;
+//         }
+        
+//         return result;
+        
+        
+        
+    // }
+    
+     public int minEatingSpeed(int[] piles, int H) {
+        int l = 1, r = 1000000000;
+        while (l < r) {
+            int m = (l + r) / 2, total = 0;
+            for (int p : piles)
+                total += (p + m - 1) / m;
+            if (total > H)
+                l = m + 1;
+            else
+                r = m;
         }
-        
-        return result;
-        
+        return l;
     }
 }
