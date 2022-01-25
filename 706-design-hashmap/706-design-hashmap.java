@@ -13,17 +13,12 @@ class MyHashMap {
     
     public void put(int key, int value) {
         int hashKey = getHashKey(key);
-        System.out.println("Key--->"+hashKey);
         Pair p = new Pair(key, value);
         LinkedList<Pair> list = map[hashKey];
         if(get(key)  != -1){
             remove(key);
-            list.addLast(p);
-            
-        } else{
-
-            list.addLast(p);
         }
+        list.addLast(p);
     }
     
     public int get(int key) {
@@ -31,7 +26,6 @@ class MyHashMap {
         LinkedList<Pair> list = map[hashKey];
         for(int i = 0; i < list.size(); i++){
             if(list.get(i).key == key){
-                System.out.println("Found Key: "+key);
                 return list.get(i).val;
             }
         }
@@ -44,7 +38,6 @@ class MyHashMap {
             LinkedList<Pair> list = map[hashKey];
             for(int i = 0; i < list.size(); i++){
                 if(list.get(i).key == key){
-                    System.out.println("Removing Key--->"+key);
                     list.remove(i);
                 }
             }
