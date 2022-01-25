@@ -5,7 +5,7 @@ class Solution {
         if(nums.length < 3 ) return result;
 
         Arrays.sort(nums);
-                Set<Integer> set = new HashSet();
+        Set<Integer> set = new HashSet();
         for(int i = 0; i< nums.length; i++){
          if(!set.contains(nums[i])){
             set.add(nums[i]);
@@ -17,9 +17,9 @@ class Solution {
                 result.add(Arrays.asList(nums[i], nums[j], nums[k]));
                 j++;
                 k--;
-                  while(j < k && nums[j] == nums[j - 1]){
-                            j++;
-                        } 
+              while(j < k && nums[j] == nums[j - 1]){
+                        j++;
+                } 
             }
             else if (sum < 0){
                 j++;
