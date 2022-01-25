@@ -10,23 +10,30 @@ class Solution {
         }
         
         
-        int index = -1;
-        int val = Integer.MIN_VALUE;
-        for(int i = 0; i< nums.length; i++){
-            if(nums[i] > val){
-                index = i;
-                val = nums[i];
-            }
-                
+        if(nums.length > 2){
+            if(nums[0] > nums[1]) return 0;
+            else if (nums[nums.length - 1] > nums[nums.length - 2]) return nums.length - 1;
         }
         
-//         for(int i = 1; i< nums.length; i++){
-//             if(i + 1 < nums.length && nums[i] > nums[i - 1] && nums[i] > nums[i + 1])
-//                 return i;
-//             else if (i == nums.length - 1 && index == -1)
-//                 return i;
-            
+        
+        
+        int index = -1;
+//         int val = Integer.MIN_VALUE;
+//         for(int i = 0; i< nums.length; i++){
+//             if(nums[i] > val){
+//                 index = i;
+//                 val = nums[i];
+//             }
+                
 //         }
+        
+        for(int i = 1; i< nums.length; i++){
+            if(i + 1 < nums.length && nums[i] > nums[i - 1] && nums[i] > nums[i + 1])
+                return i;
+            else if (i == nums.length - 1 && index == -1)
+                return i;
+            
+        }
         
             return index;
     }
