@@ -6,13 +6,11 @@ class Solution {
             char[] arr = strs[i].toCharArray();
             Arrays.sort(arr);
             String s = new String(arr);
-            if(map.containsKey(s)){
-                List<String> list = new ArrayList(map.get(s));
-                list.add(strs[i]);
-                map.put(s, list);
-            } else{
-                map.put(s, Arrays.asList(strs[i]));
+            if(!map.containsKey(s)){
+                map.put(s, new ArrayList());
             }
+            map.get(s).add(strs[i]);
+            
         }
         
 
