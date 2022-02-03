@@ -10,20 +10,30 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-    ListNode dummy = new ListNode(0);
-    dummy.next = head;
-    ListNode first = dummy;
-    ListNode second = dummy;
-    // Advances first pointer so that the gap between first and second is n nodes apart
-    for (int i = 0; i <= n; i++) {
-        first = first.next;
+        
+        // APPROACH 1
+        // First count all the nodes and then remove (total - n + 1)
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode first = head;
+        int count = 0;
+        
+        while(first != null){
+            count++;
+            first = first.next;
+        }
+        
+        first = dummy;
+        count = count - n;
+        
+        while(count > 0){
+            count--;
+            first = first.next;
+        }
+        
+        first.next = first.next.next;
+        
+        return dummy.next;
+        
     }
-    // Move first to the end, maintaining the gap
-    while (first != null) {
-        first = first.next;
-        second = second.next;
-    }
-    second.next = second.next.next;
-    return dummy.next;
-}
 }
