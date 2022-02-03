@@ -11,7 +11,6 @@ class Solution {
             
             maxCount = Math.max(maxCount, ++count[arr[i] - 'A']); //increment the count of the current character in the counter
             if((i - start + 1) - maxCount <= k){
-                System.out.println(arr[i]+"->"+count[arr[i]-'A']);
                 max = Math.max(max, i - start + 1);
             } else{
           
