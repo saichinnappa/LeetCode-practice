@@ -15,12 +15,12 @@ class Solution {
             }
         }
         
-        String s2 = sb.toString();
-        if(s2.length() == 0)
+        // String s2 = sb.toString();
+        if(sb.length() == 0)
             return true;
-        int start = 0, end = s2.length() - 1;
+        int start = 0, end = sb.length() - 1;
         while(start <= end){
-            if(s2.charAt(start) == s2.charAt(end)){
+            if(sb.charAt(start) == sb.charAt(end)){
                 start++;
                 end--;
             } else{
