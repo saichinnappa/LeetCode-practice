@@ -13,7 +13,7 @@ class Solution {
         for(int i = 1; i < s.length(); i++){
             char c = s.charAt(i);
             if(map.containsKey(c)){
-                if(stack.size() > 0 && map.get(c) == stack.peek()){
+                if(!stack.isEmpty() && map.get(c) == stack.peek()){
                     stack.pop();
                 } else{
                     return false;
@@ -22,6 +22,6 @@ class Solution {
                 stack.push(c);
             }
         }
-        return stack.size() == 0;
+        return stack.isEmpty();
     }
 }
