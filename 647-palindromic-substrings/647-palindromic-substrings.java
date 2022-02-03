@@ -19,7 +19,6 @@ class Solution {
         }
         
         for(int k = 3; k <= n; k++){
-            System.out.println("k-> "+k);
             for(int i = 0; i < n - k + 1; i++){
                 int j = i + k - 1;
 
