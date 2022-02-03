@@ -3,7 +3,6 @@ class Solution {
         if(s.trim().length() == 0)
             return true;
         String s1 = s.toLowerCase();
-        System.out.println(s1);
         char[] arr = s1.toCharArray();
         StringBuilder sb = new StringBuilder();
         
