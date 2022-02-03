@@ -5,16 +5,16 @@ class Solution {
             return s.length();
         
         char[] arr = s.toCharArray();
-        int start = 0;
-        int max = 0;
         
+        int max = 0;
+        int start = 0;
         Map<Character, Integer> map = new HashMap();
-        for(int i = 0; i< arr.length; i++){
+        
+        for(int i = 0 ; i < arr.length; i++){
             if(map.containsKey(arr[i])){
                 if(start <= map.get(arr[i]))
                     start = map.get(arr[i]) + 1;
             }
-            
             max = Math.max(max, i - start + 1);
             map.put(arr[i], i);
         }
