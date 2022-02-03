@@ -2,7 +2,6 @@ class Solution {
     public boolean isPalindrome(String s) {
         if(s.trim().length() == 0)
             return true;
-        // String s1 = s.toLowerCase();
         char[] arr = s.toCharArray();
         StringBuilder sb = new StringBuilder();
         
@@ -14,8 +13,6 @@ class Solution {
                 sb.append(c);
             }
         }
-        
-        // String s2 = sb.toString();
         if(sb.length() == 0)
             return true;
         int start = 0, end = sb.length() - 1;
