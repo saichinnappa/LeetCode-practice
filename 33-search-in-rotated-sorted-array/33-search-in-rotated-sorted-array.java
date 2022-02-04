@@ -50,7 +50,9 @@ class Solution {
             int mid = (start + end) /2;
             if(nums[mid] > nums[mid + 1])
                 return mid + 1;
-            else if (nums[mid] >= nums[start])
+            if(nums[mid] < nums[mid - 1])
+                return mid;
+             if (nums[mid] >= nums[start])
                 start = mid + 1;
             else if (nums[mid] < nums[start])
                 end = mid - 1;
