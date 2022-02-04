@@ -6,7 +6,6 @@ class Solution {
         Set<Integer> set = new HashSet();
         for(int i = 0; i < nums.length; i++){
             if(!set.contains(nums[i])){
-                System.out.println("Adding--> "+nums[i]);
             set.add(nums[i]);
             int j = i + 1;
             int k = nums.length - 1;
