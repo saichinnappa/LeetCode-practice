@@ -9,14 +9,17 @@ class Solution {
             else
                 return -1;
         }
-        
-        int length = nums.length - 1;
+                int length = nums.length - 1;
+        if(nums[0] < nums[nums.length - 1]){
+            return binarySearch(nums, 0 , length);
+        }
+
         int rIdx = findRotatedIndex(nums, 0, length);
         if(nums[rIdx] == target)
             return rIdx;
         
-        if(rIdx == 0)
-            return binarySearch(nums, 0 , length);
+        // if(rIdx == 0)
+            
         
         if(target <= nums[length]){
             return binarySearch(nums, rIdx + 1, length);
