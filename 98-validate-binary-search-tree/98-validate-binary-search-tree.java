@@ -29,19 +29,22 @@ class Solution {
             //Once the left of a given root is popped, will be pushing right child to stack.
             while(root != null){
                 stack.push(root);
-                root = root.right;
+                root = root.left;
             }
             
             // get the last left child from the stack
             TreeNode top = stack.pop();
             //compare with prev element, and this should always be greater (which means root val), if not its not a BST return false;
-            if(prev != null && top.val >= prev){
+            if(prev != null){
+                System.out.println("Comparing: prev->"+prev+" | "+ top.val);
+            }
+            if(prev != null && top.val <= prev){
                 return false;
             }
             
             //copy popped left value to prev and then move root to right of the popped element.
             prev = top.val;
-            root = top.left;
+            root = top.right;
         }
         return true;
         
