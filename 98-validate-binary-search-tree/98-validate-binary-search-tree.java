@@ -24,7 +24,6 @@ class Solution {
             }
 
             TreeNode top = stack.pop();
-            System.out.println(top.val);
             if(prev != null && prev.val >= top.val){
                 return false;
             }
