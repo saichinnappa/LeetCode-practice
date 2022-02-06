@@ -20,7 +20,7 @@ class Solution {
     public boolean isSymmetric(TreeNode root) {
         
         
-        // APPROACH 1: 
+        // APPROACH 1: TRAVERSALS
         // Step 1: Do preorder and postorder
         // Step 2: reverse postorder and compare with preorder
         // preorder(root);
@@ -28,11 +28,37 @@ class Solution {
         // Collections.reverse(postList);
         // return preList.equals(postList);
         
-        // APPROACH 2:
+        // APPROACH 2: RECURSION
         // Step 1: Start from immediate left and right from the root.
         // Step 2: Compare left.left with right.right, and left.right with right.left.
+        // return helper(root.left, root.right);
         
-        return helper(root.left, root.right);
+        // APPROACH 3: Iterative
+        // Step 1: Use 
+        
+        if(root.left == null && root.right == null)
+            return true;
+        else if(root.left == null || root.right == null)
+            return false;
+        
+        Deque<TreeNode> stack = new LinkedList();
+        stack.push(root.left);
+        stack.push(root.right);
+        while(!stack.isEmpty()){
+            TreeNode t1 = stack.pop();
+            TreeNode t2 = stack.pop();
+            
+            if(t1 == null && t2 == null) continue;
+            if(t1 == null || t2 == null) return false;
+            if(t1.val != t2.val) return false;
+            
+            stack.push(t1.left);
+            stack.push(t2.right);
+            stack.push(t1.right);
+            stack.push(t2.left);
+        }
+        
+        return true;
         
     }
     
@@ -46,7 +72,9 @@ class Solution {
         if(left == null || right == null)
             return false;
         
+        //If both nodes are not null, then both values must be same.
         if(left.val == right.val){
+            //If both values are same, compare left child with right child and right child of left with left child of right.
             return helper(left.left, right.right) && helper(left.right, right.left);
         } else{
             return false;
