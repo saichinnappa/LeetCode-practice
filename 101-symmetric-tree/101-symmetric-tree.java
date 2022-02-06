@@ -34,8 +34,7 @@ class Solution {
         // return helper(root.left, root.right);
         
         // APPROACH 3: Iterative
-        // Step 1: Use 
-        
+        // Step 1: Use stack/Queue. Keep comparing left and right values, if any condition fails, return false.        
         if(root.left == null && root.right == null)
             return true;
         else if(root.left == null || root.right == null)
