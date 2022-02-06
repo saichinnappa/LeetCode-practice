@@ -27,7 +27,6 @@ class Solution {
         
         //APPROACH 2 : ITERATIVE
         Deque<TreeNode> stack = new LinkedList();
-        // TreeNode prev = null;
         while(!stack.isEmpty() || root != null){
             while(root != null){
                 stack.push(root);
