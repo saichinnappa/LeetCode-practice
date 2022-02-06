@@ -20,8 +20,8 @@ class Solution {
     public boolean isSymmetric(TreeNode root) {
         TreeNode preRoot = root;
         TreeNode postRoot = root;
-        preorder(preRoot);
-        postorder(postRoot);
+        preorder(root);
+        postorder(root);
         
        Collections.reverse(postList);
         
