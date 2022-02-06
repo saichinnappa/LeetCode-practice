@@ -22,8 +22,6 @@ class Solution {
         TreeNode postRoot = root;
         preorder(preRoot);
         postorder(postRoot);
-        System.out.println("PRE--> "+preList);
-        System.out.println("POST--> "+postList);
         
        Collections.reverse(postList);
         
