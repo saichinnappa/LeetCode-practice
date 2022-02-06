@@ -18,15 +18,39 @@ class Solution {
     List<Integer> postList = new ArrayList<>();
     
     public boolean isSymmetric(TreeNode root) {
-        TreeNode preRoot = root;
-        TreeNode postRoot = root;
-        preorder(root);
-        postorder(root);
         
-       Collections.reverse(postList);
         
-        return preList.equals(postList);
+        // APPROACH 1: 
+        // Step 1: Do preorder and postorder
+        // Step 2: reverse postorder and compare with preorder
+        // preorder(root);
+        // postorder(root);
+        // Collections.reverse(postList);
+        // return preList.equals(postList);
         
+        // APPROACH 2:
+        // Step 1: Start from immediate left and right from the root.
+        // Step 2: Compare left.left with right.right, and left.right with right.left.
+        
+        return helper(root.left, root.right);
+        
+    }
+    
+    
+    boolean helper(TreeNode left, TreeNode right){
+        
+        //If both left and right are null, it may be a leaf node, so return true;
+        if(left == null && right == null)
+            return true;
+        //One side of a tree cannot be null, fails symmetric condition
+        if(left == null || right == null)
+            return false;
+        
+        if(left.val == right.val){
+            return helper(left.left, right.right) && helper(left.right, right.left);
+        } else{
+            return false;
+        }
     }
     
     
