@@ -37,7 +37,7 @@ class Solution {
                 }
                 size--;
             }
-            if(list.size() > 0)
+            // if(list.size() > 0)
                 result.add(list);
         }
         return result;
