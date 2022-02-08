@@ -20,7 +20,6 @@ class Solution {
                 if(map.get(s2arr[end]) == 0){
                     
                     match++;
-                    System.out.println("char-->"+s2arr[end]+" "+"-->"+ match);
                 }
             }
             
@@ -28,7 +27,6 @@ class Solution {
                 return true;
             
             if(end - start >= s1.length() - 1){
-                System.out.println("--HERE--");
                 char leftChar = s2arr[start];
                 start++;
                 
