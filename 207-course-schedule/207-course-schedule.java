@@ -1,48 +1,63 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        // APPROACH 1: BFS
-        Queue<Integer> queue = new ArrayDeque();
-        int[] courseCounter = new int[numCourses];
-        Map<Integer, List<Integer>> graph = new HashMap();
         
-        // STEP 1: Build Adjacency list aka graph
-        for(int[] pre: prerequisites){
+        // TOPOLOGICAL SORT
+        // Agorithm:
+        /**
+        STEP 1: Build the graph with relation pre-req -> courses
+        ex: [0, 1], [2, 1]
+        Graph:
+        0 -> [1]
+        1 -> []
+        2 -> [1] **/
+        
+        Map<Integer, List<Integer>> graph = new HashMap();
+        int[] counter = new int[numCourses];
+        for(int[] pre : prerequisites){
             graph.putIfAbsent(pre[1], new ArrayList());
             graph.get(pre[1]).add(pre[0]);
-            courseCounter[pre[0]]++; //using this counter to determine the courses which doesn't have a pre-req.
+            /**STEP 2:
+            Keep track of the course counter to record a course as pre-req. For instance, in the above example 1 is not dependent on any courses, so its count would remain at 0.
+            ex: [1, 0, 1] **/
+            counter[pre[0]]++;
         }
         
-         for(int i = 0; i < courseCounter.length; i++){
-            if(courseCounter[i] == 0){ // push all the courses which doesn't have a pre-req to the queue to begin processing.
-                queue.offer(i);
-            }
+        /** STEP 3:
+            Push all the courses which have no dependency to queue.
+        **/
+        Queue<Integer> queue = new LinkedList();
+        for(int i = 0; i < counter.length; i++){
+            if(counter[i] == 0)
+                queue.add(i);
         }
-        boolean[] visited = new boolean[numCourses];
         
+        /** STEP 4:
+            While processing queue, decrement the current course requirement in counter with the help of the graph.
+        **/
         while(!queue.isEmpty()){
             int first = queue.poll();
-            List<Integer> dependentCourses = graph.get(first);
-            
-            visited[first] = true;
-            if(dependentCourses != null && dependentCourses.size() > 0){
-            for(int c : dependentCourses){
-                if(visited[c] && courseCounter[c] == 0)
-                        return false;
-                    courseCounter[c]--;
-                    if(courseCounter[c] == 0){
+            List<Integer> courseList = graph.get(first);
+            if(courseList != null && courseList.size() > 0){
+                for(int c : courseList){
+                    counter[c]--;
+                    if(counter[c] == 0)
                         queue.offer(c);
-                    }
+                }
             }
-            }
-        }
-            
-        for(int i = 0; i < courseCounter.length; i++){
-            if(courseCounter[i] > 0)
-                return false;
-                
         }
         
+        // STEP 5:
+        // Also, keep track of the visited courses, there might be a chance of a loop. So if the same course is being seen then just return before proceeding to other courses. Saves time!
+        
+        // STEP 6:
+        // Finally, check the counter, if all the courses are processed rightly, then we expect the counter for all the courses to be zero.
+        for(int c : counter){
+            if(c > 0)
+                return false;
+        }
+    
         
         return true;
+        
     }
 }
