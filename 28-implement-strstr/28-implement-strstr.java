@@ -7,10 +7,10 @@ class Solution {
         char[] narr = needle.toCharArray();
 
         for(int i = 0; i < harr.length; i++){
-            if(harr[i] == narr[0]){
+            if(harr[i] == narr[0] && (i + narr.length) <= harr.length){
                 int count = 0;
                 for(int j = 0; j < narr.length; j++){
-                    if((i+j) < harr.length && harr[i+j] == narr[j]){
+                    if(harr[i+j] == narr[j]){
                         count++;
                     } else {
                         break;
