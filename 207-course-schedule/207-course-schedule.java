@@ -26,6 +26,8 @@ class Solution {
             visited[first] = true;
             if(dependentCourses != null && dependentCourses.size() > 0){
             for(int c : dependentCourses){
+                if(visited[c] && courseCounter[c] == 0)
+                        return false;
                     if(courseCounter[c] > 0){
                         courseCounter[c]--;
                     }
