@@ -28,9 +28,7 @@ class Solution {
             for(int c : dependentCourses){
                 if(visited[c] && courseCounter[c] == 0)
                         return false;
-                    if(courseCounter[c] > 0){
-                        courseCounter[c]--;
-                    }
+                    courseCounter[c]--;
                     if(courseCounter[c] == 0){
                         queue.offer(c);
                     }
