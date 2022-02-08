@@ -34,11 +34,15 @@ class Solution {
         /** STEP 4:
             While processing queue, decrement the current course requirement in counter with the help of the graph.
         **/
+        boolean[] visited = new boolean[numCourses];
         while(!queue.isEmpty()){
             int first = queue.poll();
+            visited[first] = true;
             List<Integer> courseList = graph.get(first);
             if(courseList != null && courseList.size() > 0){
                 for(int c : courseList){
+                    if(visited[c])
+                        return false;
                     counter[c]--;
                     if(counter[c] == 0)
                         queue.offer(c);
