@@ -34,6 +34,9 @@ class Solution {
         /** STEP 4:
             While processing queue, decrement the current course requirement in counter with the help of the graph.
         **/
+        /** STEP 5:
+            Also, keep track of the visited courses, there might be a chance of a loop. So if the same course is being seen then just return before proceeding to other courses. Saves time!
+        **/
         boolean[] visited = new boolean[numCourses];
         while(!queue.isEmpty()){
             int first = queue.poll();
@@ -50,8 +53,7 @@ class Solution {
             }
         }
         
-        // STEP 5:
-        // Also, keep track of the visited courses, there might be a chance of a loop. So if the same course is being seen then just return before proceeding to other courses. Saves time!
+
         
         // STEP 6:
         // Finally, check the counter, if all the courses are processed rightly, then we expect the counter for all the courses to be zero.
