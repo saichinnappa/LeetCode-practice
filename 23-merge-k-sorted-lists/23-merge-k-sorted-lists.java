@@ -10,18 +10,29 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists.length == 0)
-            return null;
-        if(lists.length == 1)
-            return lists[0];
+        //APPROACH 1: MERGE ONE BY ONE, AFTER FIRST TWO ARE MERGED
+//         if(lists.length == 0)
+//             return null;
+//         if(lists.length == 1)
+//             return lists[0];
         
-        ListNode head = mergeLists(lists[0], lists[1]);
-        for(int i = 2; i < lists.length; i++){
-            head = mergeLists(head, lists[i]);
+//         ListNode head = mergeLists(lists[0], lists[1]);
+//         for(int i = 2; i < lists.length; i++){
+//             head = mergeLists(head, lists[i]);
+//         }
+        
+//         return head;
+        
+        //APPROACH 2: Merge Sort
+        int interval =1;
+        int length = lists.length;
+        while(interval < length){
+            for(int i =0; i < length-interval; i=i+interval*2){
+                lists[i] = mergeLists(lists[i],lists[i+interval]);
+            }
+            interval *= 2;
         }
-        
-        return head;
-        
+        return length>0 ? lists[0]:null;
     }
     
     
