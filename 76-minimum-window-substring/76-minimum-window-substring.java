@@ -8,7 +8,7 @@ class Solution {
         int tLength = t.length();
         int start = 0;
         String result = "";
-        int length = sLength + 1;
+        int length = Integer.MAX_VALUE;
         int substr = 0;
         
         Map<Character, Integer> charCount = new HashMap();
