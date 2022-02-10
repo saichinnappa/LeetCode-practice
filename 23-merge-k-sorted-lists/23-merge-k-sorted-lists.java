@@ -24,15 +24,17 @@ class Solution {
 //         return head;
         
         //APPROACH 2: Merge Sort
-        int interval =1;
+        int interval = 1;
         int length = lists.length;
         while(interval < length){
-            for(int i =0; i < length-interval; i=i+interval*2){
-                lists[i] = mergeLists(lists[i],lists[i+interval]);
+            for(int i = 0; i < length - interval; i += interval * 2){
+                lists[i] = mergeLists(lists[i], lists[i + interval]);
             }
             interval *= 2;
         }
-        return length>0 ? lists[0]:null;
+        
+        return lists.length > 0 ? lists[0] : null;
+      
     }
     
     
