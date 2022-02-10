@@ -29,6 +29,16 @@ class Solution {
         }
         
         
+        
+        // for(int i = 0; i < v1arr.length; i++){
+        //     for(int j = 0; j < v2arr.length; j++){
+        //         int rev = Integer.parseInt(v1arr[i]);
+        //         int rev2 = Integer.parseInt(v2arr[j]);
+        //         System.out.println(rev+" "+rev2);
+        //     }
+        // }
+        
+        
         return 0;
         
         
