@@ -1,50 +1,49 @@
 class Solution {
     public String minWindow(String s, String t) {
-        if(s.equals(t))
-            return s;
+        if(t.length() > s.length())
+            return "";
+        Map<Character, Integer> map = new HashMap();
         char[] sarr = s.toCharArray();
         char[] tarr = t.toCharArray();
-        int sLength = s.length();
-        int tLength = t.length();
-        int start = 0;
-        String result = "";
-        int length = Integer.MAX_VALUE;
-        int substr = 0;
-        
-        Map<Character, Integer> charCount = new HashMap();
         for(char c : tarr){
-            if(!charCount.containsKey(c)){
-                charCount.put(c, 1);
-            } else{
-                charCount.put(c, charCount.get(c) + 1);
+            if(!map.containsKey(c)){
+                map.put(c, 0);
             }
+            map.put(c,map.get(c)+1);
         }
-        
         int match = 0;
-        for(int end = 0; end < sarr.length; end++){
-            if(charCount.containsKey(sarr[end])){
-                charCount.put(sarr[end], charCount.get(sarr[end]) - 1);
-                if(charCount.get(sarr[end]) >= 0){
+        int minLength = Integer.MAX_VALUE;
+        int start = 0;
+        int subStrStart = 0;
+        for(int i = 0; i < sarr.length; i++){
+            char c = sarr[i];
+            if(map.containsKey(c)){
+                map.put(c, map.get(c) - 1);
+                if(map.get(c) >= 0){
                     match++;
-                }    
-            }
-            while(match == tLength){
-                if(length > end - start + 1){
-                    length = end - start + 1;
-                    substr = start;
                 }
-                
+            }
+            
+            while(match == t.length()){
+                if(minLength > i - start + 1){
+                    minLength = i - start + 1;
+                    subStrStart = start;
+                }
                 char leftChar = sarr[start];
                 start++;
-                if(charCount.containsKey(leftChar)){
-                    if(charCount.get(leftChar) == 0)
+                if(map.containsKey(leftChar)){
+                    if(map.get(leftChar) == 0){
                         match--;
-                    charCount.put(leftChar, charCount.get(leftChar) + 1);
+                    }
+                    map.put(leftChar, map.get(leftChar) + 1);
                 }
                 
             }
+            
         }
         
-        return length > s.length() ? "" : s.substring(substr, length + substr);
+    
+        
+        return minLength  > s.length() ? "" : s.substring(subStrStart, subStrStart+minLength);
     }
 }
