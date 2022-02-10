@@ -8,22 +8,27 @@ class Solution {
         
         int maxLength = Math.max(v1arr.length, v2arr.length);
         
-        int[] v1 = new int[maxLength];
-        int[] v2 = new int[maxLength];
+//         int[] v1 = new int[maxLength];
+//         int[] v2 = new int[maxLength];
         
-        for(int i = 0; i < v1arr.length; i++){
-            v1[i] = Integer.parseInt(v1arr[i]);
-        }
+//         for(int i = 0; i < v1arr.length; i++){
+//             v1[i] = Integer.parseInt(v1arr[i]);
+//         }
         
         
-        for(int i = 0; i < v2arr.length; i++){
-            v2[i] = Integer.parseInt(v2arr[i]);
-        }
+//         for(int i = 0; i < v2arr.length; i++){
+//             v2[i] = Integer.parseInt(v2arr[i]);
+//         }
+        int n1 = v1arr.length;
+        int n2 = v2arr.length;
         
+        int v1, v2;
         for(int i = 0; i < maxLength; i++){
-            if(v1[i] > v2[i]){
+            v1 = i < n1 ? Integer.parseInt(v1arr[i]) : 0;
+            v2 = i < n2 ? Integer.parseInt(v2arr[i]) : 0;
+            if(v1 > v2){
                 return 1;
-            } else if(v1[i] < v2[i]){
+            } else if(v1 < v2){
                 return -1;
             }
         }
