@@ -33,9 +33,8 @@ class Solution {
 //             rightProduct[i] = rightProduct[i + 1] * nums[i + 1];
 //         }
         
-        int x = 1;
-        
-        for(int i = leftProduct.length -1; i > -1; i--){
+            int x = 1;
+        for(int i = leftProduct.length - 1; i > -1; i--){
             leftProduct[i] = x * leftProduct[i];
             x *= nums[i];
         }
