@@ -23,10 +23,9 @@ class Solution {
             return Arrays.asList('(');
         } else if (open > close && open < n){
             return Arrays.asList('(', ')');
-        } else if(open == n && close < n){
+        } else{
             return Arrays.asList(')');
         }
-        return Arrays.asList('X');
     }
     
     
