@@ -6,7 +6,8 @@ class Solution {
         if(n == 1)
             return Arrays.asList("()");
         this.n = n;
-        solve("");
+        StringBuilder sb = new StringBuilder();
+        solve(sb);
         
         return result;
     }
@@ -29,14 +30,14 @@ class Solution {
     }
     
     
-    private void solve(String s){
+    private void solve(StringBuilder s){
         if(isValid()){
-            result.add(s);
+            result.add(s.toString());
             return;
         }
         
         for(char c : getCandidates()){
-            s += c;
+            s.append(c);
             if(c == '(')
                 open++;
             else
@@ -46,7 +47,7 @@ class Solution {
                 open--;
             else 
                 close--;
-            s = s.substring(0, s.length() - 1);
+            s = s.deleteCharAt(s.length() - 1);
         }
     }
     
