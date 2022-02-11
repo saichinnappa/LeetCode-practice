@@ -4,7 +4,6 @@ class Solution {
         // 1). replace the punctuations with spaces,
         // and put all letters in lower case
         String normalizedStr = paragraph.replaceAll("[^a-zA-Z0-9 ]", " ").toLowerCase();
-        System.out.println(normalizedStr+"<<<<");
 
         // 2). split the string into words
         String[] words = normalizedStr.split("\\s+");
