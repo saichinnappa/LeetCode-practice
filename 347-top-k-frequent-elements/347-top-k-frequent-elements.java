@@ -1,51 +1,50 @@
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        
-        int[] result = new int[k];
-        
-        PriorityQueue<Pair> queue = new PriorityQueue<>(new PairComparator());
-        
-        Map<Integer, Integer> map = new HashMap();
-        
-        for(int i = 0; i < nums.length; i++){
-            if(map.containsKey(nums[i]))
-                map.put(nums[i], map.get(nums[i]) + 1);
-            else
-                map.put(nums[i], 1);
+        Map<Integer, Pair> map = new HashMap();
+        for(int i : nums){
+            if(!map.containsKey(i))
+                map.put(i, new Pair(i, 1));
+            else{
+                Pair p = map.get(i);
+                map.put(i, new Pair(i,p.freq + 1));
+            }
         }
         
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            queue.offer(new Pair(entry.getKey(), entry.getValue()));
+        PriorityQueue<Pair> queue = new PriorityQueue(new myComparator<Pair>());
+        
+        for(Map.Entry<Integer, Pair> entry : map.entrySet()){
+            queue.offer(entry.getValue());
         }
         
-        int i = 0;
-        while(k != i){
-            result[i] = queue.poll().value;
-            i++;
+        List<Integer> result = new ArrayList<Integer>();
+        while(k != 0){
+            
+                result.add(queue.poll().val);
+            k--;
         }
-        
-        
-        return result;
+        int[] arr = new int[result.size()];
+        // return result.toArray(arr);
+        return result.stream().mapToInt(i->i).toArray();
     }
 }
 
 class Pair{
-    int value;
+    int val;
     int freq;
     
-    Pair(int value,int freq){
-        this.value = value;
+    Pair(int val, int freq){
+        this.val = val;
         this.freq = freq;
     }
 }
 
-
-class PairComparator implements Comparator<Pair>{
+public class myComparator<T> implements Comparator<Pair>{
+    @Override
     public int compare(Pair p1, Pair p2){
-        if(p1.freq < p2.freq)
-            return 1;
-        else if(p1.freq > p2.freq)
+        if(p1.freq > p2.freq)
             return -1;
+        else if(p1.freq < p2.freq)
+            return 1;
         else
             return 0;
     }
