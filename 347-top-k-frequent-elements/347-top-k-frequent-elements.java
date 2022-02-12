@@ -16,15 +16,11 @@ class Solution {
             queue.offer(entry.getValue());
         }
         
-        List<Integer> result = new ArrayList<Integer>();
-        while(k != 0){
-            
-                result.add(queue.poll().val);
-            k--;
+        int[] result = new int[k];
+        for(int i = 0; i < k; i++){
+            result[i] = queue.poll().val;
         }
-        int[] arr = new int[result.size()];
-        // return result.toArray(arr);
-        return result.stream().mapToInt(i->i).toArray();
+        return result;
     }
 }
 
