@@ -10,7 +10,7 @@ class Solution {
             }
         }
         
-        PriorityQueue<Pair> queue = new PriorityQueue(new myComparator<Pair>());
+        PriorityQueue<Pair> queue = new PriorityQueue(new myComparator());
         
         for(Map.Entry<Integer, Pair> entry : map.entrySet()){
             queue.offer(entry.getValue());
@@ -34,7 +34,7 @@ class Pair{
     }
 }
 
-public class myComparator<T> implements Comparator<Pair>{
+public class myComparator implements Comparator<Pair>{
     @Override
     public int compare(Pair p1, Pair p2){
         if(p1.freq > p2.freq)
