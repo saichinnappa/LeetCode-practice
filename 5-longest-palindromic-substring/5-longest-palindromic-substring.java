@@ -27,10 +27,10 @@ class Solution {
 
                 if(arr[i] == arr[j] && dp[i + 1][j - 1]){
                     dp[i][j] = true;
-                    if(k > end){
+                    // if(k > end){
                         start = i;
                         end  = k;
-                    }
+                    // }
                 }
             }
         }
