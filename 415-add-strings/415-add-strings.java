@@ -18,7 +18,6 @@ class Solution {
         }
         
         // System.out.println(carry+" "+sb.reverse().toString());
-        System.out.println(p1+" "+ p2);
         if(p1 < 0){
             while(p2 > -1){
                 sum = carry + num2.charAt(p2) - '0';
@@ -32,7 +31,6 @@ class Solution {
         if(p2 < 0){
             while(p1 > -1){
                 sum = carry + num1.charAt(p1) - '0';
-                System.out.println(sum);
                 int val = (sum % 10);
                 carry = sum / 10;
                 sb.append(val);
