@@ -36,12 +36,3 @@ class Solution {
     }
     
 }
-
-
-class TimeComparator implements Comparator<String>{
-    @Override
-    public int compare(String s1, String s2){
-        if(s1 == null || s2 == null) return 0;
-        return s1.compareTo(s2);
-    }
-}
