@@ -18,6 +18,17 @@ class Solution {
             }
         }
         
+//         int startRow = row;
+//         int startCol = col;
+//         int newMax = max;
+//         while(newMax != 1){
+//             newMax--;
+//             startRow--;
+//             startCol--;
+//         }
+        
+//         System.out.println((startRow - 1)+" "+(row - 1));
+        
         return max;
         
     }
