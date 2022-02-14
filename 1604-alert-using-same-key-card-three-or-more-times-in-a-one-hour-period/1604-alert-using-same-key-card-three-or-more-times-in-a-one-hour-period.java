@@ -5,21 +5,11 @@ class Solution {
             map.putIfAbsent(keyName[i], new ArrayList());
             map.get(keyName[i]).add(keyTime[i].replace(":",""));
         }
-        
-        
-        
-        
+
         List<String> result = new ArrayList();
-        
-        
         for(Map.Entry<String, List<String>> entry : map.entrySet()){
             Collections.sort(entry.getValue(), new TimeComparator());
-            System.out.println(entry.getKey()+" -> "+entry.getValue());
-            int count = 1;    
             List<String> timeList = entry.getValue();
-            // System.out.println(entry.getKey());
-            String startTime = timeList.get(0);
-            
             if(timeList.size() > 2){
                 for(int i = 2; i < timeList.size(); i++){
                     if(!moreThan1Hr(timeList.get(i), timeList.get(i - 2))){
@@ -28,21 +18,6 @@ class Solution {
                     }
                 }
             }
-            
-            // for(int i = 1; i < timeList.size(); i++){
-            //     if(!moreThan1Hr(timeList.get(i), startTime)){
-            //         System.out.println(startTime+" "+ timeList.get(i));
-            //         // System.out.println(timeList.get(i + 1)+" "+timeList.get(i));
-            //         count++;
-            //     } else{
-            //         startTime = timeList.get(i);
-            //         count = 1;
-            //     }
-            //     if(count == 3){
-            //         result.add(entry.getKey());
-            //         break;
-            //     }
-            // }
         }
         
         Collections.sort(result, new TimeComparator());
