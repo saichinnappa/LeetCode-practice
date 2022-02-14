@@ -20,7 +20,7 @@ class Solution {
             }
         }
         
-        Collections.sort(result, new TimeComparator());
+        Collections.sort(result);
         return result;
         
     }
