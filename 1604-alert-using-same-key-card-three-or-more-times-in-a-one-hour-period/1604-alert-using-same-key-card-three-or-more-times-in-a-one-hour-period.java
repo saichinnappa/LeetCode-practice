@@ -8,7 +8,7 @@ class Solution {
 
         List<String> result = new ArrayList();
         for(Map.Entry<String, List<String>> entry : map.entrySet()){
-            Collections.sort(entry.getValue(), new TimeComparator());
+            Collections.sort(entry.getValue());
             List<String> timeList = entry.getValue();
             if(timeList.size() > 2){
                 for(int i = 2; i < timeList.size(); i++){
