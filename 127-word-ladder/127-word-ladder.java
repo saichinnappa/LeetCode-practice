@@ -1,36 +1,33 @@
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-         Set<String> set = new HashSet<>(wordList);
-    Queue<String> queue = new LinkedList<>();
-    queue.add(beginWord);
-    // COUNT NUMBER OF WORDS TRANSFORMED
-    int count = 1;
-    while (!queue.isEmpty()) {
-        int size = queue.size();
-        // FOR ALL WORDS THIS ROUND
-        for (int i = 0; i < size; i++) {
-            char[] current = queue.poll().toCharArray();
-            // TRAVERSE CURRENT WORD
-            for (int j = 0; j < current.length; j++) {
-                char tmp = current[j];
-                // CHANGE ONE LETTER AT A TIME 
-                for (char c = 'a'; c <= 'z'; c++) {
-                    current[j] = c;
-                    String next = new String(current);
-                    // WHEN NEXT WORD IS IN THE SET
-                    if (set.contains(next)) {
-                        if (next.equals(endWord)) return count + 1;
-                        queue.add(next);
-                        set.remove(next);
+        Set<String> set = new HashSet<>(wordList);
+        Queue<String> queue = new ArrayDeque();
+        queue.offer(beginWord);
+        int count = 1;
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            while(size != 0){
+                String first = queue.poll();
+                char[] arr =  first.toCharArray();
+                for(int i = 0; i < arr.length; i++){
+                    char temp = arr[i];
+                    for(char c = 'a'; c <= 'z'; c++){
+                        arr[i] = c;
+                        String next = new String(arr);
+                        if(set.contains(next)){
+                            if(next.equals(endWord))
+                                return count+1;
+                            queue.offer(next);
+                            set.remove(next);
+                        }
                     }
+                    arr[i] = temp;
                 }
-                // HAVE TO UNDO FOR NEXT CHANGE OF LETTER
-                current[j] = tmp;
+                size--;
             }
+            count++;
         }
-        // THIS ROUND ENDS WITH ONE LETTER CHANGED
-        count++;
+        return 0;
     }
-    return 0;
-    }
+    
 }
