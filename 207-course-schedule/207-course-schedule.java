@@ -1,6 +1,6 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        boolean result = false;
+        // boolean result = false;
         
         Queue<Integer> queue = new ArrayDeque();
         Map<Integer, List<Integer>> graph = new HashMap();
@@ -11,9 +11,12 @@ class Solution {
             courses[pre[0]]++;
         }
         
+        List<Integer> result = new ArrayList();
+        
         for(int i = 0; i < courses.length; i++){
-            if(courses[i] == 0)
+            if(courses[i] == 0){
                 queue.add(i);
+            }
         }
         
         
@@ -23,11 +26,13 @@ class Solution {
             if(list != null && list.size() > 0){
                 for(int i : list){
                     courses[i]--;
-                    if(courses[i] == 0)
+                    if(courses[i] == 0){
                         queue.offer(i);
+                    }
                 }
             }
         }
+        
         
         for(int c : courses){
             if(c > 0){
