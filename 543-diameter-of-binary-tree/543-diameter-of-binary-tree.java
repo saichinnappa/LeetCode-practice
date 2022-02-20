@@ -31,5 +31,4 @@ class Solution {
         result = Math.max(result, ans);
         return temp + 1;
     }
-    
 }
