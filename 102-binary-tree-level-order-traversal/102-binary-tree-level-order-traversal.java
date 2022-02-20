@@ -18,10 +18,8 @@ class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         if(root == null)
             return result;
-        
-        Queue<TreeNode> queue = new ArrayDeque();
+        Queue<TreeNode> queue = new LinkedList();
         queue.offer(root);
-        
         while(!queue.isEmpty()){
             int size = queue.size();
             List<Integer> list = new ArrayList();
@@ -34,11 +32,9 @@ class Solution {
                     queue.offer(first.right);
                 size--;
             }
-            if(list.size() > 0){
+            if(list.size() > 0)
                 result.add(list);
-            }
         }
-        
         return result;
     }
 }
