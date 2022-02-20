@@ -21,29 +21,29 @@ class Solution {
         if(root == null)
             return false;
         
-        helper(root, targetSum, 0);
+        return helper(root, targetSum, 0);
         
-        return valid;
+        // return valid;
         
         
         
     }
     
-    void helper(TreeNode root, int targetSum, int currentSum){
+    boolean helper(TreeNode root, int targetSum, int currentSum){
         if(root == null){
-            return;
+            return false;
         }
         currentSum += root.val;
+        System.out.println("--here--"+ currentSum);
        
         if(root.left == null && root.right == null){
              if(currentSum == targetSum){
-                valid = true;
-                return;
+                return true;
              } else
                 currentSum -= root.val;
         }
         
-        helper(root.left, targetSum, currentSum);
-        helper(root.right, targetSum, currentSum);
+        return helper(root.left, targetSum, currentSum) || helper(root.right, targetSum, currentSum);
+        
     }
 }
