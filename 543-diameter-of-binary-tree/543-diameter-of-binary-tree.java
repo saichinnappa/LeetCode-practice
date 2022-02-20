@@ -17,18 +17,19 @@ class Solution {
     int result = 0;
     public int diameterOfBinaryTree(TreeNode root) {
         helper(root);
-        return result - 1;
+        return result;
     }
     
-    private int helper(TreeNode root){
+    int helper(TreeNode root){
         if(root == null)
             return 0;
         int left = helper(root.left);
         int right = helper(root.right);
         
-        int temp = 1 + Math.max(left, right);
-        int ans = 1 + left + right;
-        result = Math.max(ans, result);
-        return temp;
+        int temp = Math.max(left, right);
+        int ans = left + right;
+        result = Math.max(result, ans);
+        return temp + 1;
     }
+    
 }
