@@ -23,9 +23,6 @@ class Solution {
         
         return helper(root, targetSum, 0);
         
-        // return valid;
-        
-        
         
     }
     
