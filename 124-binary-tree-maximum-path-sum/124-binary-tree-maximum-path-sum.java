@@ -24,15 +24,14 @@ class Solution {
     int dfs(TreeNode root){
         if(root == null)
             return 0;
-        int leftMax = Math.max(dfs(root.left), 0);
-        int rightMax = Math.max(dfs(root.right), 0);
+       
+        int left = Math.max(dfs(root.left), 0);
+        int right = Math.max(dfs(root.right), 0);
         
-        //with split
-        result = Math.max(result, root.val + leftMax + rightMax);
-        
-        //cannot split, so only send max of right or left to the root to calculate at root level.
-        
-        return root.val + Math.max(leftMax, rightMax);
+        int temp = Math.max(left, right);
+        int ans = left + right + root.val;
+        result = Math.max(result, ans);
+        return temp + root.val;
         
     }
     
