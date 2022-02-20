@@ -26,7 +26,7 @@ class Solution {
             return;
        sb += root.val;
         if(root.left == null && root.right == null)
-            result.add(sb.toString());
+            result.add(sb);
         else{
             sb += "->";
         }
