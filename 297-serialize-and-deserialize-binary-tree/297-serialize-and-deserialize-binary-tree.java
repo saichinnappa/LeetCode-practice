@@ -17,10 +17,9 @@ public class Codec {
         Queue<TreeNode> queue = new LinkedList();
         queue.offer(root);
         while(!queue.isEmpty()){
-            TreeNode first = queue.poll();
             if(sb.length() > 0)
                 sb.append(",");
-        
+            TreeNode first = queue.poll();
             if(first == null){
                 sb.append("null");
                 continue;
@@ -28,11 +27,7 @@ public class Codec {
             sb.append(first.val);
             queue.offer(first.left);
             queue.offer(first.right);
-            
-           
-        
         }
-        // System.out.println(sb.toString());
         return sb.toString();
     }
 
@@ -40,32 +35,30 @@ public class Codec {
     public TreeNode deserialize(String data) {
         if(data.length() == 0)
             return null;
-        String[] input = data.split(",");
         Queue<TreeNode> queue = new LinkedList();
-        TreeNode root = new TreeNode(Integer.parseInt(input[0]));
+        String[] arr = data.split(",");
+        TreeNode root = new TreeNode(Integer.parseInt(arr[0]));
         queue.offer(root);
         int i = 1;
-        int n = input.length;
+        int n = data.length();
         while(!queue.isEmpty() && i < n){
             TreeNode left = null;
             TreeNode right = null;
             TreeNode root1 = queue.poll();
-            if(!input[i].equals("null")){
-                left = new TreeNode(Integer.parseInt(input[i]));
+            if(!arr[i].equals("null")){
+                left = new TreeNode(Integer.parseInt(arr[i]));
                 queue.offer(left);
-                // i++;
             }
             i++;
-            if(!input[i].equals("null")){
-                right = new TreeNode(Integer.parseInt(input[i]));
+            if(!arr[i].equals("null")){
+                right = new TreeNode(Integer.parseInt(arr[i]));
                 queue.offer(right);
-                // i++;
             }
             i++;
-        
             root1.left = left;
             root1.right = right;
         }
+        
         return root;
     }
 }
