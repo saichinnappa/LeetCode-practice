@@ -34,7 +34,6 @@ class Solution {
             return false;
         }
         currentSum += root.val;
-        System.out.println("--here--"+ currentSum);
        
         if(root.left == null && root.right == null){
              if(currentSum == targetSum){
