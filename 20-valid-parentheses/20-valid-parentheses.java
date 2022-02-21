@@ -22,7 +22,6 @@ class Solution {
 
                 if(stack.size() == 0) return false;
                 char top = stack.pop();
-                System.out.println(top+" "+arr[i]);
                 if(map.get(arr[i]) != top)
                     return false;
                 // }    
