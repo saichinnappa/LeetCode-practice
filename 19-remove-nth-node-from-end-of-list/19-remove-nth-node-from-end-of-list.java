@@ -11,50 +11,28 @@
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         
-        // APPROACH 1
-        // First count all the nodes and then remove (total - n + 1)
-//         ListNode dummy = new ListNode(-1);
-//         dummy.next = head;
-//         ListNode first = head;
-//         int count = 0;
-        
-//         while(first != null){
-//             count++;
-//             first = first.next;
-//         }
-        
-//         first = dummy;
-//         count = count - n;
-        
-//         while(count > 0){
-//             count--;
-//             first = first.next;
-//         }
-        
-//         first.next = first.next.next;
-        
-//         return dummy.next;
-        
-        // APPROACH 2
-        //Two pointers
-        // slow keep running at one node at a time, whereas fast runs n times so that slow and fast are n distance apart at any given time.
-        
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode slow = dummy;
-        ListNode fast = dummy;
-        
-        for(int i = 0; i < n; i++){
-            fast = fast.next;
+        ListNode prev = new ListNode(-1);
+        ListNode result = prev;
+        ListNode curr = head;
+        if(head == null)
+            return head;
+        int totalNodes = 0;
+        while(head != null){
+            totalNodes++;
+            head = head.next;
         }
+   
+        int count = totalNodes - n;
         
-        while(fast.next != null){
-            slow = slow.next;
-            fast = fast.next;
+        while(count != 0){
+            prev.next = curr;
+            prev = curr;
+            curr = curr.next;
+            count--;
         }
+        System.out.println(prev.val+" ");
+        prev.next = curr.next;
         
-        slow.next = slow.next.next;
-        
-        return dummy.next;
+        return result.next;
     }
 }
