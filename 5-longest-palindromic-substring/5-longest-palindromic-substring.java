@@ -1,38 +1,44 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int length = s.length();
-        boolean[][] dp = new boolean[length][length];
-        int start = 0;
-        int end = 0;
-        
+        if(s.length() == 1)
+            return s;
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
         char[] arr = s.toCharArray();
+        
+        int start = 0;
+        int maxLength = 0;
         
         for(int i = 0; i < arr.length; i++){
             dp[i][i] = true;
             start = i;
-            end = 1;
+            maxLength = 1;
         }
         
         for(int i = 0; i < arr.length - 1; i++){
-            if((i+1) < arr.length && arr[i] == arr[i+1]){
+            if(arr[i] == arr[i + 1]){
                 dp[i][i+1] = true;
                 start = i;
-                end = 2;
+                maxLength = 2;
             }
         }
         
-        for(int k = 3; k <= length; k++){
-            for(int i = 0; i <= length - k; i++){
+        for(int k = 3; k <= s.length(); k++){
+            for(int i = 0; i < s.length(); i++){
                 int j = i + k - 1;
 
-                if(arr[i] == arr[j] && dp[i + 1][j - 1]){
+                if(j < s.length() && arr[i] == arr[j] && dp[ i + 1][j - 1]){
+                    // System.out.println("---here---");
                     dp[i][j] = true;
-                    start = i;
-                    end  = k;
+                    if(maxLength < k){
+                        maxLength = k;
+                        start = i;
+                    }
                 }
             }
         }
-    
-        return s.substring(start, end+start);
+        
+        return s.substring(start, start + maxLength);
+        
     }
 }
