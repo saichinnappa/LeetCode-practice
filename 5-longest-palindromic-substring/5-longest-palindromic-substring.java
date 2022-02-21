@@ -23,12 +23,10 @@ class Solution {
             }
         }
         
-        for(int k = 3; k <= s.length(); k++){
-            for(int i = 0; i < s.length(); i++){
+        for(int k = 3; k <= n; k++){
+            for(int i = 0; i < n - k + 1; i++){
                 int j = i + k - 1;
-
-                if(j < s.length() && arr[i] == arr[j] && dp[ i + 1][j - 1]){
-                    // System.out.println("---here---");
+                if(j < n && arr[i] == arr[j] && dp[ i + 1][j - 1]){
                     dp[i][j] = true;
                     if(maxLength < k){
                         maxLength = k;
