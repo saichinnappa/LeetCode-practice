@@ -17,7 +17,6 @@ class Solution {
         }
         
         int rotatedIndex = findRotatedIndex(nums, start, end);
-        System.out.println("rotatedIndex->"+ rotatedIndex);
         if(nums[rotatedIndex] == target) return rotatedIndex;
         if(target <= nums[end]) return binarySearch(nums, rotatedIndex + 1, end);
         if(target > nums[end]) return binarySearch(nums, start, rotatedIndex - 1);
