@@ -25,13 +25,11 @@ class Solution {
         int interval = 1;
         int length = lists.length;
         while(interval < length){
-            for(int i = 0; i < length - interval; i += (interval * 2)){
+            for(int i = 0; i < length - interval; i += interval * 2){
                 lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
             }
-            
             interval *= 2;
         }
-        
         return lists[0];
         
     }
