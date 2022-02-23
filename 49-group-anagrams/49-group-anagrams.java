@@ -13,10 +13,10 @@ class Solution {
             map.get(sorted).add(s);
         }
         
-        for(Map.Entry<String, List<String>> entry : map.entrySet()){
-            result.add(entry.getValue());
-        }
+//         for(Map.Entry<String, List<String>> entry : map.entrySet()){
+//             result.add(entry.getValue());
+//         }
         
-        return result;
+        return new ArrayList(map.values());
     }
 }
