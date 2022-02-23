@@ -12,7 +12,7 @@ class Solution {
             else{
                 int[] lastElement = list.getLast();
                 if(lastElement[1] >= interval[0]){
-                    list.getLast()[1] = list.getLast()[1] > interval[1] ? list.getLast()[1] : interval[1];
+                    list.getLast()[1] = Math.max(list.getLast()[1], interval[1]);
                 } else{
                     list.addLast(interval);
                 }
