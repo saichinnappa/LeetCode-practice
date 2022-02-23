@@ -13,13 +13,27 @@ class Solution {
         if(lists.length == 0) return null;
         if(lists.length == 1) return lists[0];
         
-        ListNode head = mergeTwoLists(lists[0], lists[1]);
+//         ListNode head = mergeTwoLists(lists[0], lists[1]);
         
-        for(int i = 2; i < lists.length; i++){
-            head = mergeTwoLists(head, lists[i]);
+//         for(int i = 2; i < lists.length; i++){
+//             head = mergeTwoLists(head, lists[i]);
+//         }
+        
+//         return head;
+        
+        
+        int interval = 1;
+        int length = lists.length;
+        while(interval < length){
+            for(int i = 0; i < length - interval; i += (interval * 2)){
+                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+            }
+            
+            interval *= 2;
         }
         
-        return head;
+        return lists[0];
+        
     }
     
     
