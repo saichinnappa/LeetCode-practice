@@ -13,13 +13,23 @@ class Solution {
             }
         }
         
+        Set<Integer> rowSet = new HashSet<>();
+        Set<Integer> colSet = new HashSet<>();
+        
         while(!queue.isEmpty()){
             int[] first = queue.poll();
-            for(int i = 0; i < cols; i++){
-                matrix[first[0]][i] = 0;
+            if(!rowSet.contains(first[0])){
+                rowSet.add(first[0]);
+                for(int i = 0; i < cols; i++){
+                    matrix[first[0]][i] = 0;
+                }
             }
-            for(int j = 0; j < rows; j++){
-                matrix[j][first[1]] = 0;
+            
+            if(!colSet.contains(first[1])){
+                for(int j = 0; j < rows; j++){
+                    matrix[j][first[1]] = 0;
+                }
+                colSet.add(first[1]);
             }
         }
         
