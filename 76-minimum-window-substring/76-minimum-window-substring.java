@@ -22,11 +22,9 @@ class Solution {
             }
             
             while(match == map.size()){
-                if(minLength == 0)
+                if(minLength == 0 || minLength > i - start + 1){
                     minLength = i - start + 1;
-                if(minLength > i - start + 1){
-                    minLength = i - start + 1;
-                subStrStart = start;
+                    subStrStart = start;
                 }
                     
                 if(map.containsKey(sarr[start])){
