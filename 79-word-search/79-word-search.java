@@ -8,7 +8,6 @@ class Solution {
                 if(board[i][j] == word.charAt(0)){
                     backtrack(board, word, 0, i, j);
                     if(exists){
-                        System.out.println("---=here--");
                         return true;
                     }
                 }
@@ -29,7 +28,6 @@ class Solution {
         
 
         if(word.length() - 1 == index){
-                    System.out.println(index);
             exists = true;
             return;
         }
