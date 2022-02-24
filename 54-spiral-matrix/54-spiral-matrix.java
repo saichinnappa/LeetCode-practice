@@ -45,8 +45,7 @@ class Solution {
             
 
             
-            for(int i = down - 1; i > up; i--){
-                              // System.out.println(left +" "+ i);
+            for(int i = down - 1; i >= up; i--){
                 if(!visited[i][left]){
                     result.add(matrix[i][left]);
                     visited[i][left] = true;
