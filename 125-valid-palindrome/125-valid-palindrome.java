@@ -1,33 +1,33 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        if(s.trim().length() == 0)
+        if(s.length() == 0)
             return true;
-        char[] arr = s.toCharArray();
         StringBuilder sb = new StringBuilder();
-        
-        for(int i = 0; i < arr.length; i++){
-            char c = arr[i];
-            if(Character.isLetter(c)){
-                sb.append(Character.toLowerCase(c));
-            } else if(Character.isDigit(c)){
-                sb.append(c);
+        char[] input = s.toCharArray();
+        for(int i = 0; i < input.length; i++){
+            if(Character.isLetter(input[i])){
+                sb.append(Character.toLowerCase(input[i]));
+            }
+            if(Character.isDigit(input[i])){
+                sb.append(input[i]);
             }
         }
-        if(sb.length() == 0)
-            return true;
-        int start = 0, end = sb.length() - 1;
-        while(start <= end){
-            if(sb.charAt(start) == sb.charAt(end)){
+        return check(sb.toString());
+    }
+    
+    private boolean check(String s){
+        
+        int start = 0;
+        int end = s.length() - 1;
+        char[] input = s.toCharArray();
+        while(start < end){
+            if(input[start] == input[end]){
                 start++;
                 end--;
             } else{
                 return false;
             }
-            
         }
-        
-        
         return true;
-        
     }
 }
