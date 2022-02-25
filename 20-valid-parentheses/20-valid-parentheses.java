@@ -16,14 +16,12 @@ class Solution {
                 stack.push(input[i]);
             }
             else{
-                if(!stack.isEmpty()){
+                if(stack.isEmpty())
+                    return false;
                     char top = stack.pop();
                     if(map.get(input[i]) != top){
                         return false;
-                    }    
-                } else{
-                    return false;
-                }  
+                    } 
             }
         }
         
