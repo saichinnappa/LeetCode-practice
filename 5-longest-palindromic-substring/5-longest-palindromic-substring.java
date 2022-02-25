@@ -61,7 +61,7 @@ class Solution {
         }
         
         for(int k = 3; k <= n; k++){
-            for(int i = 0; i < n - k + 1; i++){
+            for(int i = 0; i <= n - k; i++){
                 int j = i + k - 1;
                 if(arr[i] == arr[j] && dp[ i + 1][j - 1]){
                     dp[i][j] = true;
