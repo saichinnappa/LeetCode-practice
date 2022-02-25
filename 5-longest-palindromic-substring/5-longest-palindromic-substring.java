@@ -65,10 +65,10 @@ class Solution {
                 int j = i + k - 1;
                 if(arr[i] == arr[j] && dp[ i + 1][j - 1]){
                     dp[i][j] = true;
-                    if(maxLength < k){
+                    // if(maxLength < k){
                         maxLength = k;
                         start = i;
-                    }
+                    // }
                 }
             }
         }
