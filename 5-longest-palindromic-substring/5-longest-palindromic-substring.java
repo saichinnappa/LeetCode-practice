@@ -25,7 +25,7 @@ class Solution {
         for(int i = 3; i <= n ; i++){
             for(int j = 0; j <= n - i; j++){
                 int k = j + i - 1;
-                if(s.charAt(j) == s.charAt(k) && dp[j + 1][k - 1]){
+                if(arr[j] == arr[k] && dp[j + 1][k - 1]){
                     dp[j][k] = true;
                     length = i;
                     start = j;
