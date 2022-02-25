@@ -1,5 +1,7 @@
 class Solution {
     public String longestPalindrome(String s) {
+        if(s.length() == 1)
+            return s;
         int n = s.length();
         boolean[][] dp = new boolean[n][n];
         
