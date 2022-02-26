@@ -25,15 +25,11 @@ class Solution {
         if(root == null)
             return;
         helper(root.left);
-        System.out.println(root.val);
         if(pre != null && pre.val >= root.val){
-            System.out.println(root.val+"<<<<"+pre.val);
             valid = false;
             return;
         }
         pre = root;
         helper(root.right);
-        // pre = root;
-        System.out.println("pre->"+pre.val);
     }
 }
