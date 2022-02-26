@@ -14,44 +14,26 @@
  * }
  */
 class Solution {
-    
-    TreeNode prev  = null;
-    boolean isValid = true;
+    boolean valid = true;
+    TreeNode pre = null;
     public boolean isValidBST(TreeNode root) {
-        
-//         // Approach 1: Iterative
-//         TreeNode prev = null;
-//         Deque<TreeNode> stack = new ArrayDeque();
-//         while(!stack.isEmpty() || root != null){
-//             while(root != null){
-//                 stack.push(root);
-//                 root = root.left;
-//             }
-
-//             TreeNode top = stack.pop();
-//             if(prev != null && prev.val >= top.val){
-//                 return false;
-//             }
-
-//             prev = top;
-//             root = top.right;   
-//         }
-//         return true;
-        
-        // Approach 2: Recursive
-        recursive(root);
-        return isValid;
+        helper(root);
+        return valid;
     }
     
-    void recursive(TreeNode root){
+    void helper(TreeNode root){
         if(root == null)
             return;
-        recursive(root.left);
-        if(prev != null && prev.val >= root.val){
-            isValid = false;
+        helper(root.left);
+        System.out.println(root.val);
+        if(pre != null && pre.val >= root.val){
+            System.out.println(root.val+"<<<<"+pre.val);
+            valid = false;
             return;
         }
-        prev = root;
-        recursive(root.right);
+        pre = root;
+        helper(root.right);
+        // pre = root;
+        System.out.println("pre->"+pre.val);
     }
 }
