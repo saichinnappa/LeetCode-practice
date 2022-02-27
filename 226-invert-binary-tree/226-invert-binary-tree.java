@@ -17,6 +17,7 @@ class Solution {
     public TreeNode invertTree(TreeNode root) {
         if(root == null)
             return root;
+        // TreeNode root1 = new TreeNode(root.val);
         helper(root);
         return root;
     }
@@ -24,10 +25,10 @@ class Solution {
     void helper(TreeNode root){
         if(root == null)
             return;
+        TreeNode temp = root.right;
+        root.right = root.left;
+        root.left = temp;
         helper(root.left);
         helper(root.right);
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
     }
 }
