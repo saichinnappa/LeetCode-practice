@@ -1,40 +1,36 @@
 class Solution {
-    public int countComponents(int n, int[][] isConnected) {
+    public int countComponents(int n, int[][] edges) {
         UnionByRank ubr = new UnionByRank(n);
-        // for(int i = 0; i< isConnected.length; i++){
-        //     for(int j = 0; j< isConnected[i].length; j++){
-        //             ubr.union(i, j);
-        //         }
-        //     }
+        for(int[] e: edges){
+            ubr.union(e[0],e[1]);
+        }
         
-        for(int[] edge : isConnected)
-            ubr.union(edge[0], edge[1]);
-        
-        return ubr.getDistinctRootCount();
+        return ubr.getCount();
     }
 }
 
 class UnionByRank{
-    int[] root;
     int[] rank;
-    int count;
+    int[] root;
+    int size;
     
-    UnionByRank(int size){
-        this.root = new int[size];
+    UnionByRank(int n){
+        this.size = n;
+        this.rank = new int[n];
+        this.root = new int[n];
+        Arrays.setAll(this.rank, i -> 1);
         Arrays.setAll(this.root, i -> i);
-        this.rank = new int[size];
-        Arrays.fill(this.rank, 1);
-        this.count = size;
     }
     
-    int getDistinctRootCount(){
-        return count;
+    boolean isConnected(int x, int y){
+        return find(x) == find(y);
     }
     
     int find(int x){
-        if(x == root[x])
-            return x;
-        return root[x] = find(root[x]);
+        while(x != root[x]){
+            x = root[x];
+        }
+        return x;
     }
     
     void union(int x, int y){
@@ -43,17 +39,20 @@ class UnionByRank{
         if(rootX != rootY){
             if(rank[rootX] > rank[rootY]){
                 root[rootY] = rootX;
-            } else if(rank[rootY] > rank[rootX]){
+            } else if(rank[rootX] < rank[rootY]){
                 root[rootX] = rootY;
             } else{
-                rank[rootX] += 1;
                 root[rootY] = rootX;
+                rank[rootX] += 1;
             }
-                    count--;
+            
+            size--;
         }
     }
     
-    boolean isConnected(int x, int y){
-        return find(x) == find(y);
+    int getCount(){
+        return size;
     }
+    
+    
 }
