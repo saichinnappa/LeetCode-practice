@@ -26,11 +26,11 @@ class UnionByRank{
         return find(x) == find(y);
     }
     
+    
     int find(int x){
-        while(x != root[x]){
-            x = root[x];
-        }
-        return x;
+        if(x == root[x])
+            return x;
+        return root[x] = find(root[x]);
     }
     
     void union(int x, int y){
