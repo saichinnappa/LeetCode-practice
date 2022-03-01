@@ -18,10 +18,8 @@ class Solution {
         
         while(!queue.isEmpty()){
             int first = queue.poll();
-            System.out.println(first);
             List<Integer> preReqs = map.get(first);
             if(preReqs != null){
-                System.out.println(preReqs);
                 for(int i : preReqs){
                     courses[i]--;
                     if(courses[i] == 0){
