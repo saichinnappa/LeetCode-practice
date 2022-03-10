@@ -1,12 +1,14 @@
 // class HitCounter {
 
 //     Queue<Integer> queue;
+    
 //     public HitCounter() {
 //         queue = new LinkedList<>();
 //     }
     
 //     public void hit(int timestamp) {
 //         queue.offer(timestamp);
+        
 //     }
     
 //     public int getHits(int timestamp) {
@@ -16,26 +18,24 @@
 //             else break;
 //         }
 //         return queue.size();
+        
 //     }
 // }
+
 
 class HitCounter {
 
     Deque<Pair> queue;
-    int total = 0;
+    int total = 0;;
+    
     public HitCounter() {
         queue = new LinkedList<>();
     }
     
     public void hit(int timestamp) {
-        if(!queue.isEmpty()){
-            Pair first = queue.pollLast();
-            if(first.timestamp == timestamp){
-                queue.offer(new Pair(timestamp, first.count + 1));
-            } else{
-                queue.offer(first);
-                queue.offer(new Pair(timestamp, 1));
-            }
+        
+        if(!queue.isEmpty() && queue.peek().timestamp == timestamp){
+            queue.offer(new Pair(timestamp, queue.poll().count + 1));
         } else{
             queue.offer(new Pair(timestamp, 1));
         }
@@ -43,12 +43,11 @@ class HitCounter {
     }
     
     public int getHits(int timestamp) {
-        // System.out.println(queue.getFirst().timestamp);
-       while(!queue.isEmpty() && timestamp - queue.peek().timestamp >= 300){
-           total -= queue.poll().count;
-       }
-        
-        
+       
+        while(!queue.isEmpty() && timestamp - queue.peek().timestamp >= 300){
+            
+                total -= queue.poll().count;
+        }
         return total;
     }
 }
@@ -56,13 +55,12 @@ class HitCounter {
 class Pair{
     int timestamp;
     int count;
+    
     Pair(int timestamp, int count){
         this.timestamp = timestamp;
         this.count = count;
     }
 }
-
-
 
 
 /**
