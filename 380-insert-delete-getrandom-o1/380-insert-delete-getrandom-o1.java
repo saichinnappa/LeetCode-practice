@@ -1,7 +1,7 @@
 class RandomizedSet {
     
-    List<Integer> list;
     Map<Integer, Integer> map;
+    List<Integer> list;
     Random random;
 
     public RandomizedSet() {
@@ -15,34 +15,26 @@ class RandomizedSet {
             return false;
         map.put(val, list.size());
         list.add(list.size(), val);
-        // System.out.println(list);
         return true;
     }
     
     public boolean remove(int val) {
-        if(!map.containsKey(val)){
+        if(!map.containsKey(val))
             return false;
-        }
         
         int index = map.get(val);
-        int temp = list.get(index);
-        map.put(list.get(list.size() - 1), index);
-        map.remove(val);
         int lastElement = list.get(list.size() - 1);
-        // System.out.println(list.size()+"<<<Before");
+        map.put(lastElement, index);
+        map.remove(val);
+        // map.put(lastElement, index);
         list.set(index, lastElement);
         list.remove(list.size() - 1);
-        // System.out.println(list.size()+"<<<AFter");
-        // System.out.println(list+"<<<<");
-
         // System.out.println(list);
-        // list.add(list.size() - 1, temp);
-        
         return true;
+        
     }
     
     public int getRandom() {
-        // System.out.println(list.size()+"<<<<");
         return list.get(random.nextInt(list.size()));
     }
 }
