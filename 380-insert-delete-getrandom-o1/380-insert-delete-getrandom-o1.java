@@ -1,12 +1,12 @@
 class RandomizedSet {
     
-    Map<Integer, Integer> map;
     List<Integer> list;
+    Map<Integer, Integer> map;
     Random random;
 
     public RandomizedSet() {
-        map = new HashMap<>();
         list = new ArrayList<>();
+        map = new HashMap<>();
         random = new Random();
     }
     
@@ -22,14 +22,12 @@ class RandomizedSet {
         if(!map.containsKey(val))
             return false;
         
-        int index = map.get(val);
         int lastElement = list.get(list.size() - 1);
+        int index = map.get(val);
         map.put(lastElement, index);
         map.remove(val);
-        // map.put(lastElement, index);
         list.set(index, lastElement);
         list.remove(list.size() - 1);
-        // System.out.println(list);
         return true;
         
     }
@@ -46,3 +44,4 @@ class RandomizedSet {
  * boolean param_2 = obj.remove(val);
  * int param_3 = obj.getRandom();
  */
+
