@@ -11,7 +11,7 @@ public class RandomizedCollection {
 
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     public boolean insert(int val) {
-        if (!idx.containsKey(val)) idx.put(val, new HashSet<Integer>());
+        if (!idx.containsKey(val)) idx.put(val, new LinkedHashSet<Integer>());
         idx.get(val).add(lst.size());
         lst.add(val);
         return idx.get(val).size() == 1;
