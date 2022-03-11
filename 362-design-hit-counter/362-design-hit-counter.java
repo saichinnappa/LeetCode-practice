@@ -1,67 +1,23 @@
-// class HitCounter {
-
-//     Queue<Integer> queue;
-    
-//     public HitCounter() {
-//         queue = new LinkedList<>();
-//     }
-    
-//     public void hit(int timestamp) {
-//         queue.offer(timestamp);
-        
-//     }
-    
-//     public int getHits(int timestamp) {
-//         while(!queue.isEmpty()){
-//             int diff = timestamp - queue.peek();
-//             if(diff >= 300) queue.poll();
-//             else break;
-//         }
-//         return queue.size();
-        
-//     }
-// }
-
-
 class HitCounter {
+    Queue<Integer> queue;
 
-    Deque<Pair> queue;
-    int total = 0;;
-    
     public HitCounter() {
-        queue = new LinkedList<>();
+        queue = new LinkedList();
     }
     
     public void hit(int timestamp) {
-        
-        if(!queue.isEmpty() && queue.peek().timestamp == timestamp){
-            queue.offer(new Pair(timestamp, queue.poll().count + 1));
-        } else{
-            queue.offer(new Pair(timestamp, 1));
-        }
-        total++;
+        queue.offer(timestamp);
     }
     
     public int getHits(int timestamp) {
-       
-        while(!queue.isEmpty() && timestamp - queue.peek().timestamp >= 300){
-            
-                total -= queue.poll().count;
+        while(!queue.isEmpty()){
+            int diff = timestamp - queue.peek();
+            if(diff >= 300) queue.poll();
+            else break;
         }
-        return total;
+        return queue.size();
     }
 }
-
-class Pair{
-    int timestamp;
-    int count;
-    
-    Pair(int timestamp, int count){
-        this.timestamp = timestamp;
-        this.count = count;
-    }
-}
-
 
 /**
  * Your HitCounter object will be instantiated and called as such:
