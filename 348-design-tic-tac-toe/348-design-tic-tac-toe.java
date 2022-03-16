@@ -39,14 +39,12 @@ class TicTacToe {
         
         for(int i = board.length - 1; i > - 1; i--){
             if(board[board.length - 1 - i][i] == player){
-                // System.out.println(board[i][i]+"<<<<<");
                 count++;
             }
         }
         if(count == size)
             return player;
         
-        // System.out.println(Arrays.deepToString(board));
         
         return 0;
     }
