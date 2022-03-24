@@ -14,22 +14,27 @@
  * }
  */
 class Solution {
-    boolean valid = true;
     TreeNode pre = null;
+    boolean isValid = true;
     public boolean isValidBST(TreeNode root) {
         helper(root);
-        return valid;
+        return isValid;
     }
     
     void helper(TreeNode root){
         if(root == null)
             return;
-        helper(root.left);
-        if(pre != null && pre.val >= root.val){
-            valid = false;
-            return;
+        isValidBST(root.left);
+        if(pre == null)
+            pre = root;
+        else {
+            if(pre.val >= root.val){
+                isValid = false;
+                return;
+            } else{
+                pre = root;
+            }
         }
-        pre = root;
-        helper(root.right);
+        isValidBST(root.right);
     }
 }
