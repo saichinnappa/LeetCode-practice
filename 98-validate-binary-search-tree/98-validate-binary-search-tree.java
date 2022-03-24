@@ -30,7 +30,7 @@ class Solution {
         else {
             if(pre.val >= root.val){
                 isValid = false;
-                return;
+                // return;
             } else{
                 pre = root;
             }
