@@ -14,10 +14,12 @@
  * }
  */
 class Solution {
-    int result = 0;
+    int max = Integer.MIN_VALUE;
     public int diameterOfBinaryTree(TreeNode root) {
+        
         helper(root);
-        return result;
+        return max - 1;
+        
     }
     
     int helper(TreeNode root){
@@ -25,10 +27,9 @@ class Solution {
             return 0;
         int left = helper(root.left);
         int right = helper(root.right);
-        
-        int temp = Math.max(left, right);
-        int ans = left + right;
-        result = Math.max(result, ans);
-        return temp + 1;
+        int temp = Math.max(left, right) + 1;
+        int ans = 1 + left + right;
+        max = Math.max(max, ans);
+        return temp;
     }
 }
