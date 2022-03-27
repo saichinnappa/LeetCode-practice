@@ -22,7 +22,7 @@ class Solution {
             return result;
         
         //Iterative
-        Deque<TreeNode> stack = new ArrayDeque<>();
+        Deque<TreeNode> stack = new LinkedList<>();
         while(!stack.isEmpty() || root != null){
             while(root != null){
                 stack.push(root);
