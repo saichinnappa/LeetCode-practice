@@ -14,49 +14,20 @@
  * }
  */
 class Solution {
-    
     public boolean isSymmetric(TreeNode root) {
-        //recursive
-        //return helper(root.left, root.right);    
-        //iterative
-        if(root == null || root.left == null && root.right == null)
-            return true;
-        if(root.left == null && root.right != null)
-            return false;
-        if(root.left != null && root.right == null)
-            return false;
-            
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root.left);
-        queue.offer(root.right);
-        
-        while(!queue.isEmpty()){
-            TreeNode t1 = queue.poll();
-            TreeNode t2 = queue.poll();
-            if(t1 == null && t2 == null) continue;
-            if(t1 == null && t2 != null || t1 != null && t2 == null) return false;
-            if(t1.val != t2.val) return false;
-            
-            queue.offer(t1.left);
-            queue.offer(t2.right);
-            queue.offer(t1.right);
-            queue.offer(t2.left);
-        }
-        
-        
-        return true;
+        return helper(root.left, root.right);
     }
     
-    boolean helper(TreeNode r1, TreeNode r2){
-        if(r1 == null && r2 == null)
+    boolean helper(TreeNode t1, TreeNode t2){
+        if(t1 == null && t2 == null)
             return true;
-        if(r1 == null && r2 != null)
+        else if(t1 == null && t2 != null)
             return false;
-        if(r1 != null && r2 == null)
+        else if(t1 != null && t2 == null)
             return false;
-        if(r1.val == r2.val)
-            return helper(r1.left, r2.right) && helper(r1.right, r2.left);
+        else if(t1.val != t2.val)
+            return false;
         else
-            return false;
+            return helper(t1.left, t2.right) && helper(t1.right, t2.left);
     }
 }
