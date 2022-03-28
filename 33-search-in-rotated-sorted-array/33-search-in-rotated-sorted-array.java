@@ -17,7 +17,6 @@ class Solution {
         
         
         int rIdx = findRotatedIndex(0, n);
-        System.out.println(rIdx);
         if(nums[rIdx] == target)
             return rIdx;
          if(target <= nums[n])
