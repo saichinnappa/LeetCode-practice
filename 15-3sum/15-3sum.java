@@ -4,31 +4,33 @@ class Solution {
         if(nums.length == 0)
             return result;
         Arrays.sort(nums);
-        Set<Integer> set = new HashSet();
+        int n = nums.length;
+        Set<Integer> set = new HashSet<>();
         for(int i = 0; i < nums.length; i++){
             if(!set.contains(nums[i])){
-                set.add(nums[i]);
                 int j = i + 1;
                 int k = nums.length - 1;
-                while(j < k) {
+                
+                while(j < k){
+                    List<Integer> list = new ArrayList<>();
                     int sum = nums[i] + nums[j] + nums[k];
                     if(sum == 0){
-                        result.add(Arrays.asList(nums[i], nums[j], nums[k]));
-                        j++;
-                        k--;
-                        while(j < k){
-                            if(j < nums.length && nums[j] == nums[j - 1])
-                                j++;
-                            else{
-                                break;
-                            }
+                        list.addAll(Arrays.asList(nums[i], nums[j], nums[k]));
+                        while(j < n - 1 && nums[j] == nums[j + 1]){
+                            j++;
                         }
-                    } else if(sum < 0){
                         j++;
-                    } else{
                         k--;
+                    } else if(sum > 0){
+                        k--;
+                    } else{
+                        j++;
                     }
+                if(list.size() > 0)
+                    result.add(list);
                 }
+                set.add(nums[i]);
+
             }
         }
         return result;
