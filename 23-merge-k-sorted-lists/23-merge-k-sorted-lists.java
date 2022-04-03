@@ -10,7 +10,19 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        return mergeLists(lists, 0, lists.length - 1);
+        
+        if(lists.length == 0)
+            return null;
+        if(lists.length == 1)
+            return lists[0];
+        
+        ListNode head = mergeSortedLists(lists[0], lists[1]);
+        for(int i = 2; i < lists.length; i++){
+            head = mergeSortedLists(head, lists[i]);
+        }
+        
+        return head;
+        // return mergeLists(lists, 0, lists.length - 1);
     }
     
     ListNode mergeLists(ListNode[] lists, int start, int end){
