@@ -10,54 +10,36 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists.length == 0) return null;
-        if(lists.length == 1) return lists[0];
-        
-//         ListNode head = mergeTwoLists(lists[0], lists[1]);
-        
-//         for(int i = 2; i < lists.length; i++){
-//             head = mergeTwoLists(head, lists[i]);
-//         }
-        
-//         return head;
-        
-        
-        int interval = 1;
-        int length = lists.length;
-        while(interval < length){
-            for(int i = 0; i < length - interval; i += (interval * 2)){
-                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
-            }
-            interval *= 2;
-        }
-        return lists[0];
-        
+        return mergeLists(lists, 0, lists.length - 1);
     }
     
-    
-    private ListNode mergeTwoLists(ListNode l1, ListNode l2){
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
-        ListNode temp = new ListNode(-1);
-        ListNode head = temp;
-        while(l1 != null && l2 != null){
-            if(l1.val < l2.val){
-                temp.next = new ListNode(l1.val);
-                l1 = l1.next;
-            } else if (l2.val < l1.val){
-                temp.next = new ListNode(l2.val);
-                l2 = l2.next;
-            } else{
-                temp.next = new ListNode(l1.val);
-                l1 = l1.next;
-                temp = temp.next;
-                temp.next = new ListNode(l2.val);
-                l2 = l2.next;
-            }
-            temp = temp.next;
+    ListNode mergeLists(ListNode[] lists, int start, int end){
+        if(start > end)
+            return null;
+        if(start == end){
+            return lists[start];
         }
-        temp.next = (l1 == null) ? l2 : l1;
         
-        return head.next;
+        int mid = (start + end) / 2;
+        ListNode left = mergeLists(lists, start, mid);
+        ListNode right = mergeLists(lists, mid + 1, end);
+        return mergeSortedLists(left, right);
     }
+    
+    private ListNode mergeSortedLists(ListNode list1, ListNode list2) {
+		if (list1 == null)
+			return list2;
+		if (list2 == null)
+			return list1;
+
+		if (list1.val < list2.val) {
+			list1.next = mergeSortedLists(list1.next, list2);
+			return list1;
+		} else {
+			list2.next = mergeSortedLists(list2.next, list1);
+			return list2;
+		}
+	}
+    
+    
 }
