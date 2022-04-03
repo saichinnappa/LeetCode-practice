@@ -1,30 +1,33 @@
 class Solution {
     public boolean isValid(String s) {
-        if(s.length() < 2)
+        if(s.length() == 1)
             return false;
-        Map<Character, Character> map = new HashMap();
+        char[] arr = s.toCharArray();
+        Map<Character, Character> map = new HashMap<>();
+        map.put(')', '(');
         map.put('}', '{');
         map.put(']', '[');
-        map.put(')', '(');
-        
-        char[] input = s.toCharArray();
-        Stack<Character> stack = new Stack<>();
-        
-        
-        for(int i = 0; i < input.length; i++){
-            if(!map.containsKey(input[i])){
-                stack.push(input[i]);
-            }
-            else{
+        if(map.containsKey(arr[0])){
+            return false;
+        }
+        Deque<Character> stack = new LinkedList<>();
+        stack.push(arr[0]);
+        for(int i = 1; i < arr.length; i++){
+            
+            if(map.containsKey(arr[i])){
                 if(stack.isEmpty())
                     return false;
-                    char top = stack.pop();
-                    if(map.get(input[i]) != top){
-                        return false;
-                    } 
+                char top = stack.pop();
+                if(top != map.get(arr[i])){
+                    return false;
+                }
+            } else{
+                stack.push(arr[i]);
             }
+            
         }
         
-        return stack.size() == 0;
+            return stack.isEmpty();
+    
     }
 }
