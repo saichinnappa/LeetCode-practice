@@ -15,6 +15,6 @@ class Solution {
         for(Map.Entry<String, List<String>> m : map.entrySet()){
             result.add(m.getValue());
         }
-        return result;
+        return new ArrayList(map.values());
     }
 }
