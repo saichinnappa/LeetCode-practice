@@ -11,10 +11,6 @@ class Solution {
             else
                 map.put(s1, new ArrayList<>(Arrays.asList(s)));
         }
-        
-        for(Map.Entry<String, List<String>> m : map.entrySet()){
-            result.add(m.getValue());
-        }
         return new ArrayList(map.values());
     }
 }
