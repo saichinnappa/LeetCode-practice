@@ -1,62 +1,60 @@
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> result = new ArrayList<>();
-        boolean[][] visited = new boolean[matrix.length][matrix[0].length];
         
-        int rows = matrix.length;
-        int cols = matrix[0].length;
+        int r = matrix.length;
+        int c = matrix[0].length;
         
-        int left = 0;
-        int right = cols - 1;
+        boolean[][] visited = new boolean[r][c];
+        
         int up = 0;
-        int down = rows - 1;
+        int right = c - 1;
+        int down = r - 1;
+        int left = 0;
         
-        
-        while(result.size() < rows * cols) {
+        while(result.size() != r * c){
             
-            //move L-> R directon
+            //L -> R
             for(int i = left; i <= right; i++){
-  
                 if(!visited[up][i]){
-                    result.add(matrix[up][i]);
                     visited[up][i] = true;
+                    result.add(matrix[up][i]);
                 }
             }
             
-
             
-            //  UP -> DOWN
+            
             for(int i = up + 1; i <= down; i++){
                 if(!visited[i][right]){
-                    result.add(matrix[i][right]);
                     visited[i][right] = true;
+                    result.add(matrix[i][right]);
                 }
             }
             
-
             
-            // DOWN -> LEFT
+            
             for(int i = right - 1; i >= left; i--){
                 if(!visited[down][i]){
-                    result.add(matrix[down][i]);
                     visited[down][i] = true;
+                    result.add(matrix[down][i]);
                 }
             }
             
-
             
-            for(int i = down - 1; i >= up; i--){
+            
+            for(int i = down ; i >= up; i--){
+            System.out.println(left+" "+i);    
                 if(!visited[i][left]){
-                    result.add(matrix[i][left]);
                     visited[i][left] = true;
+                    result.add(matrix[i][left]);
                 }
             }
             up++;
             left++;
             right--;
             down--;
-        }
         
+        }
         return result;
     }
 }
