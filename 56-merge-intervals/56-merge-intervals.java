@@ -10,7 +10,7 @@ class Solution {
             } else{
                 int[] last = result.getLast();
                 if(last[1] >= i[0]){
-                    result.remove(result.size() - 1);
+                    result.removeLast();
                     result.addLast(new int[]{last[0], Math.max(last[1], i[1])});
                 } else{
                     result.addLast(i);
