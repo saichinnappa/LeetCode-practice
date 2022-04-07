@@ -2,26 +2,27 @@ class Solution {
     public boolean isPalindrome(String s) {
         if(s.length() == 0)
             return true;
+        char[] arr = s.toCharArray();
         StringBuilder sb = new StringBuilder();
-        char[] input = s.toCharArray();
-        for(int i = 0; i < input.length; i++){
-            if(Character.isLetter(input[i])){
-                sb.append(Character.toLowerCase(input[i]));
-            }
-            if(Character.isDigit(input[i])){
-                sb.append(input[i]);
+        for(int i = 0; i < arr.length; i++){
+            if(Character.isDigit(arr[i]))
+                sb.append(arr[i]);
+            if(Character.isLetter(arr[i])){
+                if(Character.isUpperCase(arr[i])){
+                    sb.append(Character.toLowerCase(arr[i]));    
+                } else
+                    sb.append(arr[i]);
             }
         }
-        return check(sb.toString());
+        
+        return checkPalindrom(sb.toString());
     }
     
-    private boolean check(String s){
-        
+    boolean checkPalindrom(String s){
         int start = 0;
         int end = s.length() - 1;
-        char[] input = s.toCharArray();
-        while(start < end){
-            if(input[start] == input[end]){
+        while(start <= end){
+            if(s.charAt(start) == s.charAt(end)){
                 start++;
                 end--;
             } else{
