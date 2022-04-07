@@ -1,7 +1,7 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
-        if(nums.length < 2)
-            return nums.length;
+        // if(nums.length < 2)
+        //     return nums.length;
         Set<Integer> set = new HashSet<>();
         int maxStreak = 0;
         for(int num : nums)
