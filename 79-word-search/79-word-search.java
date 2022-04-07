@@ -22,11 +22,9 @@ class Solution {
         if(row < 0 || row >= board.length || col < 0 || col >= board[0].length || index >= word.length() || visited[row][col] || word.charAt(index) != board[row][col]){
             return;
         }
-        // System.out.println(">>>>>"+word.charAt(index)+"| row> "+ row+" | col> "+col+" | "+ board[row][col]);
         if(word.charAt(index) == board[row][col]){
             visited[row][col] = true;
             if(index == word.length() - 1){
-                // System.out.println("---here---");
                 exists = true;
                 return;
             }
