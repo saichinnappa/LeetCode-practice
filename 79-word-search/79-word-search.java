@@ -2,7 +2,6 @@ class Solution {
     boolean exists = false;
     boolean[][] visited;
     char[][] board;
-    int result;
     public boolean exist(char[][] board, String word) {
         this.board = board;
         visited = new boolean[board.length][board[0].length];
@@ -20,17 +19,17 @@ class Solution {
     
     
     void dfs(int row, int col, int index, String word){
-        if(row > -1 && row < board.length && col > -1 && col < board[0].length && index < word.length() && !visited[row][col] && word.charAt(index) == board[row][col]){
-            visited[row][col] = true;
-        } else{
+        if(row < 0 || row >= board.length || col < 0 || col >= board[0].length || index >= word.length() || visited[row][col] || word.charAt(index) != board[row][col]){
             return;
         }
-        // if(word.charAt(index) == board[row][col]){
-            
+        // System.out.println(">>>>>"+word.charAt(index)+"| row> "+ row+" | col> "+col+" | "+ board[row][col]);
+        if(word.charAt(index) == board[row][col]){
+            visited[row][col] = true;
             if(index == word.length() - 1){
+                // System.out.println("---here---");
                 exists = true;
                 return;
-            // }
+            }
         }
         
         dfs(row + 1, col, index + 1, word);
