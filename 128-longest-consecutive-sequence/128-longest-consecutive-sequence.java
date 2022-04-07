@@ -12,8 +12,8 @@ class Solution {
             if(!set.contains(current - 1)){
                 int count = 1;
                 while(set.contains(current + 1)){
-                    current++;
-                    count++;
+                    current += 1;
+                    count += 1;
                 }
                 maxStreak = Math.max(maxStreak, count);
             }
