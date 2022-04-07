@@ -1,37 +1,36 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-     
-        Queue<int[]> queue = new LinkedList();
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-        
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < cols; j++){
+        Deque<int[]> queue = new LinkedList<>();
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0;  j < matrix[i].length; j++){
                 if(matrix[i][j] == 0){
-                    queue.offer(new int[]{i, j});
+                    queue.offer(new int[] {i, j});
                 }
             }
         }
         
-        Set<Integer> rowSet = new HashSet<>();
-        Set<Integer> colSet = new HashSet<>();
+        Set<Integer> rSet = new HashSet<>();
+        Set<Integer> cSet = new HashSet<>();
         
         while(!queue.isEmpty()){
             int[] first = queue.poll();
-            if(!rowSet.contains(first[0])){
-                rowSet.add(first[0]);
-                for(int i = 0; i < cols; i++){
-                    matrix[first[0]][i] = 0;
+            int row = first[0];
+            int col = first[1];
+            
+            if(!rSet.contains(row)){
+                rSet.add(row);
+                for(int i = 0; i< matrix[0].length; i++){
+                    matrix[row][i] = 0;
                 }
             }
             
-            if(!colSet.contains(first[1])){
-                for(int j = 0; j < rows; j++){
-                    matrix[j][first[1]] = 0;
+            if(!cSet.contains(col)){
+                cSet.add(col);
+                for(int i = 0; i < matrix.length; i++){
+                    matrix[i][col] = 0;
                 }
-                colSet.add(first[1]);
             }
+            
         }
-        
     }
 }
