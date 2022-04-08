@@ -7,7 +7,7 @@ class Solution {
             int temp = Math.min(nums[i], Math.min(nums[i] * currentMin, nums[i] * currentMax));
             currentMax = Math.max(nums[i], Math.max(nums[i] * currentMax, nums[i] * currentMin));
             
-            System.out.println(currentMax+" "+currentMin);
+            // System.out.println(currentMax+" "+currentMin);
             currentMin = temp;
             result = Math.max(result, currentMax);
         }
