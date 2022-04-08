@@ -20,25 +20,16 @@ class Node {
 
 class Solution {
     Map<Node, Node> map = new HashMap<>();
-    Node result;
     public Node cloneGraph(Node node) {
-        
         if(node == null)
             return node;
-        
-        if(map.containsKey(node)){
+        if(map.containsKey(node))
             return map.get(node);
-        }
-        
         Node result = new Node(node.val, new ArrayList<>());
         map.put(node, result);
-        
-        
-        for(int i = 0 ;  i < node.neighbors.size(); i++){
+        for(int i = 0; i < node.neighbors.size(); i++){
             result.neighbors.add(cloneGraph(node.neighbors.get(i)));
         }
         return result;
     }
-    
-    
 }
