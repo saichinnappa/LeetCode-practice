@@ -1,9 +1,9 @@
 class WordDictionary {
-    
-    TrieNode root;
 
+    TrieNode root;
+    
     public WordDictionary() {
-        this.root = new TrieNode();
+        this.root = new TrieNode();    
     }
     
     public void addWord(String word) {
@@ -11,55 +11,48 @@ class WordDictionary {
             return;
         TrieNode current = this.root;
         for(int i = 0; i < word.length(); i++){
-            int index = word.charAt(i) - 'a';
-            if(current.children[index] == null)
-                current.children[index] = new TrieNode();
-            current = current.children[index];
+            int c = word.charAt(i) - 'a';
+            if(current.children[c] == null)
+                current.children[c] = new TrieNode();
+            current = current.children[c];
         }
-        current.isLeafNode = true;
+        current.isLeaf = true;
         
     }
     
     public boolean search(String word) {
-        TrieNode current = this.root; 
+        TrieNode current = this.root;
         return helper(current, word, 0);
     }
     
     boolean helper(TrieNode current, String word, int index){
         if(index == word.length()){
-            if(current.isLeafNode)
-                return true;
-            else
-                return false;
+            return current.isLeaf;
         }
-        
-        if(word.charAt(index) == '.'){
-            for(TrieNode n : current.children){
-                if(n != null && helper(n, word, index + 1)){
+        char c = word.charAt(index);
+        if(c == '.'){
+            for(TrieNode node : current.children){
+                if(node != null && helper(node, word, index + 1)){
                     return true;
                 }
             }
         } else{
-            if(current.children[word.charAt(index) - 'a'] == null)
+            if(current.children[c - 'a'] == null)
                 return false;
             else{
-                current = current.children[word.charAt(index) - 'a'];
+                current = current.children[c - 'a'];
                 return helper(current, word, index + 1);
             }
-                
+            
         }
-            
         return false;
-            
     }
 }
 
-
 class TrieNode{
     TrieNode[] children = new TrieNode[26];
-    boolean isLeafNode = false;
+    boolean isLeaf = false;
 }
-
 
 /**
  * Your WordDictionary object will be instantiated and called as such:
