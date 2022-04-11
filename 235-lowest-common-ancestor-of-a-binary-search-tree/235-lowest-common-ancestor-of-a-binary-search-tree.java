@@ -18,8 +18,7 @@ class Solution {
             return lowestCommonAncestor(root.right, p, q);
         if(p.val <= root.val && q.val > root.val)
             return root;
-        else if(p.val > root.val && q.val <= root.val)
-            return root;
+        else 
        return root;     
     }
 }
