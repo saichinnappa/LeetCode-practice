@@ -1,50 +1,23 @@
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        // APPROACH 1 : Brute force - TLE
-//         int[] result = new int[nums.length];
-//         for(int i = 0; i< nums.length; i++){
-//             int product = 1;
-//             for(int j = 0; j< nums.length; j++){
-//                 if(i != j){
-//                     product *= nums[j];
-//                 }
-//             }
-//             result[i] = product;
-//         }
-        
-//         return result;
-        
-        //APPROACH 2:
-        //Calculate left product of the array and right product of the array
-        //finally product two arrays.
-        
-        int[] leftProduct = new int[nums.length];
-        int[] rightProduct = new int[nums.length];
-        
-        leftProduct[0] = 1;
-        
+        int n = nums.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
+        left[0] = 1;
         for(int i = 1; i < nums.length; i++){
-            leftProduct[i] = leftProduct[i - 1] * nums[i - 1];
+            left[i] = left[i - 1] * nums[i - 1];
         }
         
-//         rightProduct[nums.length - 1] = 1;
+        right[n - 1] = 1;
         
-//         for(int i = nums.length -2; i >= 0; i--){
-//             rightProduct[i] = rightProduct[i + 1] * nums[i + 1];
-//         }
-        
-            int x = 1;
-        for(int i = leftProduct.length - 1; i > -1; i--){
-            leftProduct[i] = x * leftProduct[i];
-            x *= nums[i];
+        for(int i = n - 2; i > -1; i--){
+            right[i] = right[i + 1] * nums[i + 1];
         }
         
+        for(int i = 0; i < right.length; i++){
+            right[i] = right[i] * left[i];
+        }
         
-        // for(int i = 0; i< nums.length; i++){
-        //     nums[i] = leftProduct[i] * rightProduct[i];
-        // }
-        
-        return leftProduct;
-        
+        return right;
     }
 }
