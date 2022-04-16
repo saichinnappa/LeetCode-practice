@@ -28,9 +28,9 @@ class Solution {
         
         StringBuilder sb = new StringBuilder();
         Deque<Character> queue = new LinkedList<>();
-        for(Map.Entry<Character, Integer> entry : count.entrySet()){
-            if(entry.getValue() == 0)
-                queue.offer(entry.getKey());
+        for(Character c : count.keySet()){
+            if(count.get(c) == 0)
+                queue.offer(c);
         }
         
         while(!queue.isEmpty()){
