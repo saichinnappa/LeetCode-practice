@@ -31,17 +31,12 @@ class Solution {
             while(charMap.size() == total){
                 
                 int end = i;
-                // subStr = start;
                 int length = end - start + 1;
                 if(minLength > length){
                     minLength = length;
                     subStr = start;
                 }
-                    
- 
-                
-                minLength = Math.min(minLength, length);
-                // System.out.println("Length<<<<"+ minLength+" | Start>>>>>"+ start +"| end >>>>>" + end +" | substring >>" + s.substring(start, end+1));
+                // minLength = Math.min(minLength, length);
                 
                 if(charMap.containsKey(sarr[start])){
                     if(charMap.get(sarr[start]) == 0)
