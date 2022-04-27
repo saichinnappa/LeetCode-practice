@@ -1,3 +1,5 @@
+
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -17,7 +19,28 @@ class Solution {
     boolean isValid = true;
     TreeNode prev = null;
     public boolean isValidBST(TreeNode root) {
-        helper(root);
+        // helper(root);
+
+        if(root == null)
+            return false;
+        // TreeNode prev = null;
+        Deque<TreeNode> stack = new LinkedList<>();
+        while(root != null || !stack.isEmpty()){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            
+            TreeNode top = stack.pop();
+            if(prev != null && prev.val >= top.val)
+                return false;
+            prev = top;
+            
+            root = top.right;
+            
+        }
+        
+        
         return isValid;
     }
     
