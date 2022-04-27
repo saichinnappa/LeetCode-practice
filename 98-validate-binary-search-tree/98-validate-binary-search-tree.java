@@ -15,42 +15,9 @@
  */
 class Solution {
     boolean isValid = true;
-    TreeNode pre = null;
+    TreeNode prev = null;
     public boolean isValidBST(TreeNode root) {
-        //Recursive
-        // helper(root);
-        
-        // Iterative
-        
-        if(root == null)
-            return false;
-        
-        Deque<TreeNode> queue = new LinkedList<>();
-        TreeNode pre = null;
-        // queue.offer(root);
-        while(!queue.isEmpty() || root != null){
-            while(root != null){
-                queue.push(root);
-                root = root.left;
-            }
-            
-            TreeNode first = queue.pop();
-            
-            if(pre != null){
-                if(pre.val >= first.val){
-                    return false;
-                }
-                pre = first;
-            }
-            if(pre == null){
-                pre = first;
-            }
-                
-            root = first.right;
-            
-        }
-        
-        
+        helper(root);
         return isValid;
     }
     
@@ -58,17 +25,9 @@ class Solution {
         if(root == null)
             return;
         helper(root.left);
-        
-        if(pre != null){
-            if(pre.val >= root.val){
-                isValid = false;    
-            }
-            pre = root;
-            
-        }
-            
-        if(pre == null)
-            pre = root;
+        if(prev != null && prev.val >= root.val)
+            isValid = false;
+        prev = root;
         helper(root.right);
     }
 }
