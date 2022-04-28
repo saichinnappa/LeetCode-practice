@@ -37,6 +37,11 @@ class UnionByRank{
         if(x == root[x])
             return x;
         return root[x] = find(root[x]);
+        
+        // while(x != root[x]){
+        //     x = root[x];
+        // }
+        // return x;
     }
     
     void union(int x, int y){
@@ -44,11 +49,11 @@ class UnionByRank{
         int rootY = find(y);
         
         if(rootX != rootY){
-            if(rank[rootX] > rank[rootY])
+            if(rank[rootX] > rank[rootY]){
                 root[rootY] = rootX;
-            else if (rank[rootY] > rank[rootX])
+            } else if(rank[rootY] > rank[rootX]){
                 root[rootX] = rootY;
-            else{
+            } else{
                 rank[rootX] += 1;
                 root[rootY] = rootX;
             }
