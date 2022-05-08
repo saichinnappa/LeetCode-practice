@@ -12,12 +12,8 @@ class FileSystem {
             return false;
         int lastIndex = path.lastIndexOf("/");
         if(lastIndex == 0){
-            if(map.containsKey(path))
-                return false;
-            else{
                 map.put(path, value);
                 return true;
-            }
         } else{
             String subStr = path.substring(0, lastIndex);
             if(map.containsKey(subStr)){
