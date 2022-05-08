@@ -7,9 +7,8 @@ class FileSystem {
     }
     
     public boolean createPath(String path, int value) {
-        if(map.containsKey(path))
-            return false;
-        if(path == "" || path == "/")
+        
+        if(path == "" || path == "/" || map.containsKey(path))
             return false;
         int lastIndex = path.lastIndexOf("/");
         if(lastIndex == 0){
