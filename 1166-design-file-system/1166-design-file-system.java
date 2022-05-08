@@ -19,10 +19,9 @@ class FileSystem {
             if(map.containsKey(subStr)){
                 map.put(path, value);
                 return true;
-            } else{
-                return false;
             }
         }
+        return false;
     }
     
     public int get(String path) {
