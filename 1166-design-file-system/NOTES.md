@@ -20,7 +20,3 @@ return true;
 }
 return false;
 }
-public int get(String path) {
-return map.containsKey(path) ? map.get(path) : -1;
-}
-}
