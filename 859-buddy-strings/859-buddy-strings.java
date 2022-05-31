@@ -11,10 +11,6 @@ class Solution {
             return smap.size() < s.length();
                 
         }
-        for(int j = 0; j < goal.length(); j++){
-            gmap.put(goal.charAt(j), j);
-        }
-        
         List<Integer> dif = new ArrayList<>();
         for (int i = 0; i < s.length(); ++i){
             if (s.charAt(i) != goal.charAt(i)) 
