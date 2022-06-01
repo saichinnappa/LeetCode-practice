@@ -1,7 +1,9 @@
 class Solution {
     public int minSteps(String s, String t) {
+        if(s.equals(t))
+            return 0;
         int[] sarr = new int[26];
-        for(char c : s.toCharArray()){
+     for(char c : s.toCharArray()){
             sarr[c - 'a']++;
         }
         
