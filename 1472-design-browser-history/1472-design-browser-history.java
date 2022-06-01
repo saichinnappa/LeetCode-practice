@@ -21,11 +21,6 @@ class BrowserHistory {
     }
     
     public String back(int steps) {
-        // if(currIndex - steps < 0)
-        //     return history.get(0);
-        // currIndex = currIndex - steps;
-        // return history.get(currIndex);
-        
         while(steps > 0 && currIndex > 0){
             currIndex--;
             steps--;
@@ -33,14 +28,7 @@ class BrowserHistory {
         return history.get(currIndex);
     }
     
-    public String forward(int steps) {
-//         if(currIndex + steps > pageIndex)
-//             return history.get(pageIndex);
-//         currIndex = currIndex + steps;
-
-//         return history.get(currIndex);
-        
-        
+    public String forward(int steps) {  
         while (steps > 0 && currIndex < pageIndex) {
             steps--;
             currIndex++;
