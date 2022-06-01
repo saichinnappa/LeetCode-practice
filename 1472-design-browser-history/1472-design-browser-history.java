@@ -21,18 +21,26 @@ class BrowserHistory {
     }
     
     public String back(int steps) {
-        while(steps > 0 && currIndex > 0){
-            currIndex--;
-            steps--;
+        if(currIndex - steps < 0){
+            currIndex = 0;
+            return history.get(0);
         }
+        currIndex = currIndex - steps;
         return history.get(currIndex);
+        
+        // while(steps > 0 && currIndex > 0){
+        //     currIndex--;
+        //     steps--;
+        // }
+        // return history.get(currIndex);
     }
     
-    public String forward(int steps) {  
-        while (steps > 0 && currIndex < pageIndex) {
-            steps--;
-            currIndex++;
+    public String forward(int steps) {
+        if(currIndex + steps > pageIndex){
+            currIndex = pageIndex;
+            return history.get(currIndex);
         }
+        currIndex = currIndex + steps;
         return history.get(currIndex);
     }
 }
