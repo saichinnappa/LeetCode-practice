@@ -18,11 +18,12 @@ class Solution {
     
     void maxArea(int row, int col){
         if(row > -1 && col > -1 && row < this.grid.length && col < this.grid[row].length && this.grid[row][col] == 1 ){
+                    this.grid[row][col] = -1;
             area++;
         } else{
             return;
         }
-                    this.grid[row][col] = -1;
+
         maxArea(row + 1, col);
         maxArea(row, col + 1);
         maxArea(row, col - 1);
