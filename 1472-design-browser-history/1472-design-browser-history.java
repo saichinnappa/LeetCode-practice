@@ -18,7 +18,6 @@ class BrowserHistory {
 
         history.put(++pageIndex, url);
         currIndex = pageIndex;
-                System.out.println(history);
     }
     
     public String back(int steps) {
