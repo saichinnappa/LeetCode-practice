@@ -11,12 +11,15 @@ class BrowserHistory {
     
     public void visit(String url) {
         while(currIndex < pageIndex){
+            System.out.println("Removing-->"+ history.get(pageIndex));
             history.remove(pageIndex);
             pageIndex--;
             
         }
+
         history.put(++pageIndex, url);
         currIndex = pageIndex;
+                System.out.println(history);
     }
     
     public String back(int steps) {
