@@ -12,9 +12,8 @@ class Solution {
         
         int n = jobs.size();
         int x = 0;
-            int best = 0;
+        int best = 0;
         for(int i = 0; i < worker.length; i++){
-
             while(x < n && jobs.get(x).difficulty <= worker[i]){
                 best = Math.max(best, jobs.get(x).profit);
                 x++;
@@ -28,20 +27,20 @@ class Solution {
     }
     
     
-    int binarySearch(int start, int end, int value){
-        while(start < end){
-            int mid = (start + end) / 2;
-            if(jobs.get(mid).difficulty == value){
-                return jobs.get(mid).profit;
-            }
-            if(jobs.get(mid).difficulty > value){
-                end = mid - 1;
-            } else{
-                start = mid + 1;
-            }
-        }
-         return jobs.get(start).profit;
-    }
+    // int binarySearch(int start, int end, int value){
+    //     while(start < end){
+    //         int mid = (start + end) / 2;
+    //         if(jobs.get(mid).difficulty == value){
+    //             return jobs.get(mid).profit;
+    //         }
+    //         if(jobs.get(mid).difficulty > value){
+    //             end = mid - 1;
+    //         } else{
+    //             start = mid + 1;
+    //         }
+    //     }
+    //      return jobs.get(start).profit;
+    // }
     
 }
 
