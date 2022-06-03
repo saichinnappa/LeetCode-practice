@@ -21,6 +21,7 @@ class FileSystem {
         if(node.word!=null){
             fileList.add(pathArr[pathArr.length-1]);
         }
+        //if directories
         else{    
             for (String s: node.children.keySet()){
                 fileList.add(s);
@@ -28,21 +29,17 @@ class FileSystem {
             Collections.sort(fileList);
         }
         
-
         return fileList;
     }
 
     public TrieNode mkdirAndGetNode(String path){
         TrieNode node= root;        
         String[] pathArr= path.split("/");
-        for(int i=0;i<pathArr.length;i++){
-           if(pathArr[i]=="")
-                continue;
+        for(int i=1;i<pathArr.length;i++){
            if(!node.children.containsKey(pathArr[i]))
                node.children.put(pathArr[i],new TrieNode());
             node= node.children.get(pathArr[i]);
-        }    
-        //node.word=path;
+        }
         return node;
     }
     
@@ -61,9 +58,7 @@ class FileSystem {
     public String readContentFromFile(String filePath) {
       TrieNode node= root;
       String[] pathArr= filePath.split("/");
-        for(int i=0;i<pathArr.length;i++){
-            if(pathArr[i]=="")
-                continue;
+        for(int i=1;i<pathArr.length;i++){
            if(!node.children.containsKey(pathArr[i]))
                node.children.put(pathArr[i],new TrieNode());
             node= node.children.get(pathArr[i]);
