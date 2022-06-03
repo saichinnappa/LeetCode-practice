@@ -1,8 +1,14 @@
+class TrieNode{
+    Map<String,TrieNode> children= new HashMap<String,TrieNode>();
+    String word=null;
+    
+}
+
 class FileSystem {
    TrieNode root;
     
     public FileSystem() {
-        root= new TrieNode();        
+        root = new TrieNode();        
     }
     
     public List<String> ls(String path) {
@@ -65,10 +71,4 @@ class FileSystem {
         }
         return node.word;
     }
-}
-
-class TrieNode{
-    Map<String,TrieNode> children= new HashMap<String,TrieNode>();
-    String word=null;
-    
 }
