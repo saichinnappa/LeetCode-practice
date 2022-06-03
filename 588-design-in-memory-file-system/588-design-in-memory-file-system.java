@@ -21,14 +21,14 @@ class FileSystem {
         if(node.word!=null){
             fileList.add(pathArr[pathArr.length-1]);
         }
-            
         else{    
-            for (String s: node.children.keySet())
+            for (String s: node.children.keySet()){
                 fileList.add(s);
+            }
+            Collections.sort(fileList);
         }
         
-        //curveball 2
-        Collections.sort(fileList);
+
         return fileList;
     }
 
