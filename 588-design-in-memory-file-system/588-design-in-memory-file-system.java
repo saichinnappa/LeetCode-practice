@@ -11,13 +11,9 @@ class FileSystem {
      String[] pathArr = path.split("/");   
      for(int i=1;i<pathArr.length;i++){
          //or alternative start path from i=1
-         // if(pathArr[i]=="")
-         //        continue;  
-         if(!node.children.containsKey(pathArr[i]))
-              return fileList;
-         else{
-            node= node.children.get(pathArr[i]);
-         }
+         if(node.children.containsKey(pathArr[i])){
+              node= node.children.get(pathArr[i]);
+            }
         }   
         
         //curveball 1
