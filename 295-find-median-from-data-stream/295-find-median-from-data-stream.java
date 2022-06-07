@@ -1,30 +1,35 @@
 class MedianFinder {
-    PriorityQueue<Integer> minH;
-    PriorityQueue<Integer> maxH;
     
-    /** initialize your data structure here. */
+    PriorityQueue<Integer> minHeap;
+    PriorityQueue<Integer> maxHeap;
+
     public MedianFinder() {
-        minH = new PriorityQueue<Integer>();
-        /* By default Java provides min heap. For max heap, we need to pass in a appropriate comparator */
-        maxH = new PriorityQueue<Integer>(1, new Comparator<Integer>(){
-            public int compare(Integer ob1, Integer ob2){
-                return ob2.compareTo(ob1);
-            }
-        });        
+        maxHeap = new PriorityQueue<>((a, b) -> b - a);
+        minHeap = new PriorityQueue<>();
     }
     
     public void addNum(int num) {
-            maxH.add(num);
-            minH.add(maxH.poll());            
-            if(minH.size()>maxH.size()){
-                maxH.add(minH.poll());
-            }
+        maxHeap.offer(num);
+        // if(maxHeap.peek() < num){
+            minHeap.offer(maxHeap.poll());
+        
+        if(minHeap.size() > maxHeap.size()){
+            maxHeap.offer(minHeap.poll());
+        }
     }
     
-    public double findMedian() {        
-        if(minH.size()==maxH.size()) 
-            return (double) (maxH.peek()+minH.peek())*0.5 ;
+    public double findMedian() {
+        if(maxHeap.size() > minHeap.size())
+            return (double)maxHeap.peek();
         else
-            return (double) maxH.peek();        
+            return (double)(maxHeap.peek() + minHeap.peek()) * 0.5;
+        
     }
 }
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder obj = new MedianFinder();
+ * obj.addNum(num);
+ * double param_2 = obj.findMedian();
+ */
