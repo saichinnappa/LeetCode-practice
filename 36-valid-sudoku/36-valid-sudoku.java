@@ -25,8 +25,7 @@ class Solution {
           for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 char val = board[i][j];
-                if(!colSet.containsKey(j))
-                    colSet.put(j, new HashSet<Character>());
+                colSet.putIfAbsent(j, new HashSet<Character>());
                 if(val != '.'){
                     if(!colSet.get(j).contains(val)){
                         colSet.get(j).add(val);
