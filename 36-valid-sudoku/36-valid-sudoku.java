@@ -1,79 +1,57 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
+        Map<Integer, Set<Character>> rowSet = new HashMap<>();
+        Map<Integer, Set<Character>> colSet = new HashMap<>();
+        Map<Integer, Set<Character>> blockSet = new HashMap<>();
         
-        Map<Integer, Set<Character>> map = new HashMap();
         
-        //rows
-        for(int i=0; i<board.length; i++){
-            Set<Character> value = new HashSet<Character>();
-            for(int j=0; j<board[i].length; j++){
-                if(board[i][j] != '.'){
-                    if(!value.contains(board[i][j]))
-                    value.add(board[i][j]);
-                else
-                    return false;
+        int m = board.length;
+        int n = board[0].length;
+        
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                char val = board[i][j];
+                if(!rowSet.containsKey(i))
+                    rowSet.put(i, new HashSet<Character>());
+                if(val != '.'){
+                    if(!rowSet.get(i).contains(val)){
+                        rowSet.get(i).add(val);
+                    } else
+                        return false;    
                 }
             }
         }
         
-        //cols
-         for(int i=0; i<board.length; i++){
-            Set<Character> value = new HashSet<Character>();
-            for(int j=0; j<board[i].length; j++){
-                 if(board[j][i] != '.'){
-                   if(!value.contains(board[j][i]))
-                    value.add(board[j][i]);
-                else
-                    return false;
-                }
-            }
-         }
         
-        
-        //for boxes
-        for(int i = 0; i< board.length; i++){
-            for(int j = 0; j< board[i].length; j++){
-                int boxValue = ((i / 3) * 3) + (j / 3);
-                if(board[i][j] != '.'){
-                    if(!map.containsKey(boxValue)){
-                        map.put(boxValue, new HashSet<Character>(Arrays.asList(board[i][j])));
-                    } else{
-                        if(map.get(boxValue).contains(board[i][j])){
-                            return false;
-                        } else{
-                            map.get(boxValue).add(board[i][j]);
-                        }
-                    }
+          for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                char val = board[i][j];
+                if(!colSet.containsKey(j))
+                    colSet.put(j, new HashSet<Character>());
+                if(val != '.'){
+                    if(!colSet.get(j).contains(val)){
+                        colSet.get(j).add(val);
+                    } else
+                        return false;    
                 }
-                
             }
         }
         
+           for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                char val = board[i][j];
+                int blockValue = (i / 3) * 3 + (j / 3);
+                if(!blockSet.containsKey(blockValue))
+                    blockSet.put(blockValue, new HashSet<Character>());
+                if(val != '.'){
+                    if(!blockSet.get(blockValue).contains(val)){
+                        blockSet.get(blockValue).add(val);
+                    } else
+                        return false;    
+                }
+            }
+        }
         
-//         //squre
-//         for(int i=0; i<board.length; i++){
-//             for(int j=0; j<board[i].length; j++){
-//                 int x = board[i][j];
-//                 int jIndex = j;
-//                 if(j % 3 == 0){
-//                     int count =0;
-//                     while(count != 2){
-//                         jIndex++;
-//                         if(x == board[i][jIndex])
-//                             return true
-//                          count++;
-//                     }
-//                 }
-                    
-                
-                
-                
-//             }
-//         }
-        
-        
-            
         return true;
-        
     }
 }
