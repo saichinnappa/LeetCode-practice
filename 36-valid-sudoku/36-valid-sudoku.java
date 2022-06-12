@@ -9,10 +9,9 @@ class Solution {
         int n = board[0].length;
         
         for(int i = 0; i < m; i++){
+             rowSet.put(i, new HashSet<Character>());
             for(int j = 0; j < n; j++){
                 char val = board[i][j];
-                if(!rowSet.containsKey(i))
-                    rowSet.put(i, new HashSet<Character>());
                 if(val != '.'){
                     if(!rowSet.get(i).contains(val)){
                         rowSet.get(i).add(val);
