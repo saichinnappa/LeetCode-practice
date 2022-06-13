@@ -16,8 +16,7 @@ class Solution {
         int steps = 0;
 
         while (!q.isEmpty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = q.size(); i > 0; --i) {
                 int[] curr = q.poll();
                 row = curr[0];
                 col = curr[1];
