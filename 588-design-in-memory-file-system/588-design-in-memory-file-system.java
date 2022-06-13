@@ -16,9 +16,8 @@ class FileSystem {
      TrieNode node =root; 
      String[] pathArr = path.split("/");   
      for(int i=1;i<pathArr.length;i++){
-         //or alternative start path from i=1
          if(node.children.containsKey(pathArr[i])){
-              node= node.children.get(pathArr[i]);
+              node = node.children.get(pathArr[i]);
             }
         }   
         
@@ -63,12 +62,10 @@ class FileSystem {
 
     public String readContentFromFile(String filePath) {
       TrieNode node= root;
-      String[] pathArr= filePath.split("/");
-        for(int i=1;i<pathArr.length;i++){
-           if(!node.children.containsKey(pathArr[i]))
-               node.children.put(pathArr[i],new TrieNode());
-            node= node.children.get(pathArr[i]);
-        }
+      String[] path = filePath.split("/");
+      for(int i = 1; i < path.length; i++){
+          node = node.children.get(path[i]);
+      }
         return node.word;
     }
 }
