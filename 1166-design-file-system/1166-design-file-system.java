@@ -1,3 +1,14 @@
+/**
+/**
+ * Time Complexity:
+ * create ~ It takes O(T) to add a path to the trie if it contains T components.
+ * get ~ It takes O(T) to find a path in the trie if it contains T components.
+ * Space Complexity:
+ * create ~ Lets look at the worst case space complexity. In the worst case, none of the paths will have any common prefixes. We are not considering the ancestors of a larger path here. In such a case, each unique path will end up taking a different branch in the trie. Also, for a path containing TT components, there will be TT nodes in the trie.
+ * get ~ O(1).
+ */
+
+
 class TrieNode {
         String key;
         int value = -1;
@@ -90,6 +101,12 @@ class FileSystem {
 }
 
 /**
+
+Time Complexity: O(M), where M is the length of path. All the time is actually consumed by the operation that gives us the parent path. We first spend O(M) on finding the last "/" of the path and then another O(M) to obtain the parent string. Searching and addition into a HashMap/dictionary takes an ammortized O(1) time.
+Space Complexity: O(K) where KK represents the number of unique paths that we add.
+
+---
+
 class FileSystem {
 
     Map<String, Integer> fileSystem;
