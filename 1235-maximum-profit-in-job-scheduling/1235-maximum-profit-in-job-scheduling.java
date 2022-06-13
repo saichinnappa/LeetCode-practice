@@ -34,7 +34,6 @@ class Solution {
         int nextIndex = findNextIndex(startTime, jobs.get(position).endTime); 
         
         int profit = Math.max(maxProfit(startTime, jobs, n, position + 1), maxProfit(startTime, jobs, n, nextIndex) + jobs.get(position).profit);
-        System.out.println("Position-> "+ position+" profit-> "+ profit);
         return memo[position] = profit;
         
     }
