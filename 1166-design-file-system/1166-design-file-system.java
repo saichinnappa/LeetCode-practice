@@ -1,29 +1,66 @@
+class TrieNode {
+        String key;
+        int value = -1;
+        Map<String, TrieNode> children = new HashMap<>();
+
+        public TrieNode(String key) {
+            this.key = key;
+        }
+
+        public TrieNode() {
+        }
+}
+
+class Path {
+        String path;
+        int value;
+
+        public Path(String path, int value) {
+            this.path = path;
+            this.value = value;
+        }
+}
+
 class FileSystem {
 
-    Map<String, Integer> fileSystem;
+    TrieNode root;
     
     public FileSystem() {
-        fileSystem = new HashMap<>();
+        root = new TrieNode();
     }
     
     public boolean createPath(String path, int value) {
-        if(path.equals("")  || path.equals("/") || fileSystem.containsKey(path))
+        String[] p = path.split("/");
+        TrieNode curr = root;
+        for (int j = 1; j < p.length; j++) {
+            if (!curr.children.containsKey(p[j])) {
+                if (j == p.length - 1) {
+                    TrieNode node = new TrieNode(p[j]);
+                    curr.children.put(p[j], node);
+                } else {
+                    return false;
+                }
+            }
+            curr = curr.children.get(p[j]);
+        }
+        if (curr.value != -1)
             return false;
-        int lastIndex = path.lastIndexOf("/");
-        if(lastIndex == 0){
-            fileSystem.put(path, value);
-            return true;
-        }
-        String parent = path.substring(0, lastIndex);
-        if(fileSystem.containsKey(parent)){
-            fileSystem.put(path, value);
-            return true;
-        }
-        return false;
+        curr.value = value;
+        return true;
     }
     
     public int get(String path) {
-        return fileSystem.containsKey(path) ? fileSystem.get(path) : -1;
+       String[] p = path.split("/");
+        TrieNode curr = root;
+        for(int i = 1; i < p.length; i++){
+            if(curr.children.containsKey(p[i])){
+                curr = curr.children.get(p[i]);
+                if(i == p.length - 1)
+                    return curr.value;
+            } else
+                return -1;
+        }
+        return -1;
     }
 }
 
