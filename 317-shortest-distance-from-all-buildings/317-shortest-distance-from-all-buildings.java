@@ -16,7 +16,8 @@ class Solution {
         int steps = 0;
 
         while (!q.isEmpty()) {
-            for (int i = q.size(); i > 0; --i) {
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
                 int[] curr = q.poll();
                 row = curr[0];
                 col = curr[1];
@@ -25,7 +26,7 @@ class Solution {
                 // and increment the count of houses reached at this cell.
                 if (grid[row][col] == 0) {
                     distances[row][col][0] += steps;
-                    
+                    distances[row][col][1] += 1;
                 }
 
                 // Traverse the next cells which is not a blockage.
@@ -35,7 +36,6 @@ class Solution {
 
                     if (nextRow >= 0 && nextCol >= 0 && nextRow < rows && nextCol < cols) {
                         if (!vis[nextRow][nextCol] && grid[nextRow][nextCol] == 0) {
-                            distances[nextRow][nextCol][1] += 1;
                             vis[nextRow][nextCol] = true;
                             q.offer(new int[]{ nextRow, nextCol });
                         }
