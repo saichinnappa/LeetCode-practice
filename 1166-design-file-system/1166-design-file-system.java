@@ -1,31 +1,29 @@
 class FileSystem {
 
-    Map<String, Integer> map = new HashMap<>();
+    Map<String, Integer> fileSystem;
     
     public FileSystem() {
-        
+        fileSystem = new HashMap<>();
     }
     
     public boolean createPath(String path, int value) {
-        if(path == "" || path == "/" || map.containsKey(path))
-            return false;
-        if(map.containsKey(path))
+        if(path.equals("")  || path.equals("/") || fileSystem.containsKey(path))
             return false;
         int lastIndex = path.lastIndexOf("/");
         if(lastIndex == 0){
-            map.put(path, value);
+            fileSystem.put(path, value);
             return true;
         }
-        String parentPath = path.substring(0, lastIndex);
-        if(map.containsKey(parentPath)){
-            map.put(path, value);
+        String parent = path.substring(0, lastIndex);
+        if(fileSystem.containsKey(parent)){
+            fileSystem.put(path, value);
             return true;
-        } 
+        }
         return false;
     }
     
     public int get(String path) {
-        return map.containsKey(path) ? map.get(path) : -1;
+        return fileSystem.containsKey(path) ? fileSystem.get(path) : -1;
     }
 }
 
