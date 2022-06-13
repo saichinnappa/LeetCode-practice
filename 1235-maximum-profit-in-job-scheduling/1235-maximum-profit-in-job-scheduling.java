@@ -3,20 +3,18 @@ class Solution {
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
                 Arrays.fill(memo, -1);
         //Build one list with jobs
-        List<List<Integer>> jobs = new ArrayList<>();
-        for(int i = 0; i< startTime.length; i++){
-            List<Integer> job = new ArrayList<>();
-            job.add(startTime[i]);
-            job.add(endTime[i]);
-            job.add(profit[i]);
+        Arrays.fill(memo, - 1);
+        List<Job> jobs = new ArrayList<>();
+        for(int i = 0; i < startTime.length; i++){
+            Job job = new Job(startTime[i], endTime[i], profit[i]);
             jobs.add(job);
         }
-        
-        //Sort jobs by start time
-        jobs.sort((j1, j2) -> j1.get(0) - j2.get(0));
+
+        jobs.sort((j1, j2) -> j1.startTime - j2.startTime);
+
         
         for(int i = 0;  i < startTime.length; i++){
-            startTime[i] = jobs.get(i).get(0);
+            startTime[i] = jobs.get(i).startTime;
         }
         
         return maxProfit(startTime, jobs, startTime.length, 0);
@@ -24,7 +22,7 @@ class Solution {
     }
     
     
-    int maxProfit(int[] startTime, List<List<Integer>> jobs, int n, int position){
+    int maxProfit(int[] startTime, List<Job> jobs, int n, int position){
         
         if(position == n)
             return 0;
@@ -33,9 +31,10 @@ class Solution {
             return memo[position];
         
         //find next job which doesnt overlap with current job end time
-        int nextIndex = findNextIndex(startTime, jobs.get(position).get(1)); 
+        int nextIndex = findNextIndex(startTime, jobs.get(position).endTime); 
         
-        int profit = Math.max(maxProfit(startTime, jobs, n, position + 1), maxProfit(startTime, jobs, n, nextIndex) + jobs.get(position).get(2));
+        int profit = Math.max(maxProfit(startTime, jobs, n, position + 1), maxProfit(startTime, jobs, n, nextIndex) + jobs.get(position).profit);
+        System.out.println("Position-> "+ position+" profit-> "+ profit);
         return memo[position] = profit;
         
     }
@@ -61,4 +60,16 @@ class Solution {
     }
     
     
+}
+
+class Job{
+    int startTime;
+    int endTime;
+    int profit;
+
+    Job(int startTime, int endTime, int profit){
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.profit = profit;
+    }
 }
