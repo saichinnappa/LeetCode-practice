@@ -1,23 +1,22 @@
 class Solution {
-    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        // image[sr][sc] = newColor;
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
         
-        int toBecolored = image[sr][sc];
-        if(toBecolored == newColor)
-            return image;
-        dfs(sr, sc, newColor, image, toBecolored);
+        int oldColor = image[sr][sc];
+        if(oldColor != color)
+        dfs(image, oldColor, color, sr, sc);
+        
         return image;
     }
     
-    void dfs(int row, int col, int newColor, int[][] image, int toBecolored){
-        if(row < image.length && row > -1 && col < image[0].length && col > -1 && image[row][col] == toBecolored){
+    
+    void dfs(int[][] image, int oldColor, int newColor, int row, int col){
+        if(row >= 0 && col >= 0 && row < image.length && col < image[0].length && image[row][col] == oldColor){
             image[row][col] = newColor;
-        } else{
-            return;
+            dfs(image, oldColor, newColor, row + 1, col);
+            dfs(image, oldColor, newColor, row - 1, col);
+            dfs(image, oldColor, newColor, row, col + 1);
+            dfs(image, oldColor, newColor, row, col - 1);
         }
-        dfs(row + 1, col, newColor, image, toBecolored);
-        dfs(row - 1, col, newColor, image, toBecolored);
-        dfs(row, col + 1, newColor, image, toBecolored);
-        dfs(row, col - 1, newColor, image, toBecolored);
+        
     }
 }
