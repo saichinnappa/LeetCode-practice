@@ -1,38 +1,34 @@
 class MinStack {
     
-    List<Pair> list;
+    Stack<Pair> stack;
 
     public MinStack() {
-        list = new ArrayList();
+        stack = new Stack<Pair>();
     }
     
     public void push(int val) {
-        if(list.size() == 0){
-            list.add(new Pair(val, val));
-        } else{
-            Pair p = list.get(list.size() -1);
-            if(p.minVal < val){
-                list.add(new Pair(val, p.minVal));
-            } else{
-                list.add(new Pair(val, val));
-            }
+        if(stack.isEmpty())
+            stack.push(new Pair(val, val));
+        else{
+            int min = getMin();
+            if(min < val)
+                stack.push(new Pair(val, min));    
+            else
+                stack.push(new Pair(val, val));    
         }
+        
     }
     
     public void pop() {
-        list.remove(list.size() - 1);
+        stack.pop();
     }
     
     public int top() {
-        
-        int top = list.get(list.size() - 1).val;
-        return top;
-        
+        return stack.peek().val;
     }
     
     public int getMin() {
-        int min = list.get(list.size() - 1).minVal;
-        return min;
+        return stack.peek().minVal;
     }
 }
 
