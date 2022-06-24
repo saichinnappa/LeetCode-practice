@@ -1,50 +1,52 @@
 class Solution {
     public int[][] kClosest(int[][] points, int k) {
-        int[][] result = new int[k][2];
-        PriorityQueue<Point> queue = new PriorityQueue(new PointComparator<Point>());
-        for(int[] point : points){
-            double dist = point[0] * point[0] + point[1] * point[1];
-            Point p = new Point(point[0], point[1], dist);
-            
-            if(queue.size() < k){
-                queue.offer(p);
-            }
-            else if(p.dist < queue.peek().dist){
-                queue.poll();
-                queue.offer(p);
-            }
+        
+        PriorityQueue<Point> queue = new PriorityQueue<Point>(new PointComparator());
+        
+        
+        
+        for(int[] p : points){
+            double dist = Math.sqrt(Math.pow(0 - p[0], 2) + Math.pow(0 - p[1], 2));
+            Point point = new Point(p[0], p[1], dist);
+            queue.offer(point);
         }
         
-        for(int i = 0; i < k; i++){
-            Point top = queue.poll();
-            result[i] = new int[]{top.x, top.y};
+        List<int[]> list = new ArrayList<int[]>();
+        
+        while(k != 0){
+            k--;
+            Point p = queue.poll();
+            list.add(new int[]{p.x, p.y});
         }
         
-        return result;
+        return list.toArray(new int[0][0]);
         
     }
-}
-
-class Point{
-    int x;
-    int y;
-    double dist;
     
-    Point(int x, int y, double dist){
-        this.x = x;
-        this.y = y;
-        this.dist = dist;
+    
+class Point{
+int x;
+int y;
+double dist;
+
+Point(int x, int y, double dist){
+    this.x = x;
+    this.y = y;
+    this.dist = dist;
+    
+    }
+}
+    
+    class PointComparator implements Comparator<Point> {
+        @Override
+        public int compare(Point p1, Point p2){
+             if(p1.dist > p2.dist)
+                 return 1;
+            else if(p1.dist < p2.dist)
+                return -1;
+            else
+                return 0;
+        }
     }
 }
 
-public class PointComparator<T> implements Comparator<Point>{
-    @Override
-    public int compare(Point p0, Point p1){
-        if(p0.dist > p1.dist)
-            return -1;
-        else if(p0.dist < p1.dist)
-            return 1;
-        else
-            return 0;
-    }
-}
