@@ -8,7 +8,12 @@ class Solution {
         for(int[] p : points){
             double dist = Math.sqrt(Math.pow(0 - p[0], 2) + Math.pow(0 - p[1], 2));
             Point point = new Point(p[0], p[1], dist);
-            queue.offer(point);
+            if(queue.size() < k)
+                queue.offer(point);
+            else if(dist < queue.peek().dist){
+                queue.poll();
+                queue.offer(point);
+            }
         }
         
         List<int[]> list = new ArrayList<int[]>();
@@ -41,9 +46,9 @@ Point(int x, int y, double dist){
         @Override
         public int compare(Point p1, Point p2){
              if(p1.dist > p2.dist)
-                 return 1;
+                 return -1;
             else if(p1.dist < p2.dist)
-                return -1;
+                return 1;
             else
                 return 0;
         }
