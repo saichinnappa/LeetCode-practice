@@ -18,8 +18,7 @@ class Solution {
         
         List<int[]> list = new ArrayList<int[]>();
         
-        while(k != 0){
-            k--;
+        while(!queue.isEmpty()){
             Point p = queue.poll();
             list.add(new int[]{p.x, p.y});
         }
