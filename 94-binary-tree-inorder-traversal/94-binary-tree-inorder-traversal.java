@@ -14,32 +14,14 @@
  * }
  */
 class Solution {
-    List<Integer> result = new ArrayList<>();
-
+    List<Integer> result = new ArrayList<Integer>();
     public List<Integer> inorderTraversal(TreeNode root) {
-        
         if(root == null)
             return result;
-        
-        //Iterative
-        Deque<TreeNode> stack = new LinkedList<>();
-        while(!stack.isEmpty() || root != null){
-            while(root != null){
-                stack.push(root);
-                root = root.left;
-            }
-            TreeNode top = stack.pop();
-            result.add(top.val);
-            root = top.right;
-        }
-        
-        
+        helper(root);
         return result;
-        
-        //Recursive
-        // helper(root);
-        // return result;
     }
+    
     void helper(TreeNode root){
         if(root == null)
             return;
