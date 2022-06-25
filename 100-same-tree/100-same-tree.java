@@ -24,11 +24,10 @@ class Solution {
         
         if((p == null && q != null) || (p != null && q == null) || ((p != null && q != null) && (p.val != q.val))){
             isValid = false;
-            return;
         }
         if(p != null && q != null){
             helper(p.left, q.left);
-        helper(p.right, q.right);    
+            helper(p.right, q.right);    
         }    
         
     }
