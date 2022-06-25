@@ -1,36 +1,40 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        
-        int[] course = new int[numCourses];
         Map<Integer, List<Integer>> map = new HashMap<>();
+        int[] courses = new int[numCourses];
         for(int[] pre : prerequisites){
-            map.putIfAbsent(pre[1], new ArrayList());
+            courses[pre[0]]++;
+            map.putIfAbsent(pre[1], new ArrayList<>());
             map.get(pre[1]).add(pre[0]);
-            course[pre[0]]++;
         }
         
-        Deque<Integer> queue = new LinkedList<>();
-        for(int i = 0; i < course.length; i++){
-            if(course[i] == 0){
+        Deque<Integer> queue = new LinkedList<Integer>();
+        
+        for(int i = 0; i < courses.length; i++){
+            if(courses[i] == 0){
+                // System.out.println(i);
                 queue.offer(i);
             }
         }
         
+        if(queue.isEmpty())
+            return false;
+        
+        // System.out.println(Arrays.toString(courses));
+        
         while(!queue.isEmpty()){
             int first = queue.poll();
-            List<Integer> cList = map.get(first);
-            if(cList != null && cList.size() > 0){
-                for(int c : cList){
-                course[c]--;
-                if(course[c] == 0){
-                    queue.offer(c);
-                }
-             }    
+            // System.out.println(first);
+            if(map.containsKey(first)){
+                List<Integer> list = map.get(first);
+                for(int i = 0; i < list.size(); i++){
+                    courses[list.get(i)]--;
+                    if(courses[list.get(i)] == 0)
+                        queue.offer(list.get(i));
+                }    
             }
-            
         }
-        
-        for(int c : course){
+        for(int c : courses){
             if(c > 0)
                 return false;
         }
