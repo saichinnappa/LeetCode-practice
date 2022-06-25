@@ -3,25 +3,21 @@ class Solution {
         int totalFresh = 0;
         int m = grid.length;
         int n = grid[0].length;
+        
+        Deque<int[]> queue = new LinkedList<int[]>();
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if(grid[i][j] == 1){
                     totalFresh++;
-                }
-            }
-        }
-        
-        
-        
-        Deque<int[]> queue = new LinkedList<int[]>();
-        
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(grid[i][j] == 2){
+                } else if(grid[i][j] == 2){
                     queue.offer(new int[]{i, j});
                 }
             }
         }
+        
+        
+        
+        
         
         if(totalFresh == 0)
             return 0;
