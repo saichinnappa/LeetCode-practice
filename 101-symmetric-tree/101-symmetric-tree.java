@@ -42,21 +42,19 @@ class Solution {
 //         }
         
 //         return true;
-        helper(root.left, root.right);
-        return isValid;
-    }
-    void helper(TreeNode left, TreeNode right){
-        if(left == null && right != null)
-            isValid = false;
-        if(left != null && right == null)
-            isValid = false;
-        if((left != null && right != null) && (left.val != right.val))
-            isValid = false;
-        if(left != null && right != null){
-            helper(left.left, right.right);
-        helper(left.right, right.left);    
-        }
+        return helper(root.left, root.right);
         
+    }
+    boolean helper(TreeNode r1, TreeNode r2){
+        if(r1 == null && r2 == null)
+            return true;
+        if(r1 == null && r2 != null)
+            return false;
+        if(r1 != null && r2 == null)
+            return false;
+        if(r1.val == r2.val)
+            return helper(r1.left, r2.right) && helper(r1.right, r2.left);
+        return false;
             
     }
 }
