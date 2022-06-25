@@ -21,25 +21,26 @@ class Solution {
         if(root == null)
             return false;
         
-        return helper(root, targetSum, 0);
+        helper(root, targetSum, 0);
+        return valid;
         
         
     }
     
-    boolean helper(TreeNode root, int targetSum, int currentSum){
+    void helper(TreeNode root, int targetSum, int currentSum){
         if(root == null){
-            return false;
+            return;
         }
         currentSum += root.val;
        
         if(root.left == null && root.right == null){
              if(currentSum == targetSum){
-                return true;
-             } else
-                currentSum -= root.val;
+                valid = true;
+             } 
         }
         
-        return helper(root.left, targetSum, currentSum) || helper(root.right, targetSum, currentSum);
+        helper(root.left, targetSum, currentSum);
+        helper(root.right, targetSum, currentSum);
         
     }
 }
