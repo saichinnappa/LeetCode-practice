@@ -3,53 +3,51 @@ class Trie {
     TrieNode root;
     
     public Trie() {
-        this.root = new TrieNode();
+        root = new TrieNode();
     }
     
     public void insert(String word) {
-        if(word == null || word.length() == 0) return;
-        TrieNode current = this.root;
-        for(int i = 0; i < word.length(); i++){
-            int index = word.charAt(i) - 'a';
-            if(current.children[index] == null){
-                current.children[index] = new TrieNode();
+        char[] arr = word.toCharArray();
+        TrieNode current = root;
+        for(int i = 0; i < arr.length; i++){
+            if(current.children[arr[i]- 'a'] == null){
+                current.children[arr[i] - 'a'] = new TrieNode();
             }
-            current = current.children[index];
+            current = current.children[arr[i] - 'a'];
         }
-        current.isLeafNode = true;
+        current.isWord = true;
     }
     
     public boolean search(String word) {
-        if(word == null || word.length() == 0)
-            return true;
-        TrieNode current = this.root;
-        for(int i = 0; i < word.length(); i++){
-            int index = word.charAt(i) - 'a';
-            if(current.children[index] == null)
+        TrieNode current = root;
+        for(int i = 0 ; i < word.length(); i++){
+            if(current.children[word.charAt(i) - 'a'] == null)
                 return false;
-            current = current.children[index];
+            current = current.children[word.charAt(i) - 'a'];
         }
-        return current.isLeafNode;
+        return current.isWord;
     }
     
     public boolean startsWith(String prefix) {
-        if(prefix == null || prefix.length() == 0)
-            return true;
-        TrieNode current = this.root;
+        TrieNode current = root;
         for(int i = 0; i < prefix.length(); i++){
-            int index = prefix.charAt(i) - 'a';
-            if(current.children[index] == null)
+            if(current.children[prefix.charAt(i) - 'a'] == null)
                 return false;
-            current = current.children[index];
+            current = current.children[prefix.charAt(i) -'a'];
         }
         return true;
     }
-}
-
-class TrieNode{
-    int size = 26;
-    TrieNode[] children = new TrieNode[26];
-    boolean isLeafNode;
+    
+    class TrieNode{
+        TrieNode[] children;
+        boolean isWord;
+        
+        TrieNode(){
+            this.children = new TrieNode[26];
+            this.isWord = false;
+        }
+    }
+    
 }
 
 /**
