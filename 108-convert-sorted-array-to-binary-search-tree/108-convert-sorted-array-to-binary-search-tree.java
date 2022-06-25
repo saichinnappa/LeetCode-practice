@@ -14,20 +14,17 @@
  * }
  */
 class Solution {
-    int[] nums;
     public TreeNode sortedArrayToBST(int[] nums) {
-        this.nums = nums;
-        if(nums.length == 1)
-            return new TreeNode(nums[0]);
-        return helper(0, nums.length - 1);
+        return helper(nums, 0, nums.length - 1);
     }
     
-    TreeNode helper(int left, int right){
-        if(left > right) return null;
-        int mid = (left + right) / 2;
-        TreeNode root = new TreeNode(nums[mid]);
-        root.left = helper(left, mid - 1);
-        root.right = helper(mid + 1, right);
+    TreeNode helper(int[] nums, int start, int end){
+        if(start > end)
+            return null;
+        int val = (start + end) / 2;
+        TreeNode root = new TreeNode(nums[val]);
+        root.left = helper(nums, start, val - 1);
+        root.right = helper(nums, val + 1, end);
         return root;
     }
 }
