@@ -1,32 +1,33 @@
 class Solution {
     int result = 0;
-    int row, col;
     char[][] grid;
+    int m = 0, n = 0;
     public int numIslands(char[][] grid) {
         this.grid = grid;
-        this.row = grid.length;
-        this.col = grid[0].length;
+        this.m = grid.length;
+        this.n = grid[0].length;
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[0].length; j++){
                 if(grid[i][j] == '1'){
                     result++;
-                    dfs(i, j);
-                    
+                    dfs(i, j, m, n);
                 }
             }
         }
-        
         return result;
     }
     
-    void dfs(int r, int c){
-        if(r < 0 || r >= row || c < 0 || c >= col || this.grid[r][c] != '1')
+    
+    void dfs(int row, int col, int m, int n){
+        if(row > -1 && col > -1 && row < m && col < n && grid[row][col] == '1'){
+            grid[row][col] = 'X';
+        } else{
             return;
-        this.grid[r][c] = 'X';
-        
-        dfs(r + 1, c);
-        dfs(r, c + 1);
-        dfs(r - 1, c);
-        dfs(r, c - 1);
+        }
+        dfs(row + 1, col, m, n);
+        dfs(row, col + 1, m, n);
+        dfs(row - 1, col, m, n);
+        dfs(row, col - 1, m, n);
     }
+    
 }
