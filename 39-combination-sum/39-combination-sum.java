@@ -1,25 +1,24 @@
 class Solution {
+    int[] nums;
     List<List<Integer>> result = new ArrayList<>();
-    int[] candidates;
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<Integer> list = new ArrayList<>();
-        this.candidates = candidates;
-        helper(list, target, 0);
+        this.nums = candidates;
+        solve(0, target, 0, new ArrayList<>());
         return result;
     }
     
-    void helper(List<Integer> list, int target, int index){
-        if(target == 0){
-            result.add(new ArrayList<>(list));
-            return;
+    void solve(int sum, int target, int index, List<Integer> list){
+        if(sum == target){
+            result.add(new ArrayList(list));
         }
-        if(target < 0)
-            return;
+        for(int i = index; i < nums.length; i++){
+            sum += nums[i];
+            list.add(nums[i]);
+            if(sum <= target)
+                solve(sum, target, i, list);
+            sum -= nums[i];
+            list.remove(list.size() - 1);
+        }
         
-        for(int i = index; i < candidates.length; i++){
-            list.add(candidates[i]);
-            helper(list, target - candidates[i], i);
-            list.remove(list.size() -  1);
-        }
     }
 }
