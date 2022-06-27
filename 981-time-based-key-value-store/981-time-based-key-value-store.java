@@ -1,34 +1,53 @@
 class TimeMap {
+    
+    Map<String, List<Pair>> map;
 
-	HashMap<String,ArrayList<Pair<String,Integer>>> map;
-
-	public TimeMap() {
-		map = new HashMap<>();
-	}
-
-	public void set(String key, String value, int timestamp) {
-		map.computeIfAbsent(key,x->new ArrayList<>()).add(new Pair(value,timestamp));
-	}
-
-	public String get(String key, int timestamp) {
-		if(!map.containsKey(key))
-			return "";
-
-		ArrayList<Pair<String,Integer>> times = map.get(key);
-		if(timestamp<times.get(0).getValue())
-			return "";
-
-		int i=0,j=times.size();
-		while(i<j){
-			int mid = i+(j-i)/2;
-			if(mid==i)
-				break;
-			if(times.get(mid).getValue()>timestamp){
-				j=mid-1;
-			}else{
-				i = mid;
-			}
-		}
-		return times.get(i).getKey();
-	}
+    public TimeMap() {
+        map = new HashMap<>();
+    }
+    
+    public void set(String key, String value, int timestamp) {
+        map.putIfAbsent(key, new ArrayList<Pair>());    
+        map.get(key).add(new Pair(timestamp, value));
+    }
+    
+    public String get(String key, int timestamp) {
+        if(!map.containsKey(key))
+            return "";
+        if(map.get(key).get(0).key > timestamp)
+            return "";
+        int start = 0;
+        int end = map.get(key).size() - 1;
+        List<Pair> list = map.get(key);
+        String result = "";
+        while(start <= end){
+            int mid = (start) + (end - start) / 2;
+            if(list.get(mid).key <= timestamp){
+                result = list.get(mid).val;
+start = mid + 1;
+                
+            } else{
+                end = mid - 1;
+            }
+        }
+        
+        return result;
+    }
 }
+
+class Pair{
+    int key;
+    String val;
+    
+    Pair(int key, String val){
+        this.key = key;
+        this.val = val;
+    }
+}
+
+/**
+ * Your TimeMap object will be instantiated and called as such:
+ * TimeMap obj = new TimeMap();
+ * obj.set(key,value,timestamp);
+ * String param_2 = obj.get(key,timestamp);
+ */
