@@ -14,8 +14,6 @@ class TimeMap {
     public String get(String key, int timestamp) {
         if(!map.containsKey(key))
             return "";
-        if(map.get(key).get(0).key > timestamp)
-            return "";
         int start = 0;
         int end = map.get(key).size() - 1;
         List<Pair> list = map.get(key);
@@ -24,8 +22,7 @@ class TimeMap {
             int mid = (start) + (end - start) / 2;
             if(list.get(mid).key <= timestamp){
                 result = list.get(mid).val;
-start = mid + 1;
-                
+                start = mid + 1;
             } else{
                 end = mid - 1;
             }
