@@ -1,19 +1,17 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
-        LinkedList<int[]> result = new LinkedList<>();
-        // Deque<int[]> queue = new LinkedList<>();
-        // queue.offer(intervals[0]);
-        for(int[] i : intervals){
-            if(result.size() == 0){
-                result.addLast(i);
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        Deque<int[]> result = new LinkedList<int[]>();
+        for(int i = 0; i < intervals.length; i++){
+            if(i == 0){
+                result.offer(intervals[i]);
             } else{
-                int[] last = result.getLast();
-                if(last[1] >= i[0]){
-                    result.removeLast();
-                    result.addLast(new int[]{last[0], Math.max(last[1], i[1])});
+                int[] last = result.peekLast();
+                if(last[1] >= intervals[i][0]){
+                    result.pollLast();
+                    result.add(new int[]{Math.min(last[0], intervals[i][0]), Math.max(last[1], intervals[i][1])});
                 } else{
-                    result.addLast(i);
+                    result.offer(intervals[i]);
                 }
             }
         }
