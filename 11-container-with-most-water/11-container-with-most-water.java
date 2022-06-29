@@ -5,15 +5,16 @@ class Solution {
         int result = 0;
         
         while(i < j){
+                result = Math.max(result, Math.min(nums[i], nums[j]) * (j - i));
+            
             if(nums[i] < nums[j]){
-                result = Math.max(result, nums[i] * (j - i));
                 i++;
             }
             else if(nums[i] > nums[j]){
-                result = Math.max(result, nums[j] * (j - i));
+                // result = Math.max(result, nums[j] * (j - i));
                 j--;
             } else{
-                result = Math.max(result, nums[j] * (j - i));
+                // result = Math.max(result, nums[j] * (j - i));
                i++;
                 j--;
             }
