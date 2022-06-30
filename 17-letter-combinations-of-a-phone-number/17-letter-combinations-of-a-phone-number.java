@@ -23,15 +23,18 @@ class Solution {
                 }
             } else{
                 int idx = 0;
-                List<String> temp = new ArrayList<>(result);
-                int size = temp.size();
-                result = new ArrayList<String>();
+                // List<String> temp = new ArrayList<>(result);
+                int size = result.size();
+                // result = new ArrayList<String>();
                 while(size != 0){
                     for(String s: sarr){
-                        result.add(temp.get(idx) + s);
+                        result.add(result.get(0) + s);
                     }
+                    // System.out.println(result +" BEFORE");
+                    result.remove(0);
+                    // System.out.println(result + " AFTER");
                     size--;
-                    idx++;
+                    // idx++;
                 }
             }
         }
