@@ -1,52 +1,38 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        int np = p.length(), ns = s.length();
-        if(np > ns)
-            return new ArrayList();
+     
+        List<Integer> result = new ArrayList<Integer>();
         
-        List<Integer> result = new ArrayList();
-        char[] sMap = new char[26];
-        char[] pMap = new char[26];
-        
-        for(int i = 0; i< np; i++){
-            pMap[p.charAt(i) - 'a']++;
+        Map<Character, Integer> countMap = new HashMap<>();
+        for(int i = 0; i < p.length(); i++){
+            char c = p.charAt(i);
+            countMap.putIfAbsent(c, 0);
+            countMap.put(c, countMap.get(c) + 1); 
         }
+
+        int pLength = p.length();
         
-        for(int i = 0; i < ns; i++){
-        
-            
-            sMap[s.charAt(i) - 'a']++;
-            
-            if(i >= np){
-                sMap[s.charAt(i - np) - 'a']--;
+        for(int i = 0; i <= s.length() - pLength; i++){
+            int[] counter = new int[26];
+            for(int j = i; j < i + pLength; j++){
+                counter[s.charAt(j) - 'a']++;
             }
-            
-            // sMap[s.charAt(i + p.length()) -'a']++;
-            // sMap[s.charAt(i) - 'a']--;
-            
-            if(Arrays.equals(sMap, pMap)){
-                result.add(i - np + 1);
+            int length = 0;
+            for(int k = 0; k < counter.length; k++){
+                if(counter[k] != 0){
+                    char c = (char)(k + 'a');
+                    if(countMap.containsKey(c) && countMap.get(c) == counter[k]){
+                        length += countMap.get(c);
+                        if(length == pLength){
+                            result.add(i);
+                            break;
+                        }
+                    }
+                }
             }
-            
+
         }
-        
-        // if(matches(pMap, sMap)){
-        //     result.add(s.length() - p.length());
-        // }
-        
         
         return result;
-        
-        
     }
-    
-    
-    // boolean matches(char[] pMap, char[] sMap){
-    //     for(int i = 0; i< pMap.length; i++){
-    //         if(pMap[i] != sMap[i])
-    //             return false;
-    //     }
-    //     return true;
-    // }
-    
 }
