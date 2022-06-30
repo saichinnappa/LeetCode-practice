@@ -1,52 +1,46 @@
 class Solution {
     public String minWindow(String s, String t) {
-        int sLength = s.length();
-        int tLength = t.length();
-        if(tLength > sLength)
+        if(s.length() < t.length())
             return "";
         char[] sarr = s.toCharArray();
         char[] tarr = t.toCharArray();
-        Map<Character, Integer> charMap = new HashMap<Character, Integer>();
-        int start = 0;
-        int subStr = 0;
-        int minLength = Integer.MAX_VALUE;
-        int total = 0;
         
-        for(char c : tarr){
-            if(charMap.containsKey(c))
-                charMap.put(c, charMap.get(c) + 1);
-            else
-                charMap.put(c, 1);
+        Map<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < tarr.length; i++){
+            map.putIfAbsent(tarr[i], 0);
+            map.put(tarr[i], map.get(tarr[i]) + 1);
         }
         
-        
+        int result = 0;
+        int minLength = Integer.MAX_VALUE;
+        int start = 0;
+        int subStr = 0;
         for(int i = 0; i < sarr.length; i++){
-            if(charMap.containsKey(sarr[i])){
-                charMap.put(sarr[i], charMap.get(sarr[i]) - 1);
-                if(charMap.get(sarr[i]) == 0){
-                    total++;
+            char c = sarr[i];
+            if(map.containsKey(c)){
+                map.put(c, map.get(c) - 1);
+                if(map.get(c) == 0){
+                    result++;
                 }
             }
-            
-            while(charMap.size() == total){
-                
-                int end = i;
-                int length = end - start + 1;
-                if(minLength > length){
-                    minLength = length;
+            while(result == map.size()){
+                int currLength = i - start + 1;
+                System.out.println(currLength);
+                if(minLength > currLength){
+                    minLength = currLength;
                     subStr = start;
                 }
-                // minLength = Math.min(minLength, length);
                 
-                if(charMap.containsKey(sarr[start])){
-                    if(charMap.get(sarr[start]) == 0)
-                        total--;
-                    charMap.put(sarr[start], charMap.get(sarr[start]) + 1);
+                char startChar = sarr[start];
+                if(map.containsKey(startChar)){
+                    map.put(startChar, map.get(startChar) + 1);
+                    if(map.get(startChar) > 0)
+                        result--;
                 }
                 start++;
             }
+            
         }
-        
-        return minLength == Integer.MAX_VALUE ? "" : s.substring(subStr, subStr + minLength);
+        return minLength == Integer.MAX_VALUE ?  "" : s.substring(subStr, subStr + minLength);
     }
 }
