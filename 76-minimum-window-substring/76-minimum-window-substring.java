@@ -25,7 +25,6 @@ class Solution {
             }
             while(result == map.size()){
                 int currLength = i - start + 1;
-                System.out.println(currLength);
                 if(minLength > currLength){
                     minLength = currLength;
                     subStr = start;
