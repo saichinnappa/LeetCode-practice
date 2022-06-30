@@ -2,7 +2,7 @@ class Solution {
     public List<String> letterCombinations(String digits) {
         Map<String, String[]> map = new HashMap<>();
         char[] arr = digits.toCharArray();
-        List<String> result = new ArrayList<String>();
+        LinkedList<String> result = new LinkedList<String>();
         if(arr.length == 0)
             return result;
         
@@ -28,10 +28,10 @@ class Solution {
                 // result = new ArrayList<String>();
                 while(size != 0){
                     for(String s: sarr){
-                        result.add(result.get(0) + s);
+                        result.addLast(result.getFirst()+ s);
                     }
                     // System.out.println(result +" BEFORE");
-                    result.remove(0);
+                    result.removeFirst();
                     // System.out.println(result + " AFTER");
                     size--;
                     // idx++;
