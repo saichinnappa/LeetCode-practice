@@ -1,35 +1,35 @@
 class Solution {
     public int romanToInt(String s) {
-        
-        
-        if (s == null || s.length() == 0)
-		return -1;
-        
-        Map<Character, Integer> romanMap = new HashMap<>();
-        romanMap.put('I', 1);
-        romanMap.put('V', 5);
-        romanMap.put('X', 10);
-        romanMap.put('L', 50);
-        romanMap.put('C', 100);
-        romanMap.put('D', 500);
-        romanMap.put('M', 1000);
-        
-        char[] input = s.toCharArray();
-        
-        
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        char[] arr = s.toCharArray();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
         int result = 0;
-        
-        for(int i=0; i<input.length;i++){
-            
-            if((i+1) <= input.length-1 && romanMap.get(input[i+1]) > romanMap.get(input[i])){
-                result += (romanMap.get(input[i+1]) - romanMap.get(input[i]));
-                i++;
+        int length = arr.length;
+        boolean found = false;
+        for(int i = 0; i < arr.length; i++){
+            if((i + 1) < length){
+                if((arr[i] == 'I' && arr[i + 1] == 'X') 
+                  || (arr[i] == 'I' && arr[i+1] == 'V')
+                  || (arr[i] == 'X' && arr[i + 1] == 'L')
+                  || (arr[i] == 'X' && arr[i + 1] == 'C')
+                  || (arr[i] == 'C' && arr[i + 1] == 'D')
+                  || (arr[i] == 'C' && arr[i + 1] == 'M')){
+                    found = true;
+                    result += map.get(arr[i + 1]) - map.get(arr[i]);
+                    i = i + 1;
+                }
+            } 
+            if(!found){
+                result += map.get(arr[i]);
             }
-            else
-                result += romanMap.get(input[i]);
-            
+            found = false;
         }
-          return result;      
-        }
-    
+       return result; 
+    }
 }
