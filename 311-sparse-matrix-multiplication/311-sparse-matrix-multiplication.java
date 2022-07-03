@@ -12,7 +12,7 @@ class Solution {
                 // If current element of mat1 is non-zero then iterate over all columns of mat2.
                 if (mat1[rowIndex][elementIndex] != 0)  {
                     for (int colIndex = 0; colIndex < m; ++colIndex) {
-                        ans[rowIndex][colIndex] += mat1[rowIndex][elementIndex] * mat2[elementIndex][colIndex];
+                      ans[rowIndex][colIndex] += mat1[rowIndex][elementIndex] * mat2[elementIndex][colIndex];
                     }
                 }
             }
