@@ -33,24 +33,6 @@ class Solution {
             
         }
         
-//         while(l1 != null){
-//             int sum1 = carry + l1.val;
-//             carry = sum1 /10;
-//             ListNode n1 = new ListNode(sum1 % 10);
-//             head.next = n1;
-//             head = head.next;
-//             l1 = l1.next;
-//         }
-        
-//          while(l2 != null){
-//             int sum1 = carry + l2.val;
-//             carry = sum1 /10;
-//             ListNode n2 = new ListNode(sum1 % 10);
-//             head.next = n2;
-//             head = head.next;
-//             l2 = l2.next;
-//         }
-        
         if(carry != 0){
             ListNode n3 = new ListNode(1);
             head.next = n3;
