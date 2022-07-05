@@ -10,34 +10,46 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
-        ListNode dummy = new ListNode(-1);
-        ListNode result = dummy;
+        ListNode head = new ListNode(-1);
+        ListNode result = head;
         int carry = 0;
-        
-        while(l1 != null || l2 != null){
-            int sum = carry;
-            if(l1 != null){
-                sum += l1.val;
-                l1 = l1.next;
-            }
-            if(l2 != null){
-                sum += l2.val;
-                l2 = l2.next;
-            }
-            if(sum > 9){
-                int mod = sum % 10;
-                carry = 1;
-                dummy.next = new ListNode(mod);
-            } else{
-                dummy.next = new ListNode(sum);
-                carry = 0;
-            }
-            dummy = dummy.next;
+        while(l1 != null && l2 != null){
+            int v1 = l1.val;
+            int v2 = l2.val;
+            int sum = v1 + v2 + carry;
+            int v3 = (sum) % 10;
+            carry = (sum) / 10;
+            ListNode n = new ListNode(v3);
+            head.next = n;
+            head = head.next;
+            l1 = l1.next;
+            l2 = l2.next;
         }
-        if(carry != 0)
-            dummy.next = new ListNode(carry);
+        
+        while(l1 != null){
+            int sum1 = carry + l1.val;
+            carry = sum1 /10;
+            ListNode n1 = new ListNode(sum1 % 10);
+            head.next = n1;
+            head = head.next;
+            l1 = l1.next;
+        }
+        
+         while(l2 != null){
+            int sum1 = carry + l2.val;
+            carry = sum1 /10;
+            ListNode n2 = new ListNode(sum1 % 10);
+            head.next = n2;
+            head = head.next;
+            l2 = l2.next;
+        }
+        
+        if(carry != 0){
+            ListNode n3 = new ListNode(1);
+            head.next = n3;
+        }
+        
         return result.next;
+        
     }
 }
