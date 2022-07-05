@@ -10,6 +10,8 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+                if(l1 == null) return l2;
+        if(l2 == null) return l1;
         ListNode head = new ListNode(-1);
         ListNode result = head;
         int carry = 0;
