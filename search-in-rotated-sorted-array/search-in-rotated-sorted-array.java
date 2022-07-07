@@ -17,10 +17,10 @@ class Solution {
         int rIdx = rotatedIdx(nums, start, end);
         if(nums[rIdx] == target)
             return rIdx;
-        if(nums[end] < target){
-            return binarySearch(nums, start, rIdx - 1, target);
-        } else{
+        if(target < nums[start]){
             return binarySearch(nums, rIdx + 1, end, target);
+        } else{
+            return binarySearch(nums, start, rIdx - 1, target);
         }
         
         
