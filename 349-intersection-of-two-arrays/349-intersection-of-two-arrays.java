@@ -12,6 +12,11 @@ class Solution {
                 result.add(n);
             }
         }
+        
+        // int[] arr = new int[result.size()];
+        // for(int n : result){
+        //     arr[i] = 
+        // }
         // Set<Integer> s2 = Arrays.stream(nums2).boxed().collect(Collectors.toSet());
         // s1.retainAll(s2);
         return result.stream().mapToInt(Integer::intValue).toArray();
