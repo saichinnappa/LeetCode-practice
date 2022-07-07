@@ -4,6 +4,7 @@ class Solution {
         Arrays.sort(nums2);
         int i = 0;
         int j = 0;
+        int k = 0;
         List<Integer> list = new ArrayList<>();
         while(i != nums1.length && j != nums2.length){
             if(nums1[i] < nums2[j]){
@@ -12,18 +13,19 @@ class Solution {
                 j++;
             } else{
                 
-                list.add(nums1[i]);
+                nums1[k] = nums1[i];
+                k++;
                 i++;
                 j++;
             }
         }
-        int[] result = new int[list.size()];
-        for(int k = 0; k < list.size(); k++){
+//         int[] result = new int[list.size()];
+//         for(int k = 0; k < list.size(); k++){
             
-            result[k] = list.get(k);
+//             result[k] = list.get(k);
             
-        }
+//         }
          
-        return result;
+        return Arrays.copyOfRange(nums1, 0, k);
     }
 }
