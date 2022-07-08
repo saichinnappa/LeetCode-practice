@@ -6,12 +6,15 @@ class Solution {
             map.putIfAbsent(s, 0);
             map.put(s, map.get(s) + 1);
         }
+        PriorityQueue<Map.Entry<String, Integer>> queue = new PriorityQueue<>(new MapComparator());
         
-        ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
-        list.sort(new MapComparator());
+        queue.addAll(map.entrySet());
+        
+        // ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+        // list.sort(new MapComparator());
         
         for(int i = 0; i < k; i++){
-            result.add(list.get(i).getKey());
+            result.add(queue.poll().getKey());
         }
         
         return result;
