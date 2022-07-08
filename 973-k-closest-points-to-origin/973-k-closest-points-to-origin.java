@@ -1,56 +1,34 @@
 class Solution {
     public int[][] kClosest(int[][] points, int k) {
-        
-        PriorityQueue<Point> queue = new PriorityQueue<Point>(new PointComparator());
-        
-        
-        
+        PriorityQueue<Point> queue = new PriorityQueue<Point>((p1, p2) -> Double.compare(p1.dist, p2.dist));
         for(int[] p : points){
-            double dist = Math.sqrt(Math.pow(0 - p[0], 2) + Math.pow(0 - p[1], 2));
-            Point point = new Point(p[0], p[1], dist);
-            if(queue.size() < k)
-                queue.offer(point);
-            else if(dist < queue.peek().dist){
-                queue.poll();
-                queue.offer(point);
-            }
+            double dist = (Math.sqrt(Math.pow(p[0], 2) + Math.pow(p[1], 2)));
+            queue.offer(new Point(p[0], p[1], dist));
         }
         
-        List<int[]> list = new ArrayList<int[]>();
-        
-        while(!queue.isEmpty()){
-            Point p = queue.poll();
-            list.add(new int[]{p.x, p.y});
+        int[][] result = new int[k][2];
+        int i = 0;
+        while(k != 0){
+            Point p1 = queue.poll();
+            
+            result[i][0] = p1.x;
+            result[i][1] = p1.y;
+            i++;
+            k--;
         }
         
-        return list.toArray(new int[0][0]);
-        
+        return result;
     }
-    
-    
+}
+
 class Point{
-int x;
-int y;
-double dist;
-
-Point(int x, int y, double dist){
-    this.x = x;
-    this.y = y;
-    this.dist = dist;
-    
+    int x;
+    int y;
+    double dist;
+    Point(int x, int y, double dist){
+        this.x = x;
+        this.y = y;
+        this.dist = dist;
     }
-}
     
-    class PointComparator implements Comparator<Point> {
-        @Override
-        public int compare(Point p1, Point p2){
-             if(p1.dist > p2.dist)
-                 return -1;
-            else if(p1.dist < p2.dist)
-                return 1;
-            else
-                return 0;
-        }
-    }
 }
-
