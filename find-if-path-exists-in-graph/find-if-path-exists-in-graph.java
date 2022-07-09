@@ -1,40 +1,40 @@
 class Solution {
-    public boolean validPath(int n, int[][] edges, int start, int end) {
-        if(edges.length == 0)
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        if(source < n && source == destination)
             return true;
-        if(start == end)
-            return false;
+        Map<Integer, ArrayList<Integer>> graph = new HashMap<>();
+        for(int[] e : edges){
+            graph.putIfAbsent(e[0], new ArrayList<>());
+            graph.get(e[0]).add(e[1]);
+            graph.putIfAbsent(e[1], new ArrayList<>());
+            graph.get(e[1]).add(e[0]);
+        }
         
-        ArrayDeque<Integer> stack = new ArrayDeque();        
-        
-        Map<Integer, List<Integer>> map = new HashMap();
-        
+        Deque<Integer> stack = new LinkedList<>();
+        stack.push(source);
         boolean[] visited = new boolean[n];
-        
-        for(int[] edge : edges){
-            if(!map.containsKey(edge[0]))
-                map.put(edge[0], new ArrayList());
-            if(!map.containsKey(edge[1]))
-                map.put(edge[1], new ArrayList());
-            map.get(edge[0]).add(edge[1]);
-            map.get(edge[1]).add(edge[0]);
+        if(!graph.containsKey(source)){
+            return false;
         }
-        
-        stack.offer(start);
+        // 
         while(!stack.isEmpty()){
-            int top = stack.poll();
+            int top = stack.pop();
+            if(visited[top])
+                continue;
             visited[top] = true;
-            List<Integer> list = map.get(top);
-            if(list != null && list.size() > 0){
-                for(int i : list){
-                    if(i == end)
+            if(graph.containsKey(top)){
+                List<Integer> elements = graph.get(top);
+                for(int e  : elements){
+                    if(e == destination)
                         return true;
-                    else if(!visited[i])
-                        stack.offer(i);
-                }
+                    if(!visited[e]){
+                        stack.push(e);    
+                    }
+                    
+                }    
             }
-        }
             
+        }
         return false;
     }
 }
