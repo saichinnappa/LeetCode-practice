@@ -11,14 +11,14 @@ class Solution {
         }
         
         Deque<Integer> stack = new LinkedList<>();
-        stack.push(source);
+        stack.offer(source);
         boolean[] visited = new boolean[n];
         if(!graph.containsKey(source)){
             return false;
         }
         // 
         while(!stack.isEmpty()){
-            int top = stack.pop();
+            int top = stack.poll();
             if(visited[top])
                 continue;
             visited[top] = true;
@@ -28,7 +28,7 @@ class Solution {
                     if(e == destination)
                         return true;
                     if(!visited[e]){
-                        stack.push(e);    
+                        stack.offer(e);    
                     }
                     
                 }    
