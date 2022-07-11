@@ -20,17 +20,17 @@ class Solution {
         Deque<Pair> queue = new LinkedList<Pair>();
         queue.offer(new Pair(0, 0));
         grid[0][0] = 1;
+        int distance = 0;
         while(!queue.isEmpty()){
             Pair first = queue.poll();
-            int dist = grid[first.row][first.col];
+            distance = grid[first.row][first.col];
+            if(first.row == m - 1 && first.col == n -1)
+                return distance;
+            // distance++;
             List<Pair> neighbors = getNeighbors(first.row,first.col);
             for(Pair p : neighbors){
-                if(p.row == m - 1 && p.col == n -1)
-                    return dist + 1;
-                else{
-                    grid[p.row][p.col]  = dist + 1;
-                    queue.offer(new Pair(p.row, p.col));
-                }
+                grid[p.row][p.col]  = distance + 1;
+                queue.offer(new Pair(p.row, p.col));
             }
         }
         
