@@ -20,7 +20,7 @@ class Solution {
             if (graph.containsKey(node))
                 for (int[] edge: graph.get(node)) {
                     int nei = edge[0], d2 = edge[1];
-                    if (!dist.containsKey(nei))
+                    // if (!dist.containsKey(nei))
                         heap.offer(new int[]{d+d2, nei});
                 }
         }
