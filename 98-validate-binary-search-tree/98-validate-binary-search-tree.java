@@ -14,44 +14,24 @@
  * }
  */
 class Solution {
-    TreeNode pre = null;
     boolean isValid = true;
+    TreeNode prev = null;
     public boolean isValidBST(TreeNode root) {
-        // helper(root);
-        // return isValid;
-        
-        if(root == null)
-            return false;
-        
-        Deque<TreeNode> stack = new LinkedList<TreeNode>();
-        TreeNode curr = root;
-        TreeNode prev = null;
-        while(curr != null || !stack.isEmpty()){
-            while(curr != null){
-                stack.push(curr);
-                curr = curr.left;
-            }
-            TreeNode top = stack.pop();
-            if(prev != null){
-                if(prev.val >= top.val)
-                    return false;
-            }
-            prev = top;
-            curr = top.right;
-        }
-        return true;
-        
+        helper(root);
+        return isValid;
     }
     
     void helper(TreeNode root){
         if(root == null)
             return;
         helper(root.left);
-        if(pre != null){
-            if(pre.val >= root.val)
+        if(prev == null)
+            prev = root;
+        else{
+            if(prev.val >= root.val)
                 isValid = false;
+            prev = root;
         }
-        pre = root;
         helper(root.right);
     }
 }
