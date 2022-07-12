@@ -14,7 +14,7 @@ class RandomizedSet {
         if(map.containsKey(val))
             return false;
         map.put(val, list.size());
-        list.add(list.size(), val);
+        list.add(val);
         return true;
     }
     
