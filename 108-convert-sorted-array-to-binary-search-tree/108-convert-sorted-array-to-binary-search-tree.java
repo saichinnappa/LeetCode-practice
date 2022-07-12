@@ -21,10 +21,13 @@ class Solution {
     TreeNode helper(int[] nums, int start, int end){
         if(start > end)
             return null;
-        int val = (start + end) / 2;
-        TreeNode root = new TreeNode(nums[val]);
-        root.left = helper(nums, start, val - 1);
-        root.right = helper(nums, val + 1, end);
+        
+        int mid = (start + end) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = helper(nums, start, mid - 1);
+        root.right = helper(nums, mid + 1, end);
         return root;
+        
+       
     }
 }
