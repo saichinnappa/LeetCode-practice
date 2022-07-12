@@ -14,33 +14,22 @@
  * }
  */
 class Solution {
-    int sum = 0;
-    boolean valid = false;
+    boolean isValid = false;
     public boolean hasPathSum(TreeNode root, int targetSum) {
-        
-        if(root == null)
-            return false;
-        
-        helper(root, targetSum, 0);
-        return valid;
-        
-        
+        helper(0, targetSum, root);
+        return isValid;
     }
     
-    void helper(TreeNode root, int targetSum, int currentSum){
-        if(root == null){
+    void helper(int sum, int targetSum, TreeNode root){
+        if(root == null)
+            return;
+       
+        sum += root.val;
+        if(sum == targetSum && (root.left == null && root.right == null)){
+            isValid = true;
             return;
         }
-        currentSum += root.val;
-       
-        if(root.left == null && root.right == null){
-             if(currentSum == targetSum){
-                valid = true;
-             } 
-        }
-        
-        helper(root.left, targetSum, currentSum);
-        helper(root.right, targetSum, currentSum);
-        
+        helper(sum, targetSum, root.left);
+        helper(sum, targetSum, root.right);
     }
 }
