@@ -15,31 +15,21 @@
  */
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-        
-        // recursive
-        // if(root == null)
-        //     return root;
-        // TreeNode left = invertTree(root.left);
-        // TreeNode right = invertTree(root.right);
-        // root.left = right;
-        // root.right = left;
-        // return root;
-        
-        // iterative
         if(root == null)
             return root;
-        Deque<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            TreeNode current = queue.poll();
-            TreeNode temp = current.left;
-            current.left = current.right;
-            current.right = temp;
-            if(current.left != null)
-                queue.offer(current.left);
-            if(current.right != null)
-                queue.offer(current.right);
-        }
-        return root;
+        TreeNode p = new TreeNode(root.val);
+        helper(p, root);
+        return p;
+    }
+    
+    void helper(TreeNode p, TreeNode q){
+        if( q == null)
+            return;
+        if(q.right != null)
+            p.left = new TreeNode(q.right.val);
+        if(q.left !=null)
+            p.right = new TreeNode(q.left.val);
+        helper(p.left, q.right);
+        helper(p.right, q.left);
     }
 }
