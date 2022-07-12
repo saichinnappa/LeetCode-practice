@@ -26,16 +26,16 @@ class LRUCache {
     }
     
     public void put(int key, int value) {
-        System.out.println("Inserting: "+ key);
+        
         DLLNode newNode = new DLLNode(key, value, null, null);
         if(map.containsKey(key)){
             DLLNode n = map.get(key);
             removeNode(n);
         } else{
-            System.out.println("Size: "+ size);
+            
             if(size == capacity){
                 int k = removeTail();
-                System.out.println("Deleting: "+ k);
+                
                 map.remove(k);
             } else{
                 size++;
