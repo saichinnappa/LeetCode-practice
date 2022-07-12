@@ -27,18 +27,19 @@ class Solution {
         
         if(root == null)
             return 0;
-        if( low <= root.val && root.val <= high){
-            helper(root, low, high);
-        } else if (low >= root.val){
-            if(low == root.val)
-                result += root.val;
-            helper(root.right, low, high);
-        } else if(high <= root.val){
-            if(high == root.val){
-                result += root.val;
-            }
-            helper(root.left, low, high);
-        }
+        helper(root, low, high);
+        // if( low <= root.val && root.val <= high){
+        //     helper(root, low, high);
+        // } else if (low >= root.val){
+        //     if(low == root.val)
+        //         result += root.val;
+        //     helper(root.right, low, high);
+        // } else if(high <= root.val){
+        //     if(high == root.val){
+        //         result += root.val;
+        //     }
+        //     helper(root.left, low, high);
+        // }
         
         return result;
     }
