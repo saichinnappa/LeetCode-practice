@@ -16,7 +16,26 @@
 class Solution {
     List<Integer> result = new ArrayList<Integer>();
     public List<Integer> inorderTraversal(TreeNode root) {
-        helper(root);
+        // helper(root);
+        
+        if(root == null)
+            return result;
+        
+        Deque<TreeNode> stack = new LinkedList<TreeNode>();
+        // stack.push(root);
+        while(root != null || !stack.isEmpty()){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            
+            TreeNode top = stack.pop();
+            result.add(top.val);
+            root = top.right;
+            
+        }
+        
+        
         return result;
     }
     
