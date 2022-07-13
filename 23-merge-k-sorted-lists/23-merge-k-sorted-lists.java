@@ -25,18 +25,18 @@ class Solution {
         // return mergeLists(lists, 0, lists.length - 1);
     }
     
-    ListNode mergeLists(ListNode[] lists, int start, int end){
-        if(start > end)
-            return null;
-        if(start == end){
-            return lists[start];
-        }
+//     ListNode mergeLists(ListNode[] lists, int start, int end){
+//         if(start > end)
+//             return null;
+//         if(start == end){
+//             return lists[start];
+//         }
         
-        int mid = (start + end) / 2;
-        ListNode left = mergeLists(lists, start, mid);
-        ListNode right = mergeLists(lists, mid + 1, end);
-        return mergeSortedLists(left, right);
-    }
+//         int mid = (start + end) / 2;
+//         ListNode left = mergeLists(lists, start, mid);
+//         ListNode right = mergeLists(lists, mid + 1, end);
+//         return mergeSortedLists(left, right);
+//     }
     
     private ListNode mergeSortedLists(ListNode list1, ListNode list2) {
 		if (list1 == null)
@@ -44,13 +44,16 @@ class Solution {
 		if (list2 == null)
 			return list1;
 
+        ListNode head = null;
 		if (list1.val < list2.val) {
-			list1.next = mergeSortedLists(list1.next, list2);
-			return list1;
+			head = list1;
+			list1 = list1.next;
 		} else {
-			list2.next = mergeSortedLists(list2.next, list1);
-			return list2;
+			head = list2;
+			list2 = list2.next;
 		}
+        head.next = mergeSortedLists(list1, list2);
+        return head;
 	}
     
     
