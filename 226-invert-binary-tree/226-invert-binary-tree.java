@@ -18,7 +18,8 @@ class Solution {
         if(root == null)
             return root;
         TreeNode p = new TreeNode(root.val);
-        helper(p, root);
+        p.left = invertTree(root.right);
+        p.right = invertTree(root.left);
         return p;
     }
     
