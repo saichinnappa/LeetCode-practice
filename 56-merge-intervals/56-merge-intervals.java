@@ -9,7 +9,7 @@ class Solution {
                 int[] last = list.getLast();
                 if(last[1] >= intervals[i][0]){
                     list.removeLast();
-                    list.addLast(new int[]{Math.min(last[0], intervals[i][0]), Math.max(last[1], intervals[i][1])});
+                    list.addLast(new int[]{last[0], Math.max(last[1], intervals[i][1])});
                 } else{
                     list.addLast(intervals[i]);
                 }
