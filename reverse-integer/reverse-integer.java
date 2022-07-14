@@ -1,8 +1,8 @@
 class Solution {
     public int reverse(int x) {
         int isNegative = 1;
-        if(x < 0)
-            isNegative = -1;
+        // if(x < 0)
+        //     isNegative = -1;
         
         long result = 0;
         
