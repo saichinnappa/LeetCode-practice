@@ -10,7 +10,7 @@ class Solution {
     void solve(int index, int target, int sum, List<Integer> list){
         if(sum == target){
             result.add(new ArrayList<>(list));
-            // return;
+            return;
         }
         for(int i = index; i< candidates.length; i++){
             sum += candidates[i];
