@@ -10,9 +10,7 @@ class Solution {
                 case "color": if(item.get(1).equals(ruleValue)) result++;
                 break;    
                 case "name": if(item.get(2).equals(ruleValue)) result++;
-                break;    
-                default:
-                break;
+                break;   
             }
         }
         return result;
