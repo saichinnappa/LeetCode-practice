@@ -1,16 +1,14 @@
 class Solution {
     public int numIdenticalPairs(int[] nums) {
-        int result = 0;
-        for(int i = 1; i < nums.length; i++){
-            int j = 0;
-            while(j < i){
-                if(nums[i] == nums[j]){
-                    result++;
-                }
-                j++;
-            }
+        int arr[] = new int[101];
+        for(int item: nums){
+            arr[item]++;
         }
-            
-         return result;   
+        
+        int sum = 0;
+        for(int item: arr){
+            sum += (item*(item-1))/2;
+        }
+        return sum;
     }
 }
