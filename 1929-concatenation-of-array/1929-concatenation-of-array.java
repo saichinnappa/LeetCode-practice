@@ -11,8 +11,8 @@ class Solution {
         //         ans[i] = nums[i];
         //     }
         // }
-        System.arraycopy(nums, 0, ans, 0, nums.length);
-        System.arraycopy(nums, 0, ans, nums.length, nums.length);
+        System.arraycopy(nums, 0, ans, 0, n);
+        System.arraycopy(nums, 0, ans, n, n);
         return ans;
     }
 }
