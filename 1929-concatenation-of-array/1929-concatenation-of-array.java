@@ -4,13 +4,15 @@ class Solution {
         int n = nums.length;
         int[] ans = new int[2 * n];
         
-        for(int i = 0; i < ans.length; i++){
-            if(i > n - 1){
-                ans[i] = nums[i - n];
-            } else{
-                ans[i] = nums[i];
-            }
-        }
+        // for(int i = 0; i < ans.length; i++){
+        //     if(i > n - 1){
+        //         ans[i] = nums[i - n];
+        //     } else{
+        //         ans[i] = nums[i];
+        //     }
+        // }
+        System.arraycopy(nums, 0, ans, 0, nums.length);
+        System.arraycopy(nums, 0, ans, nums.length, nums.length);
         return ans;
     }
 }
