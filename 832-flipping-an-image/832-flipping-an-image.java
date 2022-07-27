@@ -8,18 +8,13 @@ class Solution {
             int j = 0;
             int jMax = n;
 
-            while(j < jMax){
-                int temp = image[i][j];
+            while(j <= jMax){
+                int temp = image[i][j] == 0 ? 1 : 0;
+                image[i][jMax] = image[i][jMax] == 0 ? 1 : 0;
                 image[i][j] = image[i][jMax];
                 image[i][jMax] = temp;
                 j++;
                 jMax--;
-            }
-        }
-        
-        for(int i = 0; i <image.length; i++){
-            for(int j = 0; j < image[0].length; j++){
-                    image[i][j] = image[i][j] == 0 ? 1 : 0;
             }
         }
         
