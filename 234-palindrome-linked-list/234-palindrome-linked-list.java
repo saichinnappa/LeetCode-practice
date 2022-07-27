@@ -32,12 +32,12 @@ class Solution {
         }
         
         //Compare first half with last half of the elements
-        ListNode curr = head;
+        // ListNode curr = head;
         // ListNode curr1 = prev;
         while(prev != null){
-            if(curr.val != prev.val)
+            if(head.val != prev.val)
                 return false;
-            curr = curr.next;
+            head = head.next;
             prev = prev.next;
         }
         
