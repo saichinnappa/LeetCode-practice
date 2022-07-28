@@ -1,33 +1,35 @@
 class Solution {
     List<List<Integer>> result = new ArrayList<>();
+    int[] nums;
     Set<Integer> set = new HashSet<>();
     public List<List<Integer>> permute(int[] nums) {
-        
-        solve(0, new ArrayList<>(), nums);
+        this.nums = nums;
+        solve(new ArrayList<>());
         return result;
     }
     
-    List<Integer> getCandidates(int[] nums){
-        List<Integer> list = new ArrayList<>();
+    
+    List<Integer> getCandidates(){
+        List<Integer> candidates = new ArrayList<>();
         for(int n : nums){
             if(!set.contains(n)){
-                list.add(n);
+                candidates.add(n);
             }
         }
-        return list;
+        
+        return candidates;
     }
     
-    void solve(int idx, List<Integer> list, int[] nums){
+    void solve(List<Integer> list){
         if(list.size() == nums.length){
             result.add(new ArrayList<>(list));
             return;
         }
-        
-        List<Integer> candidates = getCandidates(nums);
+        List<Integer> candidates = getCandidates();
         for(int n : candidates){
             set.add(n);
             list.add(n);
-            solve(idx, list, nums);
+            solve(list);
             set.remove(n);
             list.remove(list.size() - 1);
         }
