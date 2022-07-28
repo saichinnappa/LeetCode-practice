@@ -5,9 +5,8 @@ class Solution {
         int result = 0;
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
-                if(board[i][j] == 'X'){
+                if(board[i][j] == 'X' && dfs(i, j, board)){
                     result++;
-                    dfs(i, j, m, n, board);
                 }
             }
         }
@@ -15,18 +14,12 @@ class Solution {
         return result;
     }
     
-    void dfs(int row, int col, int m, int n, char[][] board){
-        if(row > -1 && col > -1 && row < m && col < n && board[row][col] == 'X'){
-            board[row][col] = 'Y';
-        } else{
-            return;
-        }
+    boolean dfs(int row, int col, char[][] board){
         
-        dfs(row + 1, col, m, n, board);
-        dfs(row - 1, col, m, n, board);
-        dfs(row, col + 1, m, n, board);
-        dfs(row, col - 1, m, n, board);
+        if((row - 1) >= 0 && board[row - 1][col] == 'X') return false;
+        if((col - 1) >= 0 && board[row][col - 1] == 'X') return false;
         
+        return true;
     }
     
     
