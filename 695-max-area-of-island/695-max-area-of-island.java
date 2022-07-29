@@ -1,34 +1,34 @@
 class Solution {
+    int result = 0, curr = 0;
     int[][] grid;
-    int area;
-    int result = 0;
     public int maxAreaOfIsland(int[][] grid) {
         this.grid = grid;
-
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[i].length; j++){
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
                 if(grid[i][j] == 1){
-                    maxArea(i, j);
-                    area = 0;
+                    dfs(i, j, m, n);
+                    result = Math.max(result, curr);
+                    curr = 0;
                 }
             }
         }
         return result;
     }
     
-    void maxArea(int row, int col){
-        if(row > -1 && col > -1 && row < this.grid.length && col < this.grid[row].length && this.grid[row][col] == 1 ){
-                    this.grid[row][col] = -1;
-            area++;
+    
+    void dfs(int row, int col, int m, int n){
+        if(row > -1 && col > -1 && row < m && col < n && grid[row][col] == 1){
+            curr++;
+            grid[row][col] = 2;
         } else{
             return;
         }
-
-        maxArea(row + 1, col);
-        maxArea(row, col + 1);
-        maxArea(row, col - 1);
-        maxArea(row - 1, col);
-        result = Math.max(result, area);
+        dfs(row + 1, col, m, n);
+        dfs(row, col + 1, m, n);
+        dfs(row - 1, col, m, n);
+        dfs(row, col - 1, m, n);
     }
     
 }
