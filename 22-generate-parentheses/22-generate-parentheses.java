@@ -1,52 +1,34 @@
 class Solution {
-    List<String> result = new ArrayList();
+    int open = 0;
+    int close = 0;
     int n = 0;
-    int open = 0, close = 0;
+    List<String> result = new ArrayList<>();
     public List<String> generateParenthesis(int n) {
-        if(n == 1)
-            return Arrays.asList("()");
         this.n = n;
-        StringBuilder sb = new StringBuilder();
-        solve(sb);
-        
+        solve(new StringBuilder());
         return result;
     }
     
     
-    private boolean isValid(){
-        return open == n && close == n;
-    }
-    
-    
-    private List<Character> getCandidates(){
-        if(open == close && open < n){
-            return Arrays.asList('(');
-        } else if (open > close && open < n){
-            return Arrays.asList('(', ')');
-        } else{
-            return Arrays.asList(')');
-        }
-    }
-    
-    
-    private void solve(StringBuilder s){
-        if(isValid()){
-            result.add(s.toString());
+    void solve(StringBuilder sb){
+        if(open == n && close == n){
+            result.add(sb.toString());
             return;
         }
-        
-        for(char c : getCandidates()){
-            s.append(c);
-            if(c == '(')
-                open++;
-            else
-                close++;
-            solve(s);
-            if(c == '(')
-                open--;
-            else 
-                close--;
-            s = s.deleteCharAt(s.length() - 1);
+        if(open < n){
+            open++;
+            sb.append("(");
+            solve(sb);
+            sb.deleteCharAt(sb.length() - 1);
+            open--;
+            
+        }
+        if (close < open){
+            close++;
+            sb.append(")");
+            solve(sb);
+            sb.deleteCharAt(sb.length() - 1);
+            close--;
         }
     }
     
