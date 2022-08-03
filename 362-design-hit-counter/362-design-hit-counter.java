@@ -1,9 +1,9 @@
 class HitCounter {
     
-    PriorityQueue<Integer> pq;
+    Deque<Integer> pq;
 
     public HitCounter() {
-        pq = new PriorityQueue<Integer>();
+        pq = new LinkedList<Integer>();
     }
     
     public void hit(int timestamp) {
@@ -12,7 +12,7 @@ class HitCounter {
     
     public int getHits(int timestamp) {
         
-        while(!pq.isEmpty() && timestamp - pq.peek() >= 300){
+        while(pq.size() > 0 && timestamp - pq.peek() >= 300){
             pq.poll();
         }
         return pq.size();
