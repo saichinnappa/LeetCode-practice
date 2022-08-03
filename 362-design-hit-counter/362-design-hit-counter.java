@@ -1,35 +1,21 @@
 class HitCounter {
+    
+    PriorityQueue<Integer> pq;
 
-    Deque<Pair> queue;
-    int total = 0;
     public HitCounter() {
-        queue = new LinkedList();
+        pq = new PriorityQueue<Integer>();
     }
     
     public void hit(int timestamp) {
-        if(!queue.isEmpty() && queue.peek().timestamp == timestamp){
-            queue.offer(new Pair(timestamp, queue.poll().count + 1));
-        } else{
-            queue.offer(new Pair(timestamp, 1));
-        }
-        total++;
+        pq.offer(timestamp);
     }
     
     public int getHits(int timestamp) {
-        while(!queue.isEmpty() && timestamp - queue.peek().timestamp >= 300){
-            total -= queue.poll().count;
+        
+        while(!pq.isEmpty() && timestamp - pq.peek() >= 300){
+            pq.poll();
         }
-        return total;
-    }
-}
-
-class Pair{
-    int timestamp;
-    int count;
-    
-    Pair(int timestamp, int count){
-        this.timestamp = timestamp;
-        this.count = count;
+        return pq.size();
     }
 }
 
