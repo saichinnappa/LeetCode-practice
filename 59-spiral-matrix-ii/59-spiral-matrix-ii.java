@@ -8,7 +8,7 @@ class Solution {
         int right = n - 1;
         int bottom = n - 1;
         
-        while(x != (n*n) + 1){
+        while(top <= bottom && left <= right){
             
             //top
             for(int i = left; i <= right; i++){
