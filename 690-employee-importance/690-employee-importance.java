@@ -11,14 +11,11 @@ class Solution {
     int result = 0;
     Map<Integer, Employee> map = new HashMap<>();
     public int getImportance(List<Employee> employees, int id) {
-
         for(Employee e: employees){
             map.put(e.id, e);
         }
-        
         if(!map.containsKey(id))
             return 0;
-        
         helper(map.get(id));
         return result;  
     }
@@ -30,6 +27,5 @@ class Solution {
                 helper(map.get(e1));
             }    
         }
-        
     }
 }
