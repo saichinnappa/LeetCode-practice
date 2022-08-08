@@ -1,33 +1,32 @@
 class Solution {
     public int findCircleNum(int[][] isConnected) {
         UnionByRank ubr = new UnionByRank(isConnected.length);
-        for(int i = 0; i< isConnected.length; i++){
-            for(int j = 0; j< isConnected[i].length; j++){
+        for(int i = 0; i < isConnected.length; i++){
+            for(int j = 0; j < isConnected[i].length; j++){
                 if(i !=j && isConnected[i][j] == 1){
                     ubr.union(i, j);
                 }
             }
         }
-        
-        return ubr.getDistinctRootCount();
+        return ubr.getConnected();
     }
 }
 
 class UnionByRank{
-    int[] root;
     int[] rank;
-    int count;
+    int[] root;
+    int connected;
     
-    UnionByRank(int size){
-        this.root = new int[size];
-        Arrays.setAll(this.root, i -> i);
-        this.rank = new int[size];
-        Arrays.fill(this.rank, 1);
-        this.count = size;
+    UnionByRank(){
+        
     }
     
-    int getDistinctRootCount(){
-        return count;
+    UnionByRank(int n){
+        rank = new int[n];
+        root = new int[n];
+        Arrays.setAll(this.root, i -> i);
+        Arrays.fill(rank, -1);
+        connected = n;
     }
     
     int find(int x){
@@ -48,11 +47,12 @@ class UnionByRank{
                 rank[rootX] += 1;
                 root[rootY] = rootX;
             }
-                    count--;
+                    connected--;
         }
     }
     
-    boolean isConnected(int x, int y){
-        return find(x) == find(y);
+    public int getConnected(){
+        return connected;
     }
+    
 }
