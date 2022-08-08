@@ -43,13 +43,30 @@ class UnionByRank{
                 root[rootY] = rootX;
             } else if(rank[rootY] > rank[rootX]){
                 root[rootX] = rootY;
-            } else{
+            }else {
                 rank[rootX] += 1;
                 root[rootY] = rootX;
             }
-                    connected--;
+            connected--;
         }
     }
+    
+    // void union(int x, int y){
+    //     int rootX = find(x);
+    //     int rootY = find(y);
+    //     if(rootX != rootY){
+    //         if(rank[rootX] > rank[rootY]){
+    //             root[rootY] = rootX;
+    //         } else if(rank[rootY] > rank[rootX]){
+    //             root[rootX] = rootY;
+    //         } else{
+    //             rank[rootX] += 1;
+    //             root[rootY] = rootX;
+    //         }
+    //                 count--;
+    //     }
+    // }
+    
     
     public int getConnected(){
         return connected;
