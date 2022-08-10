@@ -17,20 +17,10 @@ class Solution {
     public TreeNode invertTree(TreeNode root) {
         if(root == null)
             return root;
-        TreeNode p = new TreeNode(root.val);
-        p.left = invertTree(root.right);
-        p.right = invertTree(root.left);
-        return p;
+        TreeNode result = new TreeNode(root.val);
+        result.left = invertTree(root.right);
+        result.right = invertTree(root.left);
+        return result;
     }
-    
-    void helper(TreeNode p, TreeNode q){
-        if( q == null)
-            return;
-        if(q.right != null)
-            p.left = new TreeNode(q.right.val);
-        if(q.left !=null)
-            p.right = new TreeNode(q.left.val);
-        helper(p.left, q.right);
-        helper(p.right, q.left);
-    }
+
 }
