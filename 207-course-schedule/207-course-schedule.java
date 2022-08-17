@@ -27,6 +27,8 @@ class Solution {
                     if(preCount[c] == 0){
                         queue.offer(c);
                         count++;
+                        if(count == numCourses)
+                            return true;
                     }
                 }
             }
