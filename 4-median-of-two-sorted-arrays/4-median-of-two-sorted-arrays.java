@@ -1,30 +1,39 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int[] newArray = new int[nums1.length + nums2.length];
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] arr = new int[m + n];
         int i = 0;
-        for(int n : nums1){
-            newArray[i] = nums1[i];
-            i++;
-        }
         int j = 0;
-        for(int n : nums2){
-            newArray[i] = nums2[j];
-            i++;
-            j++;
-        }
-        Arrays.sort(newArray);
-        int mid = newArray.length / 2;
-        System.out.println(mid);
-        double median = 0;
-        if(newArray.length % 2 == 0){
-            double mid1 = newArray[mid] + newArray[mid - 1];
-            
-            median = Double.valueOf(mid1 / 2);
-        } else{
-            mid = newArray[mid];
-            median = Double.valueOf(mid);
+        int k = 0;
+        while(i < m && j < n){
+            if(nums1[i] < nums2[j]){
+                arr[k] = nums1[i];
+                i++;
+            } else{
+                arr[k] = nums2[j];
+                j++;
+            }
+            k++;
         }
         
-        return median;
+        
+        if(i != m){
+            System.arraycopy(nums1, i, arr,k, (m -i)); 
+            k += (m-i);
+        }
+        if(j != n){
+            System.arraycopy(nums2, j, arr,k, (n -j)); 
+            k += (n-j);
+        }
+        double result;
+        int mid = k / 2;
+        if(k % 2 == 0){
+            result = Double.valueOf(arr[mid] + arr[mid - 1]) /2;
+            
+        } else{
+            result = arr[mid];
+        }
+        return result;
     }
 }
