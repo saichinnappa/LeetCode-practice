@@ -3,15 +3,17 @@ class Solution {
         
         PriorityQueue<Point> queue = new PriorityQueue<Point>(new PointComparator());
         
-        
-        
         for(int[] p : points){
             double dist = Math.sqrt(Math.pow(0 - p[0], 2) + Math.pow(0 - p[1], 2));
             Point point = new Point(p[0], p[1], dist);
-            if(queue.size() < k)
+            if(queue.size() < k){
                 queue.offer(point);
+                
+            }
             else if(dist < queue.peek().dist){
-                queue.poll();
+                // System.out.println(dist+" "+ queue.peek().dist);
+                Point p1 = queue.poll();
+                
                 queue.offer(point);
             }
         }
