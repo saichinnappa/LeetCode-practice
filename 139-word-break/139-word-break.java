@@ -9,6 +9,7 @@ class Solution {
             if (visited[start]) {
                 continue;
             }
+            visited[start] = true;
             for (int end = start + 1; end <= s.length(); end++) {
                 if (wordDictSet.contains(s.substring(start, end))) {
                     queue.add(end);
@@ -17,7 +18,7 @@ class Solution {
                     }
                 }
             }
-            visited[start] = true;
+            
         }
         return false;
     }
