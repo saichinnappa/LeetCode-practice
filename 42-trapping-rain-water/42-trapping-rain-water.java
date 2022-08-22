@@ -6,12 +6,13 @@ class Solution {
         int[] maxLeft = new int[n];
         maxLeft[0] = height[0];
         int[] maxRight = new int[n];
+        maxRight[n - 1] =  height[n-1];
         
         for(int i = 1; i< n; i++){
             maxLeft[i] = Math.max(height[i], maxLeft[i - 1]);
         }
         
-        maxRight[n - 1] =height[n-1];
+       
         
         // System.out.println(Arrays.toString(maxLeft));
         
