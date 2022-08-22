@@ -14,13 +14,13 @@ class Solution {
         
        
         
-        // System.out.println(Arrays.toString(maxLeft));
+        System.out.println(Arrays.toString(maxLeft));
         
         for(int j = n - 2; j > -1; j--){
             maxRight[j] = Math.max(height[j], maxRight[j+1]);
         }
         
-        // System.out.println(Arrays.toString(maxRight));
+        System.out.println(Arrays.toString(maxRight));
         
         int result = 0;
         
