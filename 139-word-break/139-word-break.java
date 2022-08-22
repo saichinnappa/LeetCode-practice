@@ -5,7 +5,7 @@ class Solution {
         boolean[] visited = new boolean[s.length()];
         queue.add(0);
         while (!queue.isEmpty()) {
-            int start = queue.remove();
+            int start = queue.poll();
             if (visited[start]) {
                 continue;
             }
