@@ -24,7 +24,7 @@ class Solution {
         
         int result = 0;
         
-        for(int i = 0; i <  height.length - 1; i++){
+        for(int i = 0; i <  height.length; i++){
             result += Math.min(maxLeft[i], maxRight[i]) - height[i];
         }
         
