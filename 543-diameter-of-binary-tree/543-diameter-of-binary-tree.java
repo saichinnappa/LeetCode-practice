@@ -25,8 +25,8 @@ class Solution {
             return 0;
         int left = helper(root.left);
         int right = helper(root.right);
-        int ans = 1 + left + right;
         int temp = 1 + Math.max(left, right);
+        int ans = 1 + left + right;
         result = Math.max(result, ans);
         return temp;
     }
