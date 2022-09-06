@@ -5,9 +5,8 @@ class Solution {
         int p2 = nums.length - 1;
         while(curr <= p2){
             if(nums[curr] == 0){
-                int temp = nums[p0];
-                nums[p0] = nums[curr];
-                nums[curr] = temp;
+                nums[curr] = nums[p0];
+                nums[p0] = 0;
                 curr++;
                 p0++;
             } else if(nums[curr] == 2){
